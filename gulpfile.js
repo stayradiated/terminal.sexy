@@ -1,5 +1,6 @@
 var log = require('log_');
 var gulp = require('gulp');
+var jade = require('gulp-jade');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -9,12 +10,13 @@ var autoprefix = require('gulp-autoprefixer');
 var browserify = require('gulp-browserify');
 
 gulp.task('default', function (cb) {
-  return sequence(['sass', 'libs', 'scripts'], 'minify', cb);
+  return sequence(['sass', 'libs', 'scripts', 'jade'], 'minify', cb);
 });
 
 gulp.task('watch', function () {
   gulp.watch('stylesheets/**/*.scss', ['sass']);
   gulp.watch('scripts/**/*.js', ['scripts']);
+  gulp.watch('jade/**.jade', ['jade']);
 });
 
 gulp.task('connect', ['watch'], function () {
@@ -23,6 +25,14 @@ gulp.task('connect', ['watch'], function () {
     port: 8000,
     livereload: true
   });
+});
+
+gulp.task('jade', function () {
+  return gulp.src('jade/*.jade')
+    .pipe(jade({}))
+    .on('error', log('jade', 'yellow'))
+    .pipe(gulp.dest('dist/'))
+    .pipe(connect.reload());
 });
 
 gulp.task('sass', function () {
