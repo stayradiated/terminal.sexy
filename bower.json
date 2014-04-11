@@ -1,0 +1,27 @@
+{
+  "name": "16-colors",
+  "version": "0.0.1",
+  "homepage": "https://github.com/stayradiated/16-colors",
+  "authors": [
+    "George Czabania <george@czabania.com>"
+  ],
+  "description": "View terminal colorschemes in the broswer.",
+  "main": "dist/index.html",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.1.2",
+    "backbone.marionette": "~1.7.4",
+    "jquery": "~2.1.0",
+    "underscore": "~1.6.0"
+  }
+}

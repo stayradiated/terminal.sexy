@@ -1,0 +1,30 @@
+{
+  "name": "16-colors",
+  "version": "0.0.1",
+  "description": "View terminal colorschemes in the browser",
+  "main": "dist/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stayradiated/16-colors.git"
+  },
+  "author": "George Czabania",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stayradiated/16-colors/issues"
+  },
+  "homepage": "https://github.com/stayradiated/16-colors",
+  "devDependencies": {
+    "gulp-concat": "^2.2.0",
+    "gulp-uglify": "^0.2.1",
+    "gulp-sass": "^0.7.1",
+    "gulp": "^3.6.0",
+    "gulp-autoprefixer": "0.0.7",
+    "gulp-connect": "^2.0.5",
+    "gulp-browserify": "^0.5.0",
+    "log_": "0.0.3",
+    "run-sequence": "^0.3.6"
+  }
+}
