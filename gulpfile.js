@@ -5,7 +5,6 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var connect = require('gulp-connect');
-var typeify = require('typeify');
 var sequence = require('run-sequence');
 var autoprefix = require('gulp-autoprefixer');
 var browserify = require('gulp-browserify');
@@ -46,7 +45,7 @@ gulp.task('sass', function () {
 
 gulp.task('scripts', function () {
   return gulp.src('scripts/app.js')
-    .pipe(browserify({ standalone: 'App', transform: typeify }))
+    .pipe(browserify({ standalone: 'App' }))
     .on('error', log('browserify', 'blue'))
     .pipe(gulp.dest('dist/js'))
     .pipe(connect.reload());

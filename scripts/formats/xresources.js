@@ -1,9 +1,12 @@
-var Xresources = (function () {
-    function Xresources() {
-    }
-    Xresources.prototype.start = function () {
-        console.log('hello');
-    };
-    return Xresources;
-})();
-exports.Xresources = Xresources;
+/*
+ * - input (string) : text to parse
+ * > object
+ */
+
+var parse = function (input) {
+
+
+
+};
+
+module.exports = parse;
