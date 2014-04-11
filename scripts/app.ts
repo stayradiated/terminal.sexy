@@ -1,0 +1,2 @@
+import xresources = module('test');
+
