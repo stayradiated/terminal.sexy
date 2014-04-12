@@ -1,4 +1,3 @@
-var mocha = require('mocha');
 var assert = require('chai').assert;
 var xresources = require('../../scripts/formats/xresources');
 
@@ -93,13 +92,138 @@ describe('formats/xresources', function () {
 
       var input =
         '#define red #ff0000 \n'+
-        'color1: red \n';
+        '#define green #00ff00 \n'+
+        '#define yellow #00ffff \n'+
+        'color1: red \n' +
+        'color2: green \n' +
+        'color3: yellow \n' +
+        'color4: missing \n' +
+        'color9: red \n';
+
+      var output = xresources.import(input);
+
+      assert.deepEqual(output, {
+        1: '#ff0000',
+        2: '#00ff00',
+        3: '#00ffff',
+        9: '#ff0000'
+      });
+
+    });
+
+    it('should ignore comments', function () {
+
+      var input =
+        'color1: #ff0000 \n'+
+        '! color1: #000000 \n';
 
       var output = xresources.import(input);
 
       assert.deepEqual(output, {
         1: '#ff0000'
       });
+
+    });
+
+    it('should only ignore partial words', function () {
+
+      var input =
+        'color2: #ff0000 \n'+
+        'cursorColor2: #000000 \n'; 
+
+      var output = xresources.import(input);
+
+      assert.deepEqual(output, {
+        2: '#ff0000'
+      });
+
+    });
+
+  });
+
+  describe('.export', function () {
+
+    it('should export as a valid Xresources file', function () {
+
+      var input = {
+        background: '#000000',
+        foreground: '#ffffff',
+        0:  '#000000',
+        1:  '#111111',
+        2:  '#222222',
+        3:  '#333333',
+        4:  '#444444',
+        5:  '#555555',
+        6:  '#666666',
+        7:  '#777777',
+        8:  '#888888',
+        9:  '#999999',
+        10: '#aaaaaa',
+        11: '#bbbbbb',
+        12: '#cccccc',
+        13: '#dddddd',
+        14: '#eeeeee',
+        15: '#ffffff'
+      };
+
+      var output = xresources.export(input);
+
+      assert.equal(output,
+        '\n! --- special colors ---\n'+
+        '\n'+
+        '*background: #000000\n'+
+        '*foreground: #ffffff\n'+
+        '\n'+
+        '! --- standard colors ---\n'+
+        '\n'+
+        '! black\n'+
+        '*color0: #000000\n'+
+        '\n'+
+        '! bright_black\n'+
+        '*color8: #888888\n'+
+        '\n'+
+        '! red\n'+
+        '*color1: #111111\n'+
+        '\n'+
+        '! bright_red\n'+
+        '*color9: #999999\n'+
+        '\n'+
+        '! green\n'+
+        '*color2: #222222\n'+
+        '\n'+
+        '! bright_green\n'+
+        '*color10: #aaaaaa\n'+
+        '\n'+
+        '! yellow\n'+
+        '*color3: #333333\n'+
+        '\n'+
+        '! bright_yellow\n'+
+        '*color11: #bbbbbb\n'+
+        '\n'+
+        '! blue\n'+
+        '*color4: #444444\n'+
+        '\n'+
+        '! bright_blue\n'+
+        '*color12: #cccccc\n'+
+        '\n'+
+        '! magenta\n'+
+        '*color5: #555555\n'+
+        '\n'+
+        '! bright_magenta\n'+
+        '*color13: #dddddd\n'+
+        '\n'+
+        '! cyan\n'+
+        '*color6: #666666\n'+
+        '\n'+
+        '! bright_cyan\n'+
+        '*color14: #eeeeee\n'+
+        '\n'+
+        '! white\n'+
+        '*color7: #777777\n'+
+        '\n'+
+        '! bright_white\n'+
+        '*color15: #ffffff\n\n'
+      );
 
     });
 

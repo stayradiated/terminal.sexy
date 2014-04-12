@@ -11,8 +11,9 @@ var hex = '(#[a-f0-9]{6})';
  */
 
 var regex = {
-  color: new RegExp('(foreground|background|color(\\d+))'+sep+hex, 'ig'),
-  define: new RegExp('#define\\s*(\\w+)\\s*'+hex, 'ig')
+  color: new RegExp('\\b(foreground|background|color(\\d+))'+sep+hex, 'ig'),
+  define: new RegExp('#define\\s*(\\w+)\\s*'+hex, 'ig'),
+  comment: /^!.*$/mg
 };
 
 
@@ -31,16 +32,17 @@ module.exports = {
     var output = {};
     var match;
 
+    // remove comments
+    input = input.replace(regex.comment, '');
+
     // replace #define
     input.replace(regex.define, function (_, key, value) {
-      input = input.replace(key, value, 'ig');
+      var regex = new RegExp(key, 'ig');
+      input = input.replace(regex, value);
     });
-
-    console.log(input);
 
 
     // match colors
-
     while ((match = regex.color.exec(input)) !== null) {
       // if is colorN use N else use foreground/background
       var index = match[2] ? match[2] : match[1];
@@ -55,9 +57,31 @@ module.exports = {
 
   /*
    * xresources.export
+   * 
+   * - input (object)
+   * > output (string)
    */
 
   export: function (input) {
+    var output = '';
+    var colors = [
+      'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'
+    ];
+
+    output += '\n! --- special colors ---\n\n';
+    output += '*background: ' + input.background + '\n';
+    output += '*foreground: ' + input.foreground + '\n';
+    output += '\n! --- standard colors ---\n';
+
+    for (var i = 0; i < 8; i++) {
+      output += '\n! ' + colors[i] + '\n';
+      output += '*color' + i + ': ' + input[i] + '\n';
+      output += '\n! bright_' + colors[i] + '\n';
+      output += '*color' + (i + 8) + ': ' + input[(i + 8)] + '\n';
+    }
+
+    output += '\n';
+    return output;
   }
 
 };

@@ -1,53 +1,11 @@
-
-// COLORS
-
-$color-background: #021B21;
-$color-foreground: #E8DFD6;
-
-$colors: (
-  #08313B,
-  #ac4142,
-  #90a959,
-  #d28445,
-  #6a9fb5,
-  #aa759f,
-  #75b5aa,
-  #969896,
-  #134E5F,
-  #cc6666,
-  #b5bd68,
-  #f0c674,
-  #81a2be,
-  #b294bb,
-  #8abeb7,
-  #c5c8c6
-);
-
-// Returns a color based on the zero index
-@function color($index) {
-  @return nth($colors, $index + 1);
-}
-
-@for $i from 0 to 15 {
-  .bg-#{$i} {
-    background: color($i);
-  }
-  .fg-#{$i} {
-    color: color($i);
-  }
-}
-
 // STYLES
 
 body {
-  background: color(0);
-  font: 14px/21px Tamzen7x14;
+  font: 14px/21px Tamzen7x14, sans-serif;
 }
 
 .terminal {
   padding: 2% 1%;
-  background: $color-background;
-  color: $color-foreground;
   display: flex;
 }
 
