@@ -4,7 +4,7 @@
   "description": "View terminal colorschemes in the browser",
   "main": "dist/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -R spec test/*"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/stayradiated/16-colors",
   "devDependencies": {
+    "chai": "^1.9.1",
     "gulp": "^3.6.0",
     "gulp-autoprefixer": "0.0.7",
     "gulp-browserify": "^0.5.0",
@@ -26,6 +27,7 @@
     "gulp-sass": "^0.7.1",
     "gulp-uglify": "^0.2.1",
     "log_": "0.0.3",
+    "mocha": "^1.18.2",
     "run-sequence": "^0.3.6"
   }
 }
