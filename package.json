@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/stayradiated/16-colors",
   "devDependencies": {
+    "btoa": "^1.1.1",
     "chai": "^1.9.1",
     "gulp": "^3.6.0",
     "gulp-autoprefixer": "0.0.7",
@@ -29,5 +30,8 @@
     "log_": "0.0.3",
     "mocha": "^1.18.2",
     "run-sequence": "^0.3.6"
+  },
+  "dependencies": {
+    "urlsafe-base64": "0.0.2"
   }
 }

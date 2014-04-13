@@ -1,9 +1,22 @@
+require('../globals');
+
 var assert = require('chai').assert;
 var xresources = require('../../scripts/formats/xresources');
 
 describe('formats/xresources', function () {
 
   describe('.import', function () {
+
+    var testImport = function (input, expected) {
+      var output = xresources.import(input);
+
+      for (var key in output) {
+        if (! output.hasOwnProperty(key)) continue;
+        output[key] = output[key].toHexString();
+      }
+
+      assert.deepEqual(output, expected);
+    };
 
     it('should parse colors 0 - 15', function () {
 
@@ -25,9 +38,7 @@ describe('formats/xresources', function () {
         'color14: #ef0123 \n'+
         'color15: #f01234 \n';
 
-      var output = xresources.import(input);
-
-      assert.deepEqual(output, {
+      var expected = {
         0:  '#012345',
         1:  '#123456',
         2:  '#234567',
@@ -44,7 +55,9 @@ describe('formats/xresources', function () {
         13: '#def012',
         14: '#ef0123',
         15: '#f01234'
-      });
+      };
+
+      testImport(input, expected);
 
     });
 
@@ -54,12 +67,12 @@ describe('formats/xresources', function () {
         'background: #bada55 \n'+
         'foreground: #c0ffee \n';
 
-      var output = xresources.import(input);
-
-      assert.deepEqual(output, {
+      var expected = {
         background: '#bada55',
         foreground: '#c0ffee'
-      });
+      };
+
+      testImport(input, expected);
 
     });
 
@@ -74,9 +87,7 @@ describe('formats/xresources', function () {
         'URxvt.color5:  #56789a \n'+
         'URxvt*color6:  #6789ab \n';
 
-      var output = xresources.import(input);
-
-      assert.deepEqual(output, {
+      var expected = {
         0:  '#012345',
         1:  '#123456',
         2:  '#234567',
@@ -84,7 +95,9 @@ describe('formats/xresources', function () {
         4:  '#456789',
         5:  '#56789a',
         6:  '#6789ab',
-      });
+      };
+
+      testImport(input, expected);
 
     });
 
@@ -100,14 +113,14 @@ describe('formats/xresources', function () {
         'color4: missing \n' +
         'color9: red \n';
 
-      var output = xresources.import(input);
-
-      assert.deepEqual(output, {
+      var expected = {
         1: '#ff0000',
         2: '#00ff00',
         3: '#00ffff',
         9: '#ff0000'
-      });
+      };
+
+      testImport(input, expected);
 
     });
 
@@ -117,11 +130,11 @@ describe('formats/xresources', function () {
         'color1: #ff0000 \n'+
         '! color1: #000000 \n';
 
-      var output = xresources.import(input);
-
-      assert.deepEqual(output, {
+      var expected = {
         1: '#ff0000'
-      });
+      };
+
+      testImport(input, expected);
 
     });
 
@@ -131,11 +144,11 @@ describe('formats/xresources', function () {
         'color2: #ff0000 \n'+
         'cursorColor2: #000000 \n'; 
 
-      var output = xresources.import(input);
-
-      assert.deepEqual(output, {
+      var expected = {
         2: '#ff0000'
-      });
+      };
+
+      testImport(input, expected);
 
     });
 
@@ -169,59 +182,41 @@ describe('formats/xresources', function () {
       var output = xresources.export(input);
 
       assert.equal(output,
-        '\n! --- special colors ---\n'+
         '\n'+
+        '! special\n'+
         '*background: #000000\n'+
         '*foreground: #ffffff\n'+
         '\n'+
-        '! --- standard colors ---\n'+
-        '\n'+
         '! black\n'+
         '*color0: #000000\n'+
-        '\n'+
-        '! bright_black\n'+
         '*color8: #888888\n'+
         '\n'+
         '! red\n'+
         '*color1: #111111\n'+
-        '\n'+
-        '! bright_red\n'+
         '*color9: #999999\n'+
         '\n'+
         '! green\n'+
         '*color2: #222222\n'+
-        '\n'+
-        '! bright_green\n'+
         '*color10: #aaaaaa\n'+
         '\n'+
         '! yellow\n'+
         '*color3: #333333\n'+
-        '\n'+
-        '! bright_yellow\n'+
         '*color11: #bbbbbb\n'+
         '\n'+
         '! blue\n'+
         '*color4: #444444\n'+
-        '\n'+
-        '! bright_blue\n'+
         '*color12: #cccccc\n'+
         '\n'+
         '! magenta\n'+
         '*color5: #555555\n'+
-        '\n'+
-        '! bright_magenta\n'+
         '*color13: #dddddd\n'+
         '\n'+
         '! cyan\n'+
         '*color6: #666666\n'+
-        '\n'+
-        '! bright_cyan\n'+
         '*color14: #eeeeee\n'+
         '\n'+
         '! white\n'+
         '*color7: #777777\n'+
-        '\n'+
-        '! bright_white\n'+
         '*color15: #ffffff\n\n'
       );
 

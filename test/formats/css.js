@@ -1,3 +1,5 @@
+require('../globals');
+
 var assert = require('chai').assert;
 var css = require('../../scripts/formats/css');
 

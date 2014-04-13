@@ -1,6 +1,7 @@
 var formats = {
   xresources: require('./formats/xresources'),
-  css: require('./formats/css')
+  css: require('./formats/css'),
+  url: require('./formats/url')
 };
 
 var injectStyles = function (rule) {
@@ -15,10 +16,13 @@ $(function () {
 
   $('.submit').on('click', function () {
     var text = $('textarea').val();
-    var css = formats.css.export(formats.xresources.import(text));
+    var colors = formats.xresources.import(text);
+    var css = formats.css.export(colors);
 
     if (oldStyles) oldStyles.remove();
     oldStyles = injectStyles(css);
+
+    console.log(formats.url.export(colors));
 
   });
 

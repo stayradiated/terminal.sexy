@@ -11,6 +11,12 @@ module.exports = {
       output += '.fg-' + i + ' { color: ' + input[i] + '; }\n';
     }
 
+    // TEMP
+    // for (var i = 0; i < 8; i++) {
+    //   output += '.bold .bg-' + i + ' { background: ' + input[i + 8] + '; }\n';
+    //   output += '.bold .fg-' + i + ' { color: ' + input[i + 8] + '; }\n';
+    // }
+
     return output;
   }
 

@@ -29,7 +29,7 @@ gulp.task('connect', ['watch'], function () {
 
 gulp.task('jade', function () {
   return gulp.src('jade/*.jade')
-    .pipe(jade({}))
+    .pipe(jade({ pretty: true }))
     .on('error', log('jade', 'yellow'))
     .pipe(gulp.dest('dist/'))
     .pipe(connect.reload());
@@ -55,9 +55,10 @@ gulp.task('libs', function () {
   return gulp.src([
     'bower_components/jquery/dist/jquery.js',
     'bower_components/underscore/underscore.js',
-    'bower_components/backbone/backbone.js',
-    'bower_components/backbone.marionette/lib/backbone.marionette.js',
-    'bower_components/backbone-relational/backbone-relational.js'
+    'scripts/vendor/tinycolor.js',
+    // 'bower_components/backbone/backbone.js',
+    // 'bower_components/backbone.marionette/lib/backbone.marionette.js',
+    // 'bower_components/backbone-relational/backbone-relational.js'
   ]).pipe(concat('libs.js'))
     .pipe(gulp.dest('dist/js'));
 });

@@ -11,7 +11,7 @@ var hex = '(#[a-f0-9]{6})';
  */
 
 var regex = {
-  color: new RegExp('\\b(foreground|background|color(\\d+))'+sep+hex, 'ig'),
+  color: new RegExp('\\b(foreground|background|color([0-9][0-5]?))'+sep+hex, 'ig'),
   define: new RegExp('#define\\s*(\\w+)\\s*'+hex, 'ig'),
   comment: /^!.*$/mg
 };
@@ -47,7 +47,7 @@ module.exports = {
       // if is colorN use N else use foreground/background
       var index = match[2] ? match[2] : match[1];
       var color = match[3];
-      output[index] = color;
+      output[index] = tinycolor(color);
     }
 
     return output;
@@ -68,15 +68,13 @@ module.exports = {
       'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'
     ];
 
-    output += '\n! --- special colors ---\n\n';
+    output += '\n! special\n';
     output += '*background: ' + input.background + '\n';
     output += '*foreground: ' + input.foreground + '\n';
-    output += '\n! --- standard colors ---\n';
 
     for (var i = 0; i < 8; i++) {
       output += '\n! ' + colors[i] + '\n';
       output += '*color' + i + ': ' + input[i] + '\n';
-      output += '\n! bright_' + colors[i] + '\n';
       output += '*color' + (i + 8) + ': ' + input[(i + 8)] + '\n';
     }
 
