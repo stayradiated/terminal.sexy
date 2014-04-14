@@ -10,7 +10,14 @@ var injectStyles = function (rule) {
   }).appendTo("body");    
 };
 
+var loadTemplate = function (name) {
+  $('.terminal').load('templates/' + name + '.html');
+};
+
 $(function () {
+
+  // load template
+  loadTemplate('columns');
 
   var oldStyles = null;
 
