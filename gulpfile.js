@@ -10,10 +10,10 @@ var autoprefix = require('gulp-autoprefixer');
 var browserify = require('gulp-browserify');
 
 gulp.task('default', function (cb) {
-  return sequence(['sass', 'libs', 'scripts', 'jade'], 'minify', cb);
+  return sequence(['sass', 'libs', 'scripts', 'jade'], cb);
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['default'], function () {
   gulp.watch('stylesheets/**/*.scss', ['sass']);
   gulp.watch('scripts/**/*.js', ['scripts']);
   gulp.watch('jade/**.jade', ['jade']);
