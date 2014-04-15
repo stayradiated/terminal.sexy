@@ -152,6 +152,33 @@ describe('formats/xresources', function () {
 
     });
 
+    it('should handle default color names', function () {
+
+      var input =
+        'color0: black \n'+
+        'color1: red \n'+
+        'color2: green \n'+
+        'color3: yellow \n'+
+        'color4: blue \n'+
+        'color5: magenta \n'+
+        'color6: cyan \n'+
+        'color7: white \n';
+
+      var expected = {
+        0: '#000000',
+        1: '#cc0403',
+        2: '#19cb00',
+        3: '#cecb00',
+        4: '#001cd1',
+        5: '#cb1ed1',
+        6: '#0dcdcd',
+        7: '#e5e5e5'
+      };
+
+      testImport(input, expected);
+
+    });
+
   });
 
   describe('.export', function () {

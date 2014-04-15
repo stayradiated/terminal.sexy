@@ -6,7 +6,7 @@ var formats = {
 
 var injectStyles = function (rule) {
   return $("<div />", {
-    html: '&shy;<style>' + rule + '</style>'
+    html: '&shy;<style>' + rule + '</style>', 
   }).appendTo("body");    
 };
 
