@@ -33,6 +33,9 @@
   },
   "dependencies": {
     "urlsafe-base64": "0.0.2",
-    "ansi-html-stream": "0.0.3"
+    "ansi-html-stream": "0.0.3",
+    "filereader-stream": "^0.1.1",
+    "termio": "0.0.1",
+    "through": "^2.3.4"
   }
 }
