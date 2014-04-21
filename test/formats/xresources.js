@@ -206,6 +206,10 @@ describe('formats/xresources', function () {
         15: '#ffffff'
       };
 
+      for (var key in input) {
+        input[key] = tinycolor(input[key]);
+      }
+
       var output = xresources.export(input);
 
       assert.equal(output,

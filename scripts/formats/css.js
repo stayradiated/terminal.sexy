@@ -1,15 +1,32 @@
+
+if (typeof(window) !== 'undefined' && window.document) {
+  require('domo')(document);
+} else {
+  require('domo').global();
+}
+
 module.exports = {
 
   export : function (input) {
+
     var output = '';
 
-    output += '.background-bg { background-color: ' + input.background + '; }\n';
-    output += '.foreground-fg { color: ' + input.foreground + '; }\n';
+    output += STYLE.on('.alt-background-bg', {
+      background: tinycolor.darken(input.background).toHexString()
+    });
+
+    output += STYLE.on('.background-bg', {
+      background: input.background.toHexString()
+    });
+
+    output += STYLE.on('.foreground-fg', {
+      color: input.foreground.toHexString()
+    });
 
     for (var i = 0; i < 16; i++) {
       if (i >= 8) output += '.bold .foreground-' + (i - 8) + ', ';
-      output += '.foreground-' + i + ' { color: ' + input[i] + '; }\n';
-      output += '.background-' + i + ' { background-color: ' + input[i] + '; }\n';
+      output += STYLE.on('.foreground-' + i, { color: input[i].toHexString() });
+      output += STYLE.on('.background-' + i, { background: input[i].toHexString() });
     }
 
     return output;

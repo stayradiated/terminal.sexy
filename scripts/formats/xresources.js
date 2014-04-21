@@ -77,13 +77,13 @@ module.exports = {
     ];
 
     output += '\n! special\n';
-    output += '*background: ' + input.background + '\n';
-    output += '*foreground: ' + input.foreground + '\n';
+    output += '*background: ' + input.background.toHexString() + '\n';
+    output += '*foreground: ' + input.foreground.toHexString() + '\n';
 
     for (var i = 0; i < 8; i++) {
       output += '\n! ' + colors[i] + '\n';
-      output += '*color' + i + ': ' + input[i] + '\n';
-      output += '*color' + (i + 8) + ': ' + input[(i + 8)] + '\n';
+      output += '*color' + i + ': ' + input[i].toHexString() + '\n';
+      output += '*color' + (i + 8) + ': ' + input[(i + 8)].toHexString() + '\n';
     }
 
     output += '\n';
