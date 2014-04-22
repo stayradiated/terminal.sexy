@@ -21,7 +21,6 @@
     "chai": "^1.9.1",
     "gulp": "^3.6.0",
     "gulp-autoprefixer": "0.0.7",
-    "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.2.0",
     "gulp-connect": "^2.0.5",
     "gulp-jade": "^0.5.0",
@@ -29,7 +28,8 @@
     "gulp-uglify": "^0.2.1",
     "log_": "0.0.3",
     "mocha": "^1.18.2",
-    "run-sequence": "^0.3.6"
+    "run-sequence": "^0.3.6",
+    "gulp-faster-browserify": "^0.2.1"
   },
   "dependencies": {
     "domo": "^0.5.9",

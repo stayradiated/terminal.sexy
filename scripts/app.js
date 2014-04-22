@@ -1,4 +1,5 @@
 var createReadStream = require('filereader-stream');
+var Termio = require('termio');
 
 var formats = {
   xresources: require('./formats/xresources'),

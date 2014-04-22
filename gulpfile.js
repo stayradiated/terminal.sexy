@@ -7,7 +7,7 @@ var uglify = require('gulp-uglify');
 var connect = require('gulp-connect');
 var sequence = require('run-sequence');
 var autoprefix = require('gulp-autoprefixer');
-var browserify = require('gulp-browserify');
+var browserify = require('gulp-faster-browserify');
 
 gulp.task('default', function (cb) {
   return sequence(['sass', 'libs', 'scripts', 'jade'], cb);
@@ -56,7 +56,6 @@ gulp.task('libs', function () {
     'bower_components/jquery/dist/jquery.js',
     'bower_components/underscore/underscore.js',
     'scripts/vendor/tinycolor.js',
-    'node_modules/termio/browser.js',
     // 'bower_components/backbone/backbone.js',
     // 'bower_components/backbone.marionette/lib/backbone.marionette.js',
     // 'bower_components/backbone-relational/backbone-relational.js'
