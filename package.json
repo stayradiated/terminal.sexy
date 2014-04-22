@@ -1,7 +1,7 @@
 {
-  "name": "16-colors",
+  "name": "terminal.sexy",
   "version": "0.0.1",
-  "description": "View terminal colorschemes in the browser",
+  "description": "View and edit terminal colorschemes in the browser",
   "main": "dist/index.html",
   "scripts": {
     "test": "mocha -R spec test/*"

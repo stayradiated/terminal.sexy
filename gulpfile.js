@@ -56,6 +56,7 @@ gulp.task('libs', function () {
     'bower_components/jquery/dist/jquery.js',
     'bower_components/underscore/underscore.js',
     'scripts/vendor/tinycolor.js',
+    'node_modules/termio/browser.js',
     // 'bower_components/backbone/backbone.js',
     // 'bower_components/backbone.marionette/lib/backbone.marionette.js',
     // 'bower_components/backbone-relational/backbone-relational.js'

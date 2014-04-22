@@ -12,7 +12,7 @@ module.exports = {
     var output = '';
 
     output += STYLE.on('.alt-background-bg', {
-      background: tinycolor.darken(input.background).toHexString()
+      background: tinycolor.lighten(input.background, 3).toHexString()
     });
 
     output += STYLE.on('.background-bg', {

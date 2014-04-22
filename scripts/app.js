@@ -1,5 +1,4 @@
 var createReadStream = require('filereader-stream');
-var termio = require('termio');
 
 var formats = {
   xresources: require('./formats/xresources'),
@@ -44,7 +43,7 @@ $(function () {
     _.each(filelist, function (file) {
       var stream = createReadStream(file);
       var html = '';
-      var output = stream.pipe(termio());
+      var output = stream.pipe(Termio());
       output.on('data', function (chunk) {
         html += chunk.toString();
       });
