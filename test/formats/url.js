@@ -1,7 +1,7 @@
-require('../globals');
-
+var _ = require('underscore');
 var url = require('../../scripts/formats/url');
 var assert = require('chai').assert;
+var tinycolor = require('../../scripts/vendor/tinycolor')
 
 describe('formats/url', function () {
 
@@ -28,7 +28,7 @@ describe('formats/url', function () {
 
   var COLORS_URL = 'Ahsh6N_WCDE7rEFCkKlZ0oRFap-1qnWfdbWqlpiWE05fzGZmtb1o8MZ0gaK-spS7ir63xcjG';
 
-  describe('import', function () {
+  describe('.import', function () {
 
     it('should import from a string', function () {
       var output = url.import(COLORS_URL);

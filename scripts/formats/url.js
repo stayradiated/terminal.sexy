@@ -1,11 +1,11 @@
+var _ = require('underscore');
 var base64 = require('urlsafe-base64');
-
+var tinycolor = require('../vendor/tinycolor');
 
 tinycolor.prototype.toRgbArray = function () {
   var rgb = this.toRgb();
   return [ rgb.r, rgb.g, rgb.b ];
 };
-
 
 var ORDER = [
   'background', 'foreground',

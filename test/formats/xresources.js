@@ -1,7 +1,6 @@
-require('../globals');
-
 var assert = require('chai').assert;
 var xresources = require('../../scripts/formats/xresources');
+var tinycolor = require('../../scripts/vendor/tinycolor');
 
 describe('formats/xresources', function () {
 

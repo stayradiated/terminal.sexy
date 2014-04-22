@@ -1,3 +1,4 @@
+var tinycolor = require('../vendor/tinycolor');
 
 if (typeof(window) !== 'undefined' && window.document) {
   require('domo')(document);

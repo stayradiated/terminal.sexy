@@ -1,7 +1,6 @@
-require('../globals');
-
 var assert = require('chai').assert;
 var css = require('../../scripts/formats/css');
+var tinycolor = require('../../scripts/vendor/tinycolor');
 
 describe('formats/css', function () {
 
@@ -37,7 +36,7 @@ describe('formats/css', function () {
       var output = css.export(input);
 
       assert.equal(output,
-      '.alt-background-bg{background:#000000;}\n'+
+      '.alt-background-bg{background:#080808;}\n'+
       '.background-bg{background:#000000;}\n'+
       '.foreground-fg{color:#ffffff;}\n'+
       '.foreground-0{color:#000000;}\n'+

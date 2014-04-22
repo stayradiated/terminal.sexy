@@ -51,18 +51,6 @@ gulp.task('scripts', function () {
     .pipe(connect.reload());
 });
 
-gulp.task('libs', function () {
-  return gulp.src([
-    'bower_components/jquery/dist/jquery.js',
-    'bower_components/underscore/underscore.js',
-    'scripts/vendor/tinycolor.js',
-    // 'bower_components/backbone/backbone.js',
-    // 'bower_components/backbone.marionette/lib/backbone.marionette.js',
-    // 'bower_components/backbone-relational/backbone-relational.js'
-  ]).pipe(concat('libs.js'))
-    .pipe(gulp.dest('dist/js'));
-});
-
 gulp.task('minify', function () {
   return gulp.src('dist/js/*.js')
     .pipe(uglify())

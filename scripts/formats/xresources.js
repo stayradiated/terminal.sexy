@@ -1,3 +1,4 @@
+var tinycolor = require('../vendor/tinycolor');
 
 /*
  * Constants
