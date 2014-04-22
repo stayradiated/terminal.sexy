@@ -32,7 +32,6 @@
     "run-sequence": "^0.3.6"
   },
   "dependencies": {
-    "ansi-html-stream": "0.0.3",
     "domo": "^0.5.9",
     "filereader-stream": "^0.1.1",
     "termio": "0.0.1",
