@@ -1,14 +1,17 @@
 doctype html
 html(lang="en")
   head
-    title 16 Colors
+    title terminal.sexy
     link(rel="stylesheet", href="css/main.css")
-    script(src="js/libs.js")
     script(src="js/app.js")
   body.alt-background-bg
 
     textarea
     button.submit(type="button") Submit
+
+    select.importType
+      option(value="xresources") Xresources
+      option(value="iterm") iTerm
 
     input(type="file").file-input
 

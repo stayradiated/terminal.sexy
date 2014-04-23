@@ -1,3 +1,6 @@
+var _ = require('underscore');
+var tinycolor = require('../vendor/tinycolor');
+
 var defaultColors = {
   0: '#000000',
   1: '#cc0403',

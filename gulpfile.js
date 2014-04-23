@@ -2,16 +2,13 @@ var log = require('log_');
 var gulp = require('gulp');
 var jade = require('gulp-jade');
 var sass = require('gulp-sass');
-var concat = require('gulp-concat');
+var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var connect = require('gulp-connect');
-var sequence = require('run-sequence');
 var autoprefix = require('gulp-autoprefixer');
-var browserify = require('gulp-faster-browserify');
+var browserify = require('browserify');
 
-gulp.task('default', function (cb) {
-  return sequence(['sass', 'libs', 'scripts', 'jade'], cb);
-});
+gulp.task('default', ['sass', 'scripts', 'jade']);
 
 gulp.task('watch', ['default'], function () {
   gulp.watch('stylesheets/**/*.scss', ['sass']);
@@ -44,9 +41,10 @@ gulp.task('sass', function () {
 });
 
 gulp.task('scripts', function () {
-  return gulp.src('scripts/app.js')
-    .pipe(browserify({ standalone: 'App' }))
-    .on('error', log('browserify', 'blue'))
+  var bundleStream = browserify('./scripts/app.js').bundle();
+  bundleStream.on('error', log('browserify', 'blue'));
+  return bundleStream
+    .pipe(source('app.js'))
     .pipe(gulp.dest('dist/js'))
     .pipe(connect.reload());
 });

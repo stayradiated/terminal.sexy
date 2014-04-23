@@ -1,3 +1,4 @@
+var $ = require('jquery');
 var createReadStream = require('filereader-stream');
 var Termio = require('termio');
 
@@ -5,7 +6,8 @@ var formats = {
   xresources: require('./formats/xresources'),
   css: require('./formats/css'),
   url: require('./formats/url'),
-  defaults: require('./formats/defaults')
+  defaults: require('./formats/defaults'),
+  iterm: require('./formats/iterm')
 };
 
 var injectStyles = function (rule) {
@@ -29,8 +31,24 @@ $(function () {
 
   $('.submit').on('click', function () {
     var text = $('textarea').val();
-    var colors = formats.xresources.import(text);
+    var type = $('.importType').val();
+    var colors;
+
+    switch (type) {
+      case 'xresources':
+        colors = formats.xresources.import(text);
+        break;
+      case 'iterm':
+        colors = formats.iterm.import(text);
+        break;
+      default:
+        throw new Error('Import type not found: ' + type);
+    }
+
     formats.defaults(colors);
+
+    console.log(colors);
+
     var css = formats.css.export(colors);
 
     if (oldStyles) oldStyles.remove();
