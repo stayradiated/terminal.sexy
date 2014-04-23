@@ -6,19 +6,17 @@ var tinycolor = require('../../scripts/vendor/tinycolor');
 
 describe('formats/iterm', function () {
 
-  var INPUT = fs.readFileSync(__dirname + '/files/iterm_input.txt').toString();
+  var INPUT = fs.readFileSync(__dirname + '/files/iterm_input.itermcolors').toString();
   var OUTPUT = require('./files/iterm_output.json');
 
   describe('.import', function () {
 
-    it('should parse iterm config as XML', function (done) {
-
-      iterm.import(INPUT).then(function (output) {
-        for (var key in output) output[key] = output[key].toHexString();
-        assert.deepEqual(output, OUTPUT);
-        done();
-      });
-
+    it('should parse iterm config as XML', function () {
+      var output = iterm.import(INPUT);
+      for (var key in output) {
+        output[key] = output[key].toHexString();
+      }
+      assert.deepEqual(output, OUTPUT);
     });
   });
 

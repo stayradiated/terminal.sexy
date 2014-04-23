@@ -47,14 +47,10 @@ $(function () {
 
     formats.defaults(colors);
 
-    console.log(colors);
-
     var css = formats.css.export(colors);
 
     if (oldStyles) oldStyles.remove();
     oldStyles = injectStyles(css);
-
-    console.log(formats.url.export(colors));
   });
 
   $('.file-input').on('change', function (e) {

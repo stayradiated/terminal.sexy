@@ -1,7 +1,5 @@
 var _ = require('underscore');
-var Promise = require('bluebird');
 var tinycolor = require('../vendor/tinycolor');
-var xml2js = Promise.promisifyAll(require('xml2js'));
 
 var lookup = {
   'Background Color': 'background',
@@ -26,29 +24,40 @@ var lookup = {
   'Ansi 15 Color': '15'
 };
 
+var regex = {
+  group: /<key>([^<]*)<\/key>\s*<dict>/gi,
+  component: /<key>(Blue|Green|Red) Component<\/key>/gi,
+  real: /<real>([\d.]+)<\/real>/gi
+};
+
 module.exports = {
 
   import: function (input) {
-    return xml2js.parseStringAsync(input).then(function (xml) {
-      var output = {};
-      var data = xml.plist.dict[0];
-      _.each(data.key, function (name, i) {
-        name = lookup[name];
-        if (! name) return;
-        output[name] = {};
-        var color = data.dict[i];
-        var group = {};
-        _.each(color.key, function (component, i) {
-          group[component] = color.real[i] * 255;
-        });
-        output[name] = tinycolor({
-          r: group['Red Component'],
-          g: group['Green Component'],
-          b: group['Blue Component']
-        });
+    regex.group.lastIndex = 0;
+    var output = {};
+
+    var group;
+    while ((group = regex.group.exec(input)) !== null) {
+      var groupName = group[1];
+      var colorName = lookup[groupName];
+      if (! colorName) continue;
+
+      regex.component.lastIndex = group.index;
+      var color = {};
+      for (var i = 0; i < 3; i++) {
+        var component = regex.component.exec(input);
+        if (! component) continue;
+
+        var componentName = component[1].toLowerCase();
+        regex.real.lastIndex = component.index;
+        color[componentName] = regex.real.exec(input)[1] * 255;
+      }
+      output[colorName] = tinycolor({
+        r: color.red, g: color.green, b: color.blue
       });
-      return output;
-    });
+    }
+
+    return output;
   },
 
   export: function (input) {
@@ -65,6 +74,8 @@ module.exports = {
       '  <dict>',
       '    <key>Blue Component</key>',
       '    <real>{{ BLUE }}</real>',
+      '    <key>Color Space</key>',
+      '    <string>sRGB</string>',
       '    <key>Green Component</key>',
       '    <real>{{ GREEN }}</real>',
       '    <key>Red Component</key>',
