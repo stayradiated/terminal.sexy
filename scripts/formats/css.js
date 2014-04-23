@@ -1,36 +1,36 @@
+var _ = require('underscore');
 var tinycolor = require('../vendor/tinycolor');
-
-if (typeof(window) !== 'undefined' && window.document) {
-  require('domo')(document);
-} else {
-  require('domo').global();
-}
 
 module.exports = {
 
   export : function (input) {
+    var css = {};
 
-    var output = '';
-
-    output += STYLE.on('.alt-background-bg', {
+    css['.alt-background-bg'] = {
       background: tinycolor.lighten(input.background, 3).toHexString()
-    });
+    };
 
-    output += STYLE.on('.background-bg', {
+    css['.background-bg'] = {
       background: input.background.toHexString()
-    });
+    };
 
-    output += STYLE.on('.foreground-fg', {
+    css['.foreground-fg'] = {
       color: input.foreground.toHexString()
-    });
+    };
 
     for (var i = 0; i < 16; i++) {
-      if (i >= 8) output += '.bold .foreground-' + (i - 8) + ', ';
-      output += STYLE.on('.foreground-' + i, { color: input[i].toHexString() });
-      output += STYLE.on('.background-' + i, { background: input[i].toHexString() });
+      css['.foreground-' + i] = { color: input[i].toHexString() };
+      css['.background-' + i] = { background: input[i].toHexString() };
     }
 
-    return output;
+    return _.reduce(css, function (output, styles, selector) {
+      output += selector + '{';
+      output += _.reduce(styles, function (string, value, key) {
+        return string + key + ':' + value + ' !important;';
+      }, '');
+      output += '}\n';
+      return output;
+    }, '');
   }
 
 };

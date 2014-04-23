@@ -1,10 +1,13 @@
-// STYLES
 
-pre {
-  font: 14px Tamzen7x14, monospace;
-}
+// vendor
+@import 'vendor/normalize';
 
-.terminal {
-  width: 600px;
-  padding: 2% 1%;
-}
+// modules
+@import 'modules/vars';
+@import 'modules/type';
+@import 'modules/misc';
+
+// app
+@import 'app/header';
+@import 'app/terminal';
+@import 'app/sidebar';

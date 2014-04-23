@@ -31,7 +31,7 @@ $(function () {
 
   $('.submit').on('click', function () {
     var text = $('textarea').val();
-    var type = $('.importType').val();
+    var type = $('.type').val();
     var colors;
 
     switch (type) {
