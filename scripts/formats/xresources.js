@@ -11,7 +11,7 @@ var hex = '(#[a-f0-9]{6})';
  */
 
 var regex = {
-  color: new RegExp('\\b(foreground|background|color([0-9][0-5]?))\\s*:\\s*'+hex, 'ig'),
+  color: new RegExp('\\b(foreground|background|color(\\d\\d?))\\s*:\\s*'+hex, 'ig'),
   define: new RegExp('#define\\s*(\\w+)\\s*'+hex, 'ig'),
   comment: /^!.*$/mg
 };
