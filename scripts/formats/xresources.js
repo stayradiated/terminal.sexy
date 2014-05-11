@@ -13,7 +13,7 @@ var hex = '(#[a-f0-9]{6})';
 var regex = {
   color: new RegExp('\\b(foreground|background|color(\\d\\d?))\\s*:\\s*'+hex, 'ig'),
   define: new RegExp('#define\\s*(\\w+)\\s*'+hex, 'ig'),
-  comment: /^!.*$/mg
+  comment: /^\s*!.*$/mg
 };
 
 var DEFAULT_COLORS = '\n' +
@@ -56,8 +56,7 @@ module.exports = {
     while ((match = regex.color.exec(input)) !== null) {
       // if is colorN use N else use foreground/background
       var index = match[2] ? match[2] : match[1];
-      var color = match[3];
-      output[index] = tinycolor(color);
+      output[index] = tinycolor(match[3]);
     }
 
     return output;

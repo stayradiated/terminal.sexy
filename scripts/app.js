@@ -7,7 +7,8 @@ var formats = {
   css: require('./formats/css'),
   url: require('./formats/url'),
   defaults: require('./formats/defaults'),
-  iterm: require('./formats/iterm')
+  iterm: require('./formats/iterm'),
+  termite: require('./formats/termite')
 };
 
 var injectStyles = function (rule) {
@@ -40,6 +41,9 @@ $(function () {
         break;
       case 'iterm':
         colors = formats.iterm.import(text);
+        break;
+      case 'termite':
+        colors = formats.termite.import(text);
         break;
       default:
         throw new Error('Import type not found: ' + type);
