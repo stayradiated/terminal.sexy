@@ -17,10 +17,8 @@ var Exporter = React.createClass({
   },
 
   render: function () {
-    console.log(this.props.colors);
     return (
       <div className='exporter'>
-        <h2>Exporter</h2>
         <select ref='select' defaultValue='xresources'>
           <option value='gnome'>Gnome Terminal</option>
           <option value='guake'>Guake</option>

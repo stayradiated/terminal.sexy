@@ -1,28 +1,22 @@
-.sidebar {
+.editor {
 
-  position: absolute;
-  top: $header_height;
-  right: 0;
-  bottom: 0;
-  width: $sidebar_width;
-  padding: 0 20px;
+  .palette {
+    padding-top: 20px;
+    @extend #clearfix;
 
-  background: #eee;
-  border-left: 5px solid rgba(#000, 0.2);
-
-  .colors {
-    margin-top: 20px;
-
-    .row {
+    .block {
+      display: inline-block;
+      width: 50%;
       clear: both;
-      @extend #misc#clearfix;
     }
-    .label {
+
+    label {
       display: inline-block;
       vertical-align: middle;
       width: 20px;
       text-align: right;
     }
+
     .color {
       display: inline-block;
       vertical-align: middle;

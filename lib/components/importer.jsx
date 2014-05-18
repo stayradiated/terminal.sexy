@@ -13,10 +13,11 @@ var Importer = React.createClass({
   render: function () {
     return (
       <div className='importer'>
-        <h2>Importer</h2>
-        <select ref='select'>
-          <option value='xresources'>Xresources</option>
+        <select ref='select' defaultValue='xresources'>
+          <option value='iterm'>iTerm2</option>
+          <option value='termite'>Termite</option>
           <option value='url'>URL</option>
+          <option value='xresources'>Xresources</option>
         </select>
         <textarea ref='textarea' />
         <button onClick={this.handleClick}>Import</button>

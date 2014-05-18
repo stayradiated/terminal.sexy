@@ -32,7 +32,10 @@ gulp.task('sass', function () {
 });
 
 gulp.task('lib', function () {
-  return browserify({extensions: ['.jsx', '.js', '.json']})
+  return browserify({
+    extensions: ['.jsx', '.js', '.json'],
+    noParse: ['jquery', 'lodash']
+  })
   .add('./lib/app.jsx')
   .transform(reactify)
   .bundle()
