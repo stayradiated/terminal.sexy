@@ -1,0 +1,75 @@
+$foreground: #fff;
+
+body > .content {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 100%;
+  overflow: hidden;
+
+  .window-manager {
+    position: relative;
+  }
+
+  .windows {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 100%;
+  }
+
+  .window {
+    $window_header_height: 30px;
+
+    position: absolute;
+    background: #888;
+    overflow: hidden;
+
+    &.active {
+      background: #333;
+    }
+
+    header {
+      line-height: $window_header_height;
+      cursor: default;
+
+      .title {
+        text-indent: $window_header_height / 4;
+        color: $foreground;
+      }
+      .close {
+      }
+    }
+
+    .content {
+      $margin: 1px;
+      background: #fff;
+      position: absolute;
+      top: $window_header_height;
+      bottom: $margin;
+      left: $margin;
+      right: $margin;
+    }
+
+  }
+
+}
+
+$fade: opacity .1s ease-in;
+
+.windows-enter {
+  opacity: 0.01;
+  transition: $fade;
+}
+
+.windows-enter.windows-enter-active {
+  opacity: 1;
+}
+
+.windows-leave {
+  opacity: 1;
+  transition: $fade;
+}
+
+.windows-leave.windows-leave-active {
+  opacity: 0.01;
+}
+
