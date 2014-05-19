@@ -22,31 +22,51 @@ body > .content {
     position: absolute;
     background: #888;
     overflow: hidden;
+    box-shadow: 0 3px 10px rgba(#000, 0.3);
 
     &.active {
       background: #333;
     }
 
     header {
+      position: relative;
       line-height: $window_header_height;
       cursor: default;
 
       .title {
+        font-size: 14px;
+        font-weight: bold;
         text-indent: $window_header_height / 4;
         color: $foreground;
       }
       .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: $window_header_height;
+
+        &:after {
+          display: block;
+          content: 'x';
+          color: #fff;
+          text-align: center;
+          width: $window_header_height;
+        }
+
+        &:hover {
+          background: rgba(#000, 0.3);
+        }
       }
     }
 
     .content {
-      $margin: 1px;
-      background: #fff;
+      $margin: 0px;
       position: absolute;
       top: $window_header_height;
       bottom: $margin;
       left: $margin;
       right: $margin;
+      overflow: auto;
     }
 
   }

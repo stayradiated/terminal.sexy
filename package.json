@@ -39,9 +39,10 @@
     "lodash": "^2.4.1",
     "react": "^0.10.0",
     "reactwm": "0.0.7",
+    "signals": "git://github.com/stayradiated/signals.git#master",
     "termcolors": "0.0.4",
     "termio": "^0.0.2",
     "through": "^2.3.4",
-    "signals": "git://github.com/stayradiated/signals.git#master"
+    "tinytinycolor": "0.0.3"
   }
 }

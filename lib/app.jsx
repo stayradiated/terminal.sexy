@@ -1,14 +1,18 @@
 var $ = require('jquery');
+var _ = require('lodash');
 var React = require('react');
 var ReactWM = require('reactwm');
 var TermColors = require('termcolors');
+var tiny = require('tinytinycolor');
 
 var Importer = require('./components/importer');
 var Exporter = require('./components/exporter');
 var Editor = require('./components/editor');
 var Template = require('./components/template');
 
-var windows = new ReactWM.Manager();
+var windows = new ReactWM.Manager(
+  JSON.parse(localStorage.sexy || '[]')
+);
 
 $(function () {
   React.renderComponent(<ReactWM manager={windows} />, $('.content')[0]);
@@ -17,15 +21,20 @@ $(function () {
     windows.open(<Template content={content} />, {
       id: 'template',
       title: 'Template > Columns',
-      width: 300,
-      height: 300,
-      x: 20,
+      width: 600,
+      height: 800,
+      x: 940,
       y: 20
     });
   });
 });
 
-window.windows = windows;
+var save = _.throttle(function () {
+  localStorage.sexy = windows.toString();
+}, 1000);
+
+windows.on('change', save);
+windows.on('change:windows', save);
 
 var _oldStyles = null;
 var injectStyles = function (rule) {
@@ -47,11 +56,17 @@ var render = function () {
 
   if (state.colors) {
     var css = TermColors.css.export(state.colors);
+    var bodyBg;
+    if (state.colors.background.toHsl().l > 0.5) {
+      bodyBg = tiny.darken(state.colors.background);
+    } else {
+      bodyBg = tiny.lighten(state.colors.background);
+    }
+
     injectStyles(css + [
-      '.window .content{background: ' + state.colors.background.toHexString() + ' !important;}',
-      '.window {background: ' + state.colors[0].toHexString() + ' !important;}',
+      '.window {background: ' + state.colors.background.toHexString() + ' !important;}',
       '.window .title{color: ' + state.colors.foreground.toHexString() + ' !important;}',
-      'body {background: ' + state.colors.background.toHexString() + ' !important;}',
+      'body {background: ' + bodyBg.toHexString() + ' !important;}',
     ].join('\n'));
   }
 
@@ -69,17 +84,17 @@ var render = function () {
     title: 'Exporter',
     width: 400,
     height: 400,
-    x: 440,
-    y: 20
+    x: 20,
+    y: 440
   });
 
   windows.open(<Editor />, {
     id: 'editor', 
     title: 'Editor',
-    width: 820,
-    height: 400,
-    x: 20,
-    y: 440
+    width: 480,
+    height: 800,
+    x: 440,
+    y: 20
   });
 
 };
