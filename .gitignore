@@ -1,8 +1,0 @@
-# Dependency directory
-node_modules
-bower_components
-
-# Compiled files
-dist/*.html
-dist/js/*.js
-dist/css/*.css
