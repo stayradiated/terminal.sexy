@@ -25,7 +25,7 @@ gulp.task('connect', ['watch'], function () {
 
 gulp.task('sass', function () {
   return gulp.src('stylesheets/main.scss')
-    .pipe(sass({ outputStyle: 'nested', errLogToConsole: true }))
+    .pipe(sass({ outputStyle: 'compressed', errLogToConsole: true }))
     .pipe(autoprefix())
     .pipe(gulp.dest('dist/css'))
     .pipe(connect.reload());
@@ -45,7 +45,7 @@ gulp.task('lib', function () {
   .pipe(connect.reload());
 });
 
-gulp.task('minify', function () {
+gulp.task('minify', ['lib'], function () {
   return gulp.src('dist/js/*.js')
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'));
