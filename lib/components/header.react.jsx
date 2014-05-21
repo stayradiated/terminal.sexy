@@ -1,13 +1,10 @@
 var React = require('react');
+var AppActions = require('../actions/AppActions');
 
 var Header = React.createClass({
 
   open: function (name) {
-    switch (name) {
-      case 'editor':
-        console.log('Opening editor');
-        break;
-    }
+    AppActions.openWindow(name);
   },
 
   render: function () {

@@ -1,9 +1,8 @@
 var React = require('react');
 var ReactWM = require('reactwm');
-
-// components
-var Header = require('./header');
-var StyleSheet = require('./stylesheet');
+var AppStore = require('../stores/AppStore');
+var Header = require('./header.react');
+var StyleSheet = require('./stylesheet.react');
 
 var App = React.createClass({
 
