@@ -1,7 +1,7 @@
 var React = require('react');
-var TermColors = require('termcolors');
+var termcolors = require('termcolors');
 
-var Exporter = React.createClass({
+var Export = React.createClass({
 
   getInitialState: function () {
     return {
@@ -11,14 +11,15 @@ var Exporter = React.createClass({
 
   handleClick: function () {
     var type = this.refs.select.getDOMNode().value;
+    console.log('exporting', type, this.props.colors);
     this.setState({
-      text: TermColors[type].export(this.props.colors)
+      text: termcolors[type].export(this.props.colors)
     });
   },
 
   render: function () {
     return (
-      <div className='exporter'>
+      <div className='export'>
         <select ref='select' defaultValue='xresources'>
           <option value='gnome'>Gnome Terminal</option>
           <option value='guake'>Guake</option>
@@ -31,12 +32,15 @@ var Exporter = React.createClass({
           <option value='xfce'>XFCE4 Terminal</option>
           <option value='xresources'>Xresources</option>
         </select>
-        <textarea ref='textarea' value={this.state.text} readOnly />
         <button onClick={this.handleClick}>Export</button>
+        <div className='textarea'>
+          <textarea value={this.state.text} readOnly spellCheck='false'
+            className='bg-bg fg-fg' ref='textarea' />
+        </div>
       </div>
     );
   }
 
 });
 
-module.exports = Exporter;
+module.exports = Export;

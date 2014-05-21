@@ -1,0 +1,8 @@
+@mixin abs ($top:auto, $left:auto, $bottom:$auto, $right:auto) {
+  display: block;
+  position: absolute;
+  top: $top;
+  bottom: $bottom;
+  left: $left;
+  right: $right;
+}
