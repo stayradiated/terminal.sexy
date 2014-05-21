@@ -9,9 +9,13 @@ var Header = React.createClass({
 
   render: function () {
     return (
-      <header className='header'>
+      <header className='header fg-fg bg-bg'>
         <h1>terminal.sexy</h1>
-        <button onClick={this.open.bind(this, 'editor')}>Editor</button>
+        <ul>
+          <li onClick={this.open.bind(this, 'export')}>Export</li>
+          <li onClick={this.open.bind(this, 'import')}>Import</li>
+          <li onClick={this.open.bind(this, 'editor')}>Editor</li>
+        </ul>
       </header>
     );
   }

@@ -1,25 +1,28 @@
 var React = require('react');
-var TermColors = require('termcolors');
+var termcolors = require('termcolors');
+var AppActions = require('../actions/AppActions');
 
-var Importer = React.createClass({
+var Import = React.createClass({
 
   handleClick: function () {
     var type = this.refs.select.getDOMNode().value;
     var text = this.refs.textarea.getDOMNode().value;
-    var colors = TermColors[type].import(text);
-    this.props.onImport(colors);
+    var colors = termcolors[type].import(text);
+    AppActions.setAllColors(colors);
   },
 
   render: function () {
     return (
-      <div className='importer'>
+      <div className='import'>
         <select ref='select' defaultValue='xresources'>
           <option value='iterm'>iTerm2</option>
           <option value='termite'>Termite</option>
           <option value='url'>URL</option>
           <option value='xresources'>Xresources</option>
         </select>
-        <textarea ref='textarea' />
+        <div className='textarea'>
+          <textarea spellCheck='false' className='bg-bg fg-fg' ref='textarea' />
+        </div>
         <button onClick={this.handleClick}>Import</button>
       </div>
     );
@@ -27,4 +30,4 @@ var Importer = React.createClass({
 
 });
 
-module.exports = Importer;
+module.exports = Import;

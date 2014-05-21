@@ -1,14 +1,10 @@
 $foreground: #fff;
 
-body > .content {
+.window-manager {
   position: absolute;
-  top: 0; bottom: 0;
+  top: $header_height; bottom: 0;
   width: 100%;
   overflow: hidden;
-
-  .window-manager {
-    position: relative;
-  }
 
   .windows {
     position: absolute;

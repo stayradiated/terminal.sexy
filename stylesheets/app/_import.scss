@@ -1,0 +1,29 @@
+.import, .export {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  padding: 20px;
+
+  h2 {
+    margin: 0;
+  }
+  select {
+    display: block;
+    width: 100%;
+  }
+  .textarea {
+    position: absolute;
+    top: 30px; bottom: 30px;
+    left: 30px; right: 30px;
+    textarea {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      border: 0;
+      resize: none;
+    }
+  }
+  button {
+    display: block;
+    width: 100%;
+  }
+}

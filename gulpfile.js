@@ -1,4 +1,5 @@
 var log = require('log_');
+var brfs = require('brfs');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
@@ -38,6 +39,7 @@ gulp.task('lib', function () {
   })
   .add('./lib/init.jsx')
   .transform(reactify)
+  .transform(brfs)
   .bundle()
   .on('error', log('browserify', 'blue'))
   .pipe(source('app.js'))
