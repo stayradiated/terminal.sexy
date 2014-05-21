@@ -36,7 +36,7 @@ gulp.task('lib', function () {
     extensions: ['.jsx', '.js', '.json'],
     noParse: ['jquery', 'lodash']
   })
-  .add('./lib/app.jsx')
+  .add('./lib/init.jsx')
   .transform(reactify)
   .bundle()
   .on('error', log('browserify', 'blue'))

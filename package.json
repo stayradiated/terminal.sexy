@@ -40,7 +40,7 @@
     "react": "^0.10.0",
     "reactwm": "0.0.7",
     "signals": "git://github.com/stayradiated/signals.git#master",
-    "termcolors": "0.0.4",
+    "termcolors": "0.0.5",
     "termio": "^0.0.2",
     "through": "^2.3.4",
     "tinytinycolor": "0.0.3"
