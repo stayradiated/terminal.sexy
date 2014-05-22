@@ -11,7 +11,7 @@ var TemplateBrowserItem = React.createClass({
 
   render: function () {
     return (
-      <div className='template-browser-item fg-fg' onClick={this.handleClick}>
+      <div className='template-browser-item foreground-fg' onClick={this.handleClick}>
         {this.props.key}
       </div>
     );

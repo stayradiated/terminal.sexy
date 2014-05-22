@@ -36,7 +36,7 @@ var Export = React.createClass({
         <button onClick={this.handleClick}>Export</button>
         <div className='textarea'>
           <textarea value={this.state.text} readOnly spellCheck='false'
-            className='bg-bg fg-fg' ref='textarea' />
+            className='background-bg foreground-fg' ref='textarea' />
         </div>
       </div>
     );

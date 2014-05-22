@@ -38,8 +38,8 @@ var Editor = React.createClass({
 
       return (
         <div key={name} className='block'>
-          <label className='fg-8'>{name}</label>
-          <div className={'color bg-'+name}>
+          <label className='foreground-8'>{name}</label>
+          <div className={'color background-'+name}>
             {colors[id].toHexString()}
           </div>
         </div>

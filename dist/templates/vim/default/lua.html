@@ -1,0 +1,20 @@
+<span class="foreground-6">function</span> settable_event (table, key, value)
+    <span class="foreground-130">local</span> h
+    <span class="foreground-130">if</span> <span class="foreground-6">type</span>(table) == <span class="foreground-1">&quot;table&quot;</span> <span class="foreground-130">then
+</span>        <span class="foreground-130">local</span> v = <span class="foreground-6">rawget</span>(table, key)
+        <span class="foreground-4">-- if key is present, do raw assignment
+</span>        <span class="foreground-130">if</span> v ~= <span class="foreground-1">nil</span> <span class="foreground-130">then</span> <span class="foreground-6">rawset</span>(table, key, value); <span class="foreground-130">return</span> <span class="foreground-130">end
+</span>        h = metatable(table).__newindex
+        <span class="foreground-130">if</span> h == <span class="foreground-1">nil</span> <span class="foreground-130">then</span> <span class="foreground-6">rawset</span>(table, key, value); <span class="foreground-130">return</span> <span class="foreground-130">end
+</span>    <span class="foreground-130">else
+</span>        h = metatable(table).__newindex
+        <span class="foreground-130">if</span> h == <span class="foreground-1">nil</span> <span class="foreground-130">then
+</span>            <span class="foreground-6">error</span>(···)
+        <span class="foreground-130">end
+</span>    <span class="foreground-130">end
+</span>    <span class="foreground-130">if</span> <span class="foreground-6">type</span>(h) == <span class="foreground-1">&quot;function&quot;</span> <span class="foreground-130">then
+</span>        h(table, key,value)           <span class="foreground-4">-- call the handler
+</span>    <span class="foreground-130">else</span> h[key] = value             <span class="foreground-4">-- or repeat operation on it
+</span>    <span class="foreground-130">end
+</span><span class="foreground-6">end
+

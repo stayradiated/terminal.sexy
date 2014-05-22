@@ -1,0 +1,31 @@
+<span class="foreground-5">&lt;?
+</span><span class="foreground-4">/*
+    neat_r works like print_r but with much less visual clutter.
+    By Jake Lodwick. Copy freely.
+ */
+</span><span class="foreground-5">function</span> neat_r<span class="foreground-5">(</span><span class="foreground-130">$</span><span class="foreground-6">arr</span>, <span class="foreground-130">$</span><span class="foreground-6">return</span> <span class="foreground-130">=</span> <span class="foreground-1">false</span><span class="foreground-5">)</span> <span class="foreground-5">{
+</span>    <span class="foreground-130">$</span><span class="foreground-6">out</span> <span class="foreground-130">=</span> <span class="foreground-2">array</span><span class="foreground-5">()</span>;
+    <span class="foreground-130">$</span><span class="foreground-6">oldtab</span> <span class="foreground-130">=</span> &quot;<span class="foreground-1">    </span>&quot;;
+    <span class="foreground-130">$</span><span class="foreground-6">newtab</span> <span class="foreground-130">=</span> &quot;<span class="foreground-1">  </span>&quot;;
+
+    <span class="foreground-130">$</span><span class="foreground-6">lines</span> <span class="foreground-130">=</span> <span class="foreground-6">explode</span><span class="foreground-5">(</span>&quot;<span class="foreground-5">\n</span>&quot;, <span class="foreground-6">print_r</span><span class="foreground-5">(</span><span class="foreground-130">$</span><span class="foreground-6">arr</span>, <span class="foreground-1">true</span><span class="foreground-5">))</span>;
+
+    <span class="foreground-130">foreach</span> <span class="foreground-5">(</span><span class="foreground-130">$</span><span class="foreground-6">lines</span> <span class="foreground-130">as</span> <span class="foreground-130">$</span><span class="foreground-6">line</span><span class="foreground-5">)</span> <span class="foreground-5">{
+
+</span>        <span class="foreground-4">//remove numeric indexes like &quot;[0] =&gt;&quot; unless the value is an array
+</span>        <span class="foreground-130">if</span> <span class="foreground-5">(</span><span class="foreground-6">substr</span><span class="foreground-5">(</span><span class="foreground-130">$</span><span class="foreground-6">line</span>, <span class="foreground-1">-5</span><span class="foreground-5">)</span> <span class="foreground-130">!=</span> &quot;<span class="foreground-1">Array</span>&quot;<span class="foreground-5">)</span> <span class="foreground-5">{
+</span>            <span class="foreground-130">$</span><span class="foreground-6">line</span> <span class="foreground-130">=</span> <span class="foreground-6">preg_replace</span><span class="foreground-5">(</span>&quot;<span class="foreground-1">/^(\s*)\[[0-9]+\] =&gt; /</span>&quot;, &quot;<span class="foreground-1">$1</span>&quot;, <span class="foreground-130">$</span><span class="foreground-6">line</span>, <span class="foreground-1">1</span><span class="foreground-5">)</span>;
+        <span class="foreground-5">}
+
+</span>        <span class="foreground-4">//garbage symbols
+</span>        <span class="foreground-130">foreach</span> <span class="foreground-5">(</span><span class="foreground-2">array</span><span class="foreground-5">(
+</span>            &quot;<span class="foreground-1">Array</span>&quot;        <span class="foreground-130">=&gt;</span> &quot;&quot;,
+            &quot;<span class="foreground-1">[</span>&quot;            <span class="foreground-130">=&gt;</span> &quot;&quot;,
+            &quot;<span class="foreground-1">]</span>&quot;            <span class="foreground-130">=&gt;</span> &quot;&quot;,
+            &quot;<span class="foreground-1"> =&gt;</span>&quot;        <span class="foreground-130">=&gt;</span> &quot;<span class="foreground-1">:</span>&quot;,
+        <span class="foreground-5">)</span> <span class="foreground-130">as</span> <span class="foreground-130">$</span><span class="foreground-6">old</span> <span class="foreground-130">=&gt;</span> <span class="foreground-130">$</span><span class="foreground-6">new</span><span class="foreground-5">)</span> <span class="foreground-5">{
+</span>            <span class="foreground-130">$</span><span class="foreground-6">out</span> <span class="foreground-130">=</span> <span class="foreground-6">str_replace</span><span class="foreground-5">(</span><span class="foreground-130">$</span><span class="foreground-6">old</span>, <span class="foreground-130">$</span><span class="foreground-6">new</span>, <span class="foreground-130">$</span><span class="foreground-6">out</span><span class="foreground-5">)</span>;
+        <span class="foreground-5">}
+
+</span>        <span class="foreground-4">//garbage lines
+

@@ -1,0 +1,20 @@
+<span class="foreground-14"><span class="bold">function</span></span> settable_event (table, key, value)
+    <span class="foreground-11">local</span> h
+    <span class="foreground-11">if</span> <span class="foreground-14"><span class="bold">type</span></span>(table) == <span class="foreground-13">&quot;table&quot;</span> <span class="foreground-11">then
+</span>        <span class="foreground-11">local</span> v = <span class="foreground-14"><span class="bold">rawget</span></span>(table, key)
+        <span class="foreground-14">-- if key is present, do raw assignment
+</span>        <span class="foreground-11">if</span> v ~= <span class="foreground-13">nil</span> <span class="foreground-11">then</span> <span class="foreground-14"><span class="bold">rawset</span></span>(table, key, value); <span class="foreground-11">return</span> <span class="foreground-11">end
+</span>        h = metatable(table).__newindex
+        <span class="foreground-11">if</span> h == <span class="foreground-13">nil</span> <span class="foreground-11">then</span> <span class="foreground-14"><span class="bold">rawset</span></span>(table, key, value); <span class="foreground-11">return</span> <span class="foreground-11">end
+</span>    <span class="foreground-11">else
+</span>        h = metatable(table).__newindex
+        <span class="foreground-11">if</span> h == <span class="foreground-13">nil</span> <span class="foreground-11">then
+</span>            <span class="foreground-14"><span class="bold">error</span></span>(···)
+        <span class="foreground-11">end
+</span>    <span class="foreground-11">end
+</span>    <span class="foreground-11">if</span> <span class="foreground-14"><span class="bold">type</span></span>(h) == <span class="foreground-13">&quot;function&quot;</span> <span class="foreground-11">then
+</span>        h(table, key,value)           <span class="foreground-14">-- call the handler
+</span>    <span class="foreground-11">else</span> h[key] = value             <span class="foreground-14">-- or repeat operation on it
+</span>    <span class="foreground-11">end
+</span><span class="foreground-14"><span class="bold">end
+

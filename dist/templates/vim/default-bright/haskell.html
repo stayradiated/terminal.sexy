@@ -1,0 +1,31 @@
+<span class="foreground-81">import</span> System
+<span class="foreground-81">import</span> Foreign
+<span class="foreground-81">import</span> <span class="foreground-81">qualified</span> Data.ByteString <span class="foreground-81">as</span> B
+
+main <span class="foreground-11">=</span> <span class="foreground-11">do
+</span>    w <span class="foreground-11">&lt;-</span> getArgs <span class="foreground-11">&gt;&gt;=</span> readIO <span class="foreground-11">.</span> head
+    <span class="foreground-11">let</span> n      <span class="foreground-11">=</span> w <span class="foreground-11">`div`</span> <span class="foreground-13">8
+</span>        loop_y <span class="foreground-11">=</span> B.unfoldrN n (next_x w (<span class="foreground-13">2</span><span class="foreground-11">/</span>fromIntegral w) n)
+
+        unfold x <span class="foreground-11">=</span> <span class="foreground-11">case</span> loop_y x <span class="foreground-11">of
+</span>                    (s, Nothing) <span class="foreground-11">-&gt;</span> B.putStr s
+                    (s, Just x)  <span class="foreground-11">-&gt;</span> B.putStr s <span class="foreground-11">&gt;&gt;</span> unfold x
+
+    putStrLn (<span class="foreground-13">&quot;P4</span><span class="foreground-224">\n</span><span class="foreground-13">&quot;</span><span class="foreground-11">++</span>show w<span class="foreground-11">++</span><span class="foreground-13">&quot; &quot;</span><span class="foreground-11">++</span>show w)
+    unfold (T <span class="foreground-13">1</span> <span class="foreground-13">0</span> <span class="foreground-13">0</span> (<span class="foreground-11">-</span><span class="foreground-13">1</span>))
+
+<span class="foreground-121">data</span> T <span class="foreground-11">=</span> T <span class="foreground-11">!</span>Int <span class="foreground-11">!</span>Int <span class="foreground-11">!</span>Int <span class="foreground-11">!</span>Double
+
+next_x <span class="foreground-11">!</span>w <span class="foreground-11">!</span>iw <span class="foreground-11">!</span>bw (T bx x y ci)
+    <span class="foreground-11">|</span> y  <span class="foreground-11">==</span> w   <span class="foreground-11">=</span> Nothing
+    <span class="foreground-11">|</span> bx <span class="foreground-11">==</span> bw  <span class="foreground-11">=</span> Just (loop_x w x <span class="foreground-13">8</span> iw ci <span class="foreground-13">0</span>, T <span class="foreground-13">1</span> <span class="foreground-13">0</span>    (y<span class="foreground-11">+</span><span class="foreground-13">1</span>)   (iw<span class="foreground-11">+</span>ci))
+    <span class="foreground-11">|</span> otherwise <span class="foreground-11">=</span> Just (loop_x w x <span class="foreground-13">8</span> iw ci <span class="foreground-13">0</span>, T (bx<span class="foreground-11">+</span><span class="foreground-13">1</span>) (x<span class="foreground-11">+</span><span class="foreground-13">8</span>) y ci)
+
+loop_x <span class="foreground-11">!</span>w <span class="foreground-11">!</span>x <span class="foreground-11">!</span>n <span class="foreground-11">!</span>iw <span class="foreground-11">!</span>ci <span class="foreground-11">!</span>b
+    <span class="foreground-11">|</span> x <span class="foreground-11">&lt;</span> w <span class="foreground-11">=</span> <span class="foreground-11">if</span> n <span class="foreground-11">==</span> <span class="foreground-13">0
+</span>                    <span class="foreground-11">then</span> b
+                    <span class="foreground-11">else</span> loop_x w (x<span class="foreground-11">+</span><span class="foreground-13">1</span>) (n<span class="foreground-11">-</span><span class="foreground-13">1</span>) iw ci (b<span class="foreground-11">+</span>b<span class="foreground-11">+</span>v)
+    <span class="foreground-11">|</span> otherwise <span class="foreground-11">=</span> b <span class="foreground-11">`shiftL`</span> n
+  <span class="foreground-121">where
+</span>    v <span class="foreground-11">=</span> fractal <span class="foreground-13">0</span> <span class="foreground-13">0</span> (fromIntegral x <span class="foreground-11">*</span> iw <span class="foreground-11">-</span> <span class="foreground-13">1.5</span>) ci <span class="foreground-13">50
+

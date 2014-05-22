@@ -9,7 +9,7 @@ var Header = React.createClass({
 
   render: function () {
     return (
-      <header className='header fg-fg bg-bg'>
+      <header className='header foreground-fg background-bg'>
         <h1>terminal.sexy</h1>
         <ul>
           <li onClick={this.open.bind(this, 'templates')}>Templates</li>

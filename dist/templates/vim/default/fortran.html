@@ -1,0 +1,31 @@
+<span class="foreground-2">integer</span> :: my_seed
+        becomes
+  <span class="foreground-2">integer</span>, <span class="foreground-2">optional</span> :: my_seed
+<span class="foreground-5">module</span> ran_mod
+<span class="foreground-4">! ran1 returns a uniform random number between 0-1 
+! the seed is optional and used to reset the generator 
+</span><span class="foreground-5">contains
+</span>   <span class="foreground-5">function</span> ran1(my_seed)
+      <span class="foreground-5">use</span> numz
+      <span class="foreground-2">implicit</span> <span class="foreground-2">none
+      real</span>(b8) ran1,r
+      <span class="foreground-2">integer</span>, <span class="foreground-2">optional</span> ,<span class="foreground-2">intent</span>(<span class="foreground-2">in</span>) :: my_seed  <span class="foreground-4">! optional argument not changed in the routine 
+</span>      <span class="foreground-2">integer</span>,<span class="foreground-2">allocatable</span> :: seed(:)
+      <span class="foreground-2">integer</span> the_size,j
+      <span class="foreground-130">if</span>(<span class="foreground-6">present</span>(my_seed))<span class="foreground-130">then</span>            <span class="foreground-4">! use the seed if present 
+</span>          <span class="foreground-6">call</span> <span class="foreground-6">random_seed</span>(<span class="foreground-6">size</span><span class="foreground-130">=</span>the_size) <span class="foreground-4">! how big is the intrisic seed? 
+</span>          <span class="foreground-130">allocate</span>(seed(the_size))        <span class="foreground-4">! allocate space for seed 
+</span>          <span class="foreground-130">do</span> j<span class="foreground-130">=</span><span class="foreground-1">1</span>,the_size                 <span class="foreground-4">! create the seed 
+</span>             seed(j)<span class="foreground-130">=</span><span class="foreground-6">abs</span>(my_seed)<span class="foreground-130">+</span>(j<span class="foreground-130">-</span><span class="foreground-1">1</span>)   <span class="foreground-4">! abs is generic 
+</span>          <span class="foreground-130">enddo
+</span>          <span class="foreground-6">call</span> <span class="foreground-6">random_seed</span>(put<span class="foreground-130">=</span>seed)      <span class="foreground-4">! assign the seed 
+</span>          <span class="foreground-130">deallocate</span>(seed)                <span class="foreground-4">! deallocate space 
+</span>      <span class="foreground-130">endif
+</span>      <span class="foreground-6">call</span> <span class="foreground-6">random_number</span>(r)
+      ran1<span class="foreground-130">=</span>r
+  <span class="foreground-5">end function</span> ran1
+<span class="foreground-5">end module
+
+program</span> darwin
+    <span class="foreground-5">use</span> numz
+

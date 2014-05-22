@@ -1,0 +1,30 @@
+<span class="foreground-130">package</span><span class="foreground-2"> Dancer::Handler::Standalone</span>;
+
+<span class="foreground-130">use strict</span>;
+<span class="foreground-130">use warnings</span>;
+
+<span class="foreground-130">use </span>HTTP::Server::Simple::PSGI;
+<span class="foreground-130">use base</span> <span class="foreground-1">&#x27;Dancer::Handler&#x27;</span>, <span class="foreground-1">&#x27;HTTP::Server::Simple::PSGI&#x27;</span>;
+
+<span class="foreground-130">use </span>Dancer::HTTP;
+ome/maurice/fishsticks.pm[+] unix PERL <span class="foreground-1">9</span>/<span class="foreground-1">22
+</span>        <span class="foreground-6">$dancer-&gt;run</span>();
+    }
+}
+
+<span class="foreground-130">sub </span><span class="foreground-6">print_startup_info </span>{
+    <span class="foreground-130">my</span> <span class="foreground-6">$pid</span>    = <span class="foreground-130">shift</span>;
+    <span class="foreground-130">my</span> <span class="foreground-6">$ipaddr</span> = setting(<span class="foreground-1">&#x27;server&#x27;</span>);
+    <span class="foreground-130">my</span> <span class="foreground-6">$port</span>   = setting(<span class="foreground-1">&#x27;port&#x27;</span>);
+
+    <span class="foreground-4"># we only print the info if we need to
+</span>    setting(<span class="foreground-1">&#x27;startup_info&#x27;</span>) <span class="foreground-130">or</span> <span class="foreground-130">return</span>;
+
+    <span class="foreground-4"># bare minimum
+</span>    <span class="foreground-130">print</span> <span class="foreground-6">STDERR</span> <span class="foreground-1">&quot;&gt;&gt; Dancer </span><span class="foreground-6">$</span><span class="foreground-2">Dancer::</span><span class="foreground-6">VERSION</span><span class="foreground-1"> server </span><span class="foreground-6">$pid</span><span class="foreground-1"> listening &quot;</span> .
+                 <span class="foreground-1">&quot;on http://</span><span class="foreground-6">$ipaddr</span><span class="foreground-1">:</span><span class="foreground-6">$port</span><span class="foreground-5">\n</span><span class="foreground-1">&quot;</span>;
+
+    <span class="foreground-4"># all loaded plugins
+</span>    <span class="foreground-130">foreach</span> <span class="foreground-130">my</span> <span class="foreground-6">$module</span> ( <span class="foreground-130">grep {</span> <span class="foreground-6">$_</span> =~ <span class="foreground-130">m{</span><span class="foreground-1">^Dancer/Plugin/</span><span class="foreground-130">}</span> <span class="foreground-130">}</span> <span class="foreground-130">keys</span> <span class="foreground-6">%INC</span> ) {
+        <span class="foreground-6">$module</span> =~ <span class="foreground-130">s{</span><span class="foreground-1">/</span><span class="foreground-130">}{</span><span class="foreground-1">::</span><span class="foreground-130">}g</span>;  <span class="foreground-4"># change / to ::
+

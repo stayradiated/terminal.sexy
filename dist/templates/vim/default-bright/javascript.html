@@ -1,0 +1,30 @@
+
+ <span class="foreground-14"><span class="bold">var</span></span> ralpha = <span class="foreground-13">/alpha\([^)]*\)/i</span>,
+    ropacity = <span class="foreground-13">/opacity=([^)]*)/</span>,
+    <span class="foreground-14">// fixed for IE9, see #8346
+</span>    rupper = <span class="foreground-13">/([A-Z]|^ms)/g</span>,
+    rnumpx = <span class="foreground-13">/^-?\d+(?:px)?$/i</span>,
+    rnum = <span class="foreground-13">/^-?\d/</span>,
+    rrelNum = <span class="foreground-13">/^([\-+])=([\-+.\de]+)/</span>,
+
+    cssShow = <span class="foreground-14"><span class="bold">{</span></span> position: <span class="foreground-13">&quot;absolute&quot;</span>, visibility: <span class="foreground-13">&quot;hidden&quot;</span>, display: <span class="foreground-13">&quot;block&quot;</span> <span class="foreground-14"><span class="bold">}</span></span>,
+    cssWidth = <span class="foreground-14"><span class="bold">[</span></span> <span class="foreground-13">&quot;Left&quot;</span>, <span class="foreground-13">&quot;Right&quot;</span> <span class="foreground-14"><span class="bold">]</span></span>,
+    cssHeight = <span class="foreground-14"><span class="bold">[</span></span> <span class="foreground-13">&quot;Top&quot;</span>, <span class="foreground-13">&quot;Bottom&quot;</span> <span class="foreground-14"><span class="bold">]</span></span>,
+    curCSS,
+
+    getComputedStyle,
+    currentStyle;
+
+jQuery.fn.css = <span class="foreground-14"><span class="bold">function</span></span>( name, value ) <span class="foreground-14"><span class="bold">{
+</span></span>    <span class="foreground-14">// Setting &#x27;undefined&#x27; is a no-op
+</span>    <span class="foreground-11">if</span> ( <span class="foreground-14"><span class="bold">arguments</span></span>.length === 2 &amp;&amp; value === <span class="foreground-11">undefined</span> ) <span class="foreground-14"><span class="bold">{
+</span></span>        <span class="foreground-11">return</span> <span class="foreground-14"><span class="bold">this</span></span>;
+    <span class="foreground-14"><span class="bold">}
+
+</span></span>    <span class="foreground-11">return</span> jQuery.access( <span class="foreground-14"><span class="bold">this</span></span>, name, value, <span class="foreground-13">true</span>, <span class="foreground-14"><span class="bold">function</span></span>( elem, name, value ) <span class="foreground-14"><span class="bold">{
+</span></span>        <span class="foreground-11">return</span> value !== <span class="foreground-11">undefined</span> ?
+            jQuery.style( elem, name, value ) :
+            jQuery.css( elem, name );
+    <span class="foreground-14"><span class="bold">}</span></span>);
+<span class="foreground-14"><span class="bold">}</span></span>;
+

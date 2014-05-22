@@ -1,0 +1,31 @@
+<span class="foreground-5">#include </span><span class="foreground-1">&quot;algostuff.hpp&quot;
+</span><span class="foreground-130">using</span> <span class="foreground-2">namespace</span> std;
+
+<span class="foreground-2">bool</span> bothEvenOrOdd (<span class="foreground-2">int</span> elem1, <span class="foreground-2">int</span> elem2)
+{
+    <span class="foreground-130">return</span> elem1 % <span class="foreground-1">2</span> == elem2 % <span class="foreground-1">2</span>;
+}
+
+<span class="foreground-2">int</span> main()
+{
+    vector&lt;<span class="foreground-2">int</span>&gt; coll1;
+    list&lt;<span class="foreground-2">int</span>&gt; coll2;
+
+    <span class="foreground-2">float</span> m = <span class="foreground-1">40.0f</span>;
+
+    INSERT_ELEMENTS(coll1,<span class="foreground-1">1</span>,<span class="foreground-1">7</span>);
+    INSERT_ELEMENTS(coll2,<span class="foreground-1">3</span>,<span class="foreground-1">9</span>);
+
+    PRINT_ELEMENTS(coll1,<span class="foreground-1">&quot;coll1: </span><span class="foreground-5">\n</span><span class="foreground-1">&quot;</span>);
+    PRINT_ELEMENTS(coll2,<span class="foreground-1">&quot;coll2: </span><span class="foreground-5">\n</span><span class="foreground-1">&quot;</span>);
+
+    <span class="foreground-4">// check whether both collections are equal
+</span>    <span class="foreground-130">if</span> (equal (coll1.begin(), coll1.end(),  <span class="foreground-4">// first range
+</span>               coll2.begin())) {            <span class="foreground-4">// second range
+</span>        cout &lt;&lt; <span class="foreground-1">&quot;coll1 == coll2&quot;</span> &lt;&lt; endl;
+    } <span class="foreground-4">/* </span><span class="foreground-0">TODO</span><span class="foreground-4"> Shouldn&#x27;t there be an &#x27;else&#x27; case? */
+
+</span>    <span class="foreground-4">// check for corresponding even and odd elements
+</span>    <span class="foreground-130">if</span> (equal (coll1.begin(), coll1.end(),  <span class="foreground-4">// first range
+</span>               coll2.begin(),               <span class="foreground-4">// second range
+

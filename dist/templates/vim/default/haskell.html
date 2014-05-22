@@ -1,0 +1,30 @@
+<span class="foreground-5">import</span> System
+<span class="foreground-5">import</span> Foreign
+<span class="foreground-5">import</span> <span class="foreground-5">qualified</span> Data.ByteString <span class="foreground-5">as</span> B
+
+main <span class="foreground-130">=</span> <span class="foreground-130">do
+</span>    w <span class="foreground-130">&lt;-</span> getArgs <span class="foreground-130">&gt;&gt;=</span> readIO <span class="foreground-130">.</span> head
+    <span class="foreground-130">let</span> n      <span class="foreground-130">=</span> w <span class="foreground-130">`div`</span> <span class="foreground-1">8
+</span>        loop_y <span class="foreground-130">=</span> B.unfoldrN n (next_x w (<span class="foreground-1">2</span><span class="foreground-130">/</span>fromIntegral w) n)
+
+        unfold x <span class="foreground-130">=</span> <span class="foreground-130">case</span> loop_y x <span class="foreground-130">of
+</span>                    (s, Nothing) <span class="foreground-130">-&gt;</span> B.putStr s
+                    (s, Just x)  <span class="foreground-130">-&gt;</span> B.putStr s <span class="foreground-130">&gt;&gt;</span> unfold x
+
+    putStrLn (<span class="foreground-1">&quot;P4</span><span class="foreground-5">\n</span><span class="foreground-1">&quot;</span><span class="foreground-130">++</span>show w<span class="foreground-130">++</span><span class="foreground-1">&quot; &quot;</span><span class="foreground-130">++</span>show w)
+    unfold (T <span class="foreground-1">1</span> <span class="foreground-1">0</span> <span class="foreground-1">0</span> (<span class="foreground-130">-</span><span class="foreground-1">1</span>))
+
+<span class="foreground-2">data</span> T <span class="foreground-130">=</span> T <span class="foreground-130">!</span>Int <span class="foreground-130">!</span>Int <span class="foreground-130">!</span>Int <span class="foreground-130">!</span>Double
+
+next_x <span class="foreground-130">!</span>w <span class="foreground-130">!</span>iw <span class="foreground-130">!</span>bw (T bx x y ci)
+    <span class="foreground-130">|</span> y  <span class="foreground-130">==</span> w   <span class="foreground-130">=</span> Nothing
+    <span class="foreground-130">|</span> bx <span class="foreground-130">==</span> bw  <span class="foreground-130">=</span> Just (loop_x w x <span class="foreground-1">8</span> iw ci <span class="foreground-1">0</span>, T <span class="foreground-1">1</span> <span class="foreground-1">0</span>    (y<span class="foreground-130">+</span><span class="foreground-1">1</span>)   (iw<span class="foreground-130">+</span>ci))
+    <span class="foreground-130">|</span> otherwise <span class="foreground-130">=</span> Just (loop_x w x <span class="foreground-1">8</span> iw ci <span class="foreground-1">0</span>, T (bx<span class="foreground-130">+</span><span class="foreground-1">1</span>) (x<span class="foreground-130">+</span><span class="foreground-1">8</span>) y ci)
+
+loop_x <span class="foreground-130">!</span>w <span class="foreground-130">!</span>x <span class="foreground-130">!</span>n <span class="foreground-130">!</span>iw <span class="foreground-130">!</span>ci <span class="foreground-130">!</span>b
+    <span class="foreground-130">|</span> x <span class="foreground-130">&lt;</span> w <span class="foreground-130">=</span> <span class="foreground-130">if</span> n <span class="foreground-130">==</span> <span class="foreground-1">0
+</span>                    <span class="foreground-130">then</span> b
+                    <span class="foreground-130">else</span> loop_x w (x<span class="foreground-130">+</span><span class="foreground-1">1</span>) (n<span class="foreground-130">-</span><span class="foreground-1">1</span>) iw ci (b<span class="foreground-130">+</span>b<span class="foreground-130">+</span>v)
+    <span class="foreground-130">|</span> otherwise <span class="foreground-130">=</span> b <span class="foreground-130">`shiftL`</span> n
+  <span class="foreground-2">where
+

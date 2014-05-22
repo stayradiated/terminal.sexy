@@ -11,7 +11,7 @@ var Schemes = React.createClass({
     });
 
     return (
-      <ul className='schemes bg-bg fg-fg'>
+      <ul className='schemes background-bg foreground-fg'>
         {schemes}
       </ul>
     );
