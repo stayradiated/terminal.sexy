@@ -10,7 +10,7 @@ var SchemeItem = React.createClass({
   render: function () {
     return (
       <li className='scheme-item' onClick={this.handleClick}>
-        <span className='fg-fg name'>{this.props.scheme.name}</span>
+        <span className='name'>{this.props.scheme.name}</span>
         <span className='fg-7 author'>{this.props.scheme.author}</span>
       </li>
     );

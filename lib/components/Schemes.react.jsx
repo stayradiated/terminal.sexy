@@ -7,7 +7,7 @@ var Schemes = React.createClass({
   render: function () {
 
     var schemes = SchemeStore.getSchemes().map(function (scheme) {
-      return <SchemeItem scheme={scheme} />;
+      return <SchemeItem key={scheme.name} scheme={scheme} />;
     });
 
     return (

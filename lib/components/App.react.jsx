@@ -27,7 +27,6 @@ var App = React.createClass({
   },
 
   render: function () {
-    console.log(this.state.colors);
     return (
       <div className='app'>
         <Header />
