@@ -1,11 +1,10 @@
-var _ = require('lodash');
 var React = require('react');
 var TemplateStore = require('../stores/TemplateStore');
 var TemplateBrowserItem = require('./TemplateBrowserItem.react');
 
 var getTemplateBrowserState = function () {
   return {
-    templates: TemplateStore.getTemplates()
+    templates: TemplateStore.availableTemplates()
   };
 };
 
@@ -25,8 +24,7 @@ var TemplateBrowser = React.createClass({
 
   render: function () {
 
-    var templates = _.map(this.state.templates, function (template, id) {
-      console.log(id);
+    var templates = this.state.templates.map(function (id) {
       return <TemplateBrowserItem key={id} />;
     });
 
