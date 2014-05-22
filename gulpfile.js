@@ -2,12 +2,13 @@ var log = require('log_');
 var brfs = require('brfs');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var source = require('vinyl-source-stream');
+var reactify = require('reactify');
 var uglify = require('gulp-uglify');
 var connect = require('gulp-connect');
-var reactify = require('reactify');
-var autoprefix = require('gulp-autoprefixer');
+var plumber = require('gulp-plumber');
 var browserify = require('browserify');
+var autoprefix = require('gulp-autoprefixer');
+var source = require('vinyl-source-stream');
 
 gulp.task('default', ['sass', 'lib']);
 
@@ -32,19 +33,26 @@ gulp.task('sass', function () {
     .pipe(connect.reload());
 });
 
-gulp.task('lib', function () {
-  return browserify({
+gulp.task('lib', function (cb) {
+  var logErr = log('browserify', 'blue');
+
+  browserify({
     extensions: ['.jsx', '.js', '.json'],
     noParse: ['jquery', 'lodash']
   })
   .add('./lib/init.jsx')
   .transform(reactify)
   .transform(brfs)
+  .exclude('stylus')
   .bundle()
-  .on('error', log('browserify', 'blue'))
+  .on('error', function (error) {
+    logErr(error);
+    cb();
+  })
   .pipe(source('app.js'))
   .pipe(gulp.dest('dist/js'))
-  .pipe(connect.reload());
+  .pipe(connect.reload())
+  .on('end', cb);
 });
 
 gulp.task('minify', ['lib'], function () {

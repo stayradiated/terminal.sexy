@@ -37,3 +37,4 @@
 .fg-15{color:{{=c[15]}} !important;}
 .bg-15{background:{{=c[15]}} !important;}
 .window{background:{{=c.background}} !important;}
+.window .title{color:{{=c.foreground}} !important;}

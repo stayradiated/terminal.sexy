@@ -12,6 +12,7 @@ var Header = React.createClass({
       <header className='header fg-fg bg-bg'>
         <h1>terminal.sexy</h1>
         <ul>
+          <li onClick={this.open.bind(this, 'schemes')}>Schemes</li>
           <li onClick={this.open.bind(this, 'export')}>Export</li>
           <li onClick={this.open.bind(this, 'import')}>Import</li>
           <li onClick={this.open.bind(this, 'editor')}>Editor</li>

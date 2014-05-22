@@ -1,0 +1,24 @@
+{
+	"name": "papirus-dark",
+	"author": "franksn",
+	"color": [
+		"#717370",
+		"#8c735a",
+		"#aec495",
+		"#bfbb99",
+		"#88a1ba",
+		"#6d6871",
+		"#5c5346",
+		"#c8b972",
+		"#2e2c28",
+		"#998a7a",
+		"#b4cc99",
+		"#e6e3ca",
+		"#88a1ba",
+		"#948d99",
+		"#7a8735",
+		"#e4dd96"
+	],
+	"background": "#2e2c28",
+	"foreground": "#d1c3b8"
+}

@@ -1,5 +1,6 @@
 var React = require('react');
 var termcolors = require('termcolors');
+var AppStore = require('../stores/AppStore');
 
 var Export = React.createClass({
 
@@ -10,10 +11,10 @@ var Export = React.createClass({
   },
 
   handleClick: function () {
+    var colors = AppStore.getColors();
     var type = this.refs.select.getDOMNode().value;
-    console.log('exporting', type, this.props.colors);
     this.setState({
-      text: termcolors[type].export(this.props.colors)
+      text: termcolors[type].export(colors)
     });
   },
 

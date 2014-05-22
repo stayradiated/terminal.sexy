@@ -1,0 +1,24 @@
+.schemes {
+  margin: 0;
+  padding: 20px;
+
+  .scheme-item {
+    list-style-type: none;
+    line-height: 30px;
+    cursor: pointer;
+
+    .name {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    .author {
+      font-style: italic;
+    }
+
+    &:hover {
+      background: rgba(#000, 0.2);
+    }
+  }
+
+}

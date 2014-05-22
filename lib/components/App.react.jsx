@@ -2,8 +2,8 @@ var React = require('react');
 var ReactWM = require('reactwm');
 var AppStore = require('../stores/AppStore');
 var WindowStore = require('../stores/WindowStore');
-var Header = require('./header.react');
-var StyleSheet = require('./stylesheet.react');
+var Header = require('./Header.react');
+var StyleSheet = require('./Stylesheet.react');
 
 var getAppState = function () {
   return {

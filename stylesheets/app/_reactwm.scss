@@ -25,6 +25,7 @@ $foreground: #fff;
     }
 
     header {
+      background: rgba(#000, 0.2);
       position: relative;
       line-height: $window_header_height;
       cursor: default;

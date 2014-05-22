@@ -1,0 +1,25 @@
+{
+	"name": "kasugano",
+	"author": "Kori Ayakashi",
+	"color": [
+		"#3D3D3D",
+		"#6673BF",
+		"#3EA290",
+		"#B0EAD9",
+		"#31658C",
+		"#596196",
+		"#8292B2",
+		"#C8CACC",
+		"#4D4D4D", 
+		"#899AFF", 
+		"#52AD91",
+		"#98C9BB",
+		"#477AB3",
+		"#7882BF",
+		"#95A7CC",
+		"#EDEFF2"
+	],
+	"foreground": "#ffffff",
+	"background": "#1b1b1b"
+}
+

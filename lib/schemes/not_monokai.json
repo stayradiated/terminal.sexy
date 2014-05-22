@@ -1,0 +1,16 @@
+{
+	"name": "not_monokai",
+	"author": "crshd (http://crshd.github.io)",
+	"color": [
+		"#383830",
+		"#cc6633",
+		"#86a24e",
+		"#cc9853",
+		"#a59f85",
+		"#ae81df",
+		"#819fa4",
+		"#75715e"
+	],
+	"foreground": "#f8f8f2",
+	"background":  "#272822"
+}
