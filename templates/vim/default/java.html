@@ -1,0 +1,31 @@
+<span class="foreground-5">import</span> java.io.*;
+<span class="foreground-5">import</span> java.util.*;
+
+<span class="foreground-2">public</span> <span class="foreground-2">class</span> KeyboardIntegerReader {
+
+ <span class="foreground-2">public</span> <span class="foreground-2">static</span> <span class="foreground-2">void</span> main (String[] args) <span class="foreground-2">throws</span> java.io.IOException {
+  String s1;
+  String s2;
+  <span class="foreground-2">int</span> num = <span class="foreground-1">0</span>;
+
+  <span class="foreground-4">// set up the buffered reader to read from the keyboard
+</span>  BufferedReader br = <span class="foreground-130">new</span> BufferedReader (<span class="foreground-130">new</span> InputStreamReader (
+            System.in));
+
+  <span class="foreground-2">boolean</span> cont = <span class="foreground-1">true</span>;
+
+  <span class="foreground-130">while</span> (cont)
+     {
+      System.out.print (<span class="foreground-1">&quot;Enter an integer:&quot;</span>);
+      s1 = br.readLine();
+      StringTokenizer st = <span class="foreground-130">new</span> StringTokenizer (s1);
+      s2 = <span class="foreground-1">&quot;&quot;</span>;
+
+      <span class="foreground-130">while</span> (cont &amp;&amp; st.hasMoreTokens())
+     {
+          <span class="foreground-130">try
+</span>          {
+           s2 = st.nextToken();
+           num = Integer.parseInt(s2);
+           cont = <span class="foreground-1">false</span>;
+

@@ -1,0 +1,23 @@
+<span class="foreground-130">CREATE</span> <span class="foreground-5">TABLE</span> My_table(
+    my_field1   INT,
+    my_field2   <span class="foreground-2">VARCHAR</span>(<span class="foreground-1">50</span>),
+    my_field3   <span class="foreground-2">DATE</span>         <span class="foreground-130">NOT</span> <span class="foreground-5">NULL</span>,
+    PRIMARY KEY (my_field1, my_field2)
+);
+
+<span class="foreground-130">ALTER</span> <span class="foreground-5">TABLE</span> My_table <span class="foreground-5">ADD</span> my_field4 <span class="foreground-2">NUMBER</span>(<span class="foreground-1">3</span>) <span class="foreground-130">NOT</span> <span class="foreground-5">NULL</span>;
+
+<span class="foreground-130">GRANT</span> <span class="foreground-130">SELECT</span>, <span class="foreground-130">UPDATE
+</span>    <span class="foreground-5">ON</span> My_table
+    <span class="foreground-5">TO</span> some_user, another_user;
+
+<span class="foreground-130">REVOKE</span> <span class="foreground-130">SELECT</span>, <span class="foreground-130">UPDATE
+</span>    <span class="foreground-5">ON</span> My_table
+    <span class="foreground-5">FROM</span> some_user, another_user;
+
+<span class="foreground-130">SELECT</span> Book.title,
+        COUNT(*) <span class="foreground-5">AS</span> Authors
+    <span class="foreground-5">FROM</span>  Book JOIN Book_author
+       <span class="foreground-5">ON</span> Book.isbn = Book_author.isbn
+    <span class="foreground-5">GROUP</span> <span class="foreground-5">BY</span> Book.title;
+

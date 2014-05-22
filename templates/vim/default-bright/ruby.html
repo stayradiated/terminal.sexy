@@ -1,0 +1,30 @@
+<span class="foreground-81">def</span> <span class="foreground-14"><span class="bold">power</span></span>(x,n)
+  result = <span class="foreground-13">1
+</span>  <span class="foreground-11">while</span> n.nonzero?
+    <span class="foreground-11">if</span> n[<span class="foreground-13">0</span>].nonzero?
+      result *= x
+      n -= <span class="foreground-13">1
+</span>    <span class="foreground-11">end
+</span>    x *= x
+    n /= <span class="foreground-13">2
+</span>  <span class="foreground-11">end
+</span>  <span class="foreground-11">return</span> result
+<span class="foreground-81">end
+
+def</span> <span class="foreground-14"><span class="bold">f</span></span>(x)
+  <span class="foreground-121">Math</span>.sqrt(x.abs) + <span class="foreground-13">5</span>*x ** <span class="foreground-13">3
+</span><span class="foreground-81">end
+
+</span>(<span class="foreground-13">0</span>...<span class="foreground-13">11</span>).collect{ gets.to_i }.reverse.each <span class="foreground-11">do</span> |<span class="foreground-14"><span class="bold">x</span></span>|
+  y = f(x)
+  puts <span class="foreground-224">&quot;#{</span>x<span class="foreground-224">}</span><span class="foreground-13"> </span><span class="foreground-224">#{</span>y.infinite? ? <span class="foreground-224">&#x27;</span><span class="foreground-13">TOO LARGE</span><span class="foreground-224">&#x27;</span> : y<span class="foreground-224">}&quot;
+</span><span class="foreground-11">end
+</span><span class="foreground-14"># Map color names to short hex
+</span><span class="foreground-121">COLORS</span> = { <span class="foreground-13">:black</span>   =&gt; <span class="foreground-224">&quot;</span><span class="foreground-13">000</span><span class="foreground-224">&quot;</span>,
+           <span class="foreground-13">:red</span>     =&gt; <span class="foreground-224">&quot;</span><span class="foreground-13">f00</span><span class="foreground-224">&quot;</span>,
+           <span class="foreground-13">:green</span>   =&gt; <span class="foreground-224">&quot;</span><span class="foreground-13">0f0</span><span class="foreground-224">&quot;</span>,
+           <span class="foreground-13">:yellow</span>  =&gt; <span class="foreground-224">&quot;</span><span class="foreground-13">ff0</span><span class="foreground-224">&quot;</span>,
+           <span class="foreground-13">:blue</span>    =&gt; <span class="foreground-224">&quot;</span><span class="foreground-13">00f</span><span class="foreground-224">&quot;</span>,
+           <span class="foreground-13">:magenta</span> =&gt; <span class="foreground-224">&quot;</span><span class="foreground-13">f0f</span><span class="foreground-224">&quot;</span>,
+           <span class="foreground-13">:cyan</span>    =&gt; <span class="foreground-224">&quot;</span><span class="foreground-13">0ff</span><span class="foreground-224">&quot;</span>,
+

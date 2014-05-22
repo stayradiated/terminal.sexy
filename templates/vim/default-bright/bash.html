@@ -1,0 +1,31 @@
+<span class="foreground-14"># Source global definitions
+</span><span class="foreground-11">if [</span> <span class="foreground-11">-f</span> /etc/bashrc <span class="foreground-11">]</span>; <span class="foreground-11">then
+</span>       <span class="foreground-11"> . </span>/etc/bashrc
+<span class="foreground-11">fi
+</span><span class="foreground-14">#
+# aliases
+</span><span class="foreground-11">alias </span><span class="foreground-14"><span class="bold">grpe</span></span><span class="foreground-11">=grep
+alias </span><span class="foreground-14"><span class="bold">grep</span></span><span class="foreground-11">=&#x27;</span><span class="foreground-13">grep --color --line-number</span><span class="foreground-11">&#x27;
+alias </span><span class="foreground-14"><span class="bold">vim</span></span><span class="foreground-11">=&quot;</span><span class="foreground-13">vim -p</span><span class="foreground-11">&quot;
+alias </span><span class="foreground-14"><span class="bold">rebash</span></span><span class="foreground-11">=&quot;</span><span class="foreground-13">source ~/.bashrc</span><span class="foreground-11">&quot;
+
+alias </span><span class="foreground-14"><span class="bold">install</span></span><span class="foreground-11">=&#x27;</span><span class="foreground-13">sudo apt-get -y install</span><span class="foreground-11">&#x27;
+alias </span><span class="foreground-14"><span class="bold">search</span></span><span class="foreground-11">=&#x27;</span><span class="foreground-13">apt-cache search</span><span class="foreground-11">&#x27;
+alias </span><span class="foreground-14"><span class="bold">purge</span></span><span class="foreground-11">=&#x27;</span><span class="foreground-13">sudo apt-get purge</span><span class="foreground-11">&#x27;
+
+export</span><span class="foreground-14"><span class="bold"> EDITOR=</span></span>vim
+
+<span class="foreground-14"># set up the prompt to the hostname
+</span><span class="foreground-11">shopt</span> <span class="foreground-224">-s</span> checkwinsize
+<span class="foreground-14"><span class="bold">PS1</span></span>=<span class="foreground-11">&quot;</span><span class="foreground-224">\e</span><span class="foreground-13">[1;35m[</span><span class="foreground-224">\w</span><span class="foreground-13">]   ---   </span><span class="foreground-224">\@</span><span class="foreground-13"> </span><span class="foreground-224">\d</span><span class="foreground-13"> </span><span class="foreground-224">\n</span><span class="foreground-13">$&gt;</span><span class="foreground-224">\[\e</span><span class="foreground-13">[0m</span><span class="foreground-224">\]</span><span class="foreground-11">&quot;
+</span><span class="foreground-14"><span class="bold">PS2</span></span>=<span class="foreground-11">&quot;</span><span class="foreground-224">\e</span><span class="foreground-13">[1;35m-&gt;</span><span class="foreground-224">\[\e</span><span class="foreground-13">[0m</span><span class="foreground-224">\]</span><span class="foreground-11">&quot;
+
+</span><span class="foreground-14">#--------------------------------------------------
+#    grabs some definitions from google
+#--------------------------------------------------
+<span class="bold">define () {
+</span></span> lynx <span class="foreground-224">-dump</span> <span class="foreground-11">&quot;</span><span class="foreground-13">http://www.google.com/search?hl=en&amp;q=define%3A+</span><span class="foreground-81">${1}</span><span class="foreground-11">&quot;</span> <span class="foreground-11">|</span> <span class="foreground-11">grep</span> <span class="foreground-224">-m</span> <span class="foreground-13">25</span> <span class="foreground-224">-w</span> <span class="foreground-11">&quot;</span><span class="foreground-13">*</span><span class="foreground-11">&quot;</span>  <span class="foreground-11">|</span> <span class="foreground-11">sed</span> <span class="foreground-11">&#x27;</span><span class="foreground-13">s/;/ -/g</span><span class="foreground-11">&#x27;</span> <span class="foreground-11">|</span> cut <span class="foreground-224">-d-</span> <span class="foreground-224">-f5</span> <span class="foreground-11">&gt;</span> /tmp/templookup.txt
+             <span class="foreground-11">if </span><span class="foreground-224">[[</span> <span class="foreground-11">-s</span>  /tmp/templookup.txt <span class="foreground-224">]]</span> ;<span class="foreground-11">then
+</span>                 <span class="foreground-11">until ! read response
+                     do
+
