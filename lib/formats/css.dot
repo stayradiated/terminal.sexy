@@ -39,9 +39,13 @@
 
 .window {
   color: {{=c.foreground}} !important;
-  background: {{=c.background}} !important;
+  background: {{=c[0]}} !important;
 }
 
 .window .title {
   color: {{=c.foreground}} !important;
+}
+
+.window .content {
+  background: {{=c.background}} !important;
 }

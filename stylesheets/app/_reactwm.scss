@@ -25,10 +25,9 @@ $foreground: #fff;
     }
 
     header {
-      background: rgba(#000, 0.2);
       position: relative;
       line-height: $window_header_height;
-      cursor: default;
+      cursor: move;
 
       .title {
         font-size: 14px;
@@ -41,6 +40,7 @@ $foreground: #fff;
         right: 0;
         top: 0;
         width: $window_header_height;
+        cursor: default;
 
         &:after {
           display: block;
@@ -57,7 +57,7 @@ $foreground: #fff;
     }
 
     .content {
-      $margin: 0px;
+      $margin: 4px;
       position: absolute;
       top: $window_header_height;
       bottom: $margin;
@@ -67,11 +67,49 @@ $foreground: #fff;
     }
 
     .resize {
+      $size: 10px;
       @include abs(auto, auto, 0, 0);
-      width: 10px;
-      height: 10px;
-      background: rgba(#000, 0.3);
-      cursor: se-resize;
+
+      &.se-resize,
+      &.sw-resize {
+        width: $size;
+        height: $size;
+        bottom: 0;
+      }
+
+      &.se-resize {
+        right: 0;
+        cursor: se-resize;
+      }
+
+      &.sw-resize {
+        left: 0;
+        cursor: sw-resize;
+      }
+
+      &.e-resize,
+      &.w-resize {
+        width: $size;
+        top: $window_header_height;
+        bottom: 0;
+        cursor: ew-resize;
+      }
+
+      &.e-resize {
+        right: 0;
+      }
+
+      &.w-resize {
+        left: 0;
+      }
+
+      &.s-resize {
+        height: $size;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        cursor: ns-resize;
+      }
     }
 
   }

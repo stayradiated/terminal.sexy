@@ -33,15 +33,13 @@
     "vinyl-source-stream": "^0.1.1"
   },
   "dependencies": {
-    "backbone": "^1.1.2",
     "bluebird": "^1.2.4",
-    "envify": "^1.2.1",
     "filereader-stream": "^0.1.1",
     "husl": "^4.0.0",
     "jquery": "^2.1.0",
     "lodash": "^2.4.1",
     "react": "^0.10.0",
-    "reactwm": "0.0.7",
+    "reactwm": "0.0.8",
     "signals": "git://github.com/stayradiated/signals.git#master",
     "termcolors": "0.0.6",
     "termio": "^0.0.2",

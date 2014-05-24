@@ -3,6 +3,7 @@
 
   .palette {
     @extend #clearfix;
+    $height: 60px;
 
     .block {
       display: inline-block;
@@ -22,9 +23,15 @@
       vertical-align: middle;
       background: #888;
       width: 160px;
-      height: 60px;
       box-shadow: inset 0 -5px 0 rgba(#000, 0.2);
       margin: 0 0 10px 5px;
+      height: $height;
+
+      text-align: center;
+      line-height: $height;
+      color: rgba(#000, 0.4);
+      font-weight: bold;
+      text-transform: uppercase;
     }
   }
 
