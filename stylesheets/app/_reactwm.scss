@@ -57,6 +57,7 @@ $foreground: #fff;
     }
 
     .content {
+      @extend #scroll;
       $margin: 4px;
       position: absolute;
       top: $window_header_height;

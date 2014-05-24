@@ -3,6 +3,8 @@ var brfs = require('brfs');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var reactify = require('reactify');
+var insert = require('gulp-insert');
+var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var connect = require('gulp-connect');
 var plumber = require('gulp-plumber');
@@ -10,11 +12,29 @@ var browserify = require('browserify');
 var autoprefix = require('gulp-autoprefixer');
 var source = require('vinyl-source-stream');
 
-gulp.task('default', ['sass', 'lib']);
+var vendor = [
+  'bluebird',
+  'filereader-stream',
+  'husl',
+  'jquery',
+  'lodash',
+  'react',
+  'react/addons',
+  'reactwm',
+  'signals',
+  'termcolors',
+  'termio',
+  'tinytinycolor',
+  'urlsafe-base64'
+];
+
+gulp.task('default', ['sass', 'vendor'], function () {
+  return gulp.start('bundle');
+});
 
 gulp.task('watch', ['default'], function () {
   gulp.watch('stylesheets/**/*.scss', ['sass']);
-  gulp.watch('lib/**/*', ['lib']);
+  gulp.watch('lib/**/*', ['bundle']);
 });
 
 gulp.task('connect', ['watch'], function () {
@@ -36,27 +56,42 @@ gulp.task('sass', function () {
 gulp.task('lib', function (cb) {
   var logErr = log('browserify', 'blue');
 
-  browserify({
-    extensions: ['.jsx', '.js', '.json'],
-    noParse: ['jquery', 'lodash']
-  })
+  browserify({ extensions: '.jsx' })
   .add('./lib/init.jsx')
   .transform(reactify)
   .transform(brfs)
-  .exclude('stylus')
+  .external(vendor)
   .bundle()
   .on('error', function (error) {
     logErr(error);
     cb();
   })
-  .pipe(source('app.js'))
+  .pipe(source('lib.js'))
   .pipe(gulp.dest('dist/js'))
-  .pipe(connect.reload())
   .on('end', cb);
 });
 
+gulp.task('bundle', ['lib'], function () {
+  return gulp.src([
+    'dist/js/vendor.js',
+    'dist/js/lib.js'
+  ])
+  .pipe(insert.prepend(';'))
+  .pipe(concat('bundle.js'))
+  .pipe(gulp.dest('dist/js'))
+  .pipe(connect.reload());
+});
+
+gulp.task('vendor', function () {
+  return browserify().exclude('stylus')
+  .require(vendor)
+  .bundle()
+  .pipe(source('vendor.js'))
+  .pipe(gulp.dest('dist/js'));
+});
+
 gulp.task('minify', ['lib'], function () {
-  return gulp.src('dist/js/*.js')
+  return gulp.src('dist/js/bundle.js')
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'));
 });

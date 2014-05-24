@@ -1,0 +1,25 @@
+#scroll {
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent !important;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background-color: transparent !important;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(#fff, 0.3);
+    border: 0;
+  }
+}
