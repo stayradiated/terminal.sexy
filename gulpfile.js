@@ -90,7 +90,7 @@ gulp.task('vendor', function () {
   .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('minify', ['lib'], function () {
+gulp.task('minify', ['bundle'], function () {
   return gulp.src('dist/js/bundle.js')
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'));
