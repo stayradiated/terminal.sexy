@@ -18,7 +18,7 @@
   "homepage": "https://github.com/stayradiated/16-colors",
   "devDependencies": {
     "brfs": "^1.1.1",
-    "browserify": "^3.44.2",
+    "browserify": "^4.1.8",
     "chai": "^1.9.1",
     "gulp": "^3.6.1",
     "gulp-autoprefixer": "0.0.7",
@@ -28,15 +28,15 @@
     "gulp-plumber": "^0.6.1",
     "gulp-sass": "^0.7.1",
     "gulp-streamify": "0.0.5",
-    "gulp-uglify": "^0.2.1",
-    "log_": "0.0.3",
+    "gulp-uglify": "^0.3.0",
+    "log_": "0.0.4",
     "mocha": "^1.18.2",
     "reactify": "^0.13.1",
     "run-sequence": "^0.3.6",
     "vinyl-source-stream": "^0.1.1"
   },
   "dependencies": {
-    "bluebird": "^1.2.4",
+    "bluebird": "^2.0.5",
     "filereader-stream": "^0.1.1",
     "husl": "^4.0.0",
     "jquery": "^2.1.0",
@@ -44,8 +44,8 @@
     "react": "^0.10.0",
     "reactwm": "0.0.8",
     "signals": "git://github.com/stayradiated/signals.git#master",
-    "termcolors": "0.0.6",
-    "termio": "^0.0.2",
+    "termcolors": "0.0.7",
+    "termio": "^0.0.3",
     "through": "^2.3.4",
     "tinytinycolor": "0.0.3",
     "urlsafe-base64": "0.0.2"
