@@ -21,7 +21,7 @@ var Export = React.createClass({
   render: function () {
     return (
       <div className='export'>
-        <select ref='select' defaultValue='xresources'>
+        <select ref='select' defaultValue='xresources' className='background-alt'>
           <option value='gnome'>Gnome Terminal</option>
           <option value='guake'>Guake</option>
           <option value='iterm'>iTerm2</option>
@@ -33,10 +33,10 @@ var Export = React.createClass({
           <option value='xfce'>XFCE4 Terminal</option>
           <option value='xresources'>Xresources</option>
         </select>
-        <button onClick={this.handleClick}>Export</button>
+        <button onClick={this.handleClick} className='background-alt'>Export</button>
         <div className='textarea'>
           <textarea value={this.state.text} readOnly spellCheck='false'
-            className='background-bg foreground-fg' ref='textarea' />
+            className='background-bg' ref='textarea' />
         </div>
       </div>
     );

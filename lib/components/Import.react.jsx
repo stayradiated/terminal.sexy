@@ -15,15 +15,15 @@ var Import = React.createClass({
   render: function () {
     return (
       <div className='import'>
-        <select ref='select' defaultValue='xresources'>
+        <select ref='select' defaultValue='xresources' className='background-alt'>
           <option value='iterm'>iTerm2</option>
           <option value='termite'>Termite</option>
           <option value='url'>URL</option>
           <option value='xresources'>Xresources</option>
         </select>
-        <button onClick={this.handleClick}>Import</button>
+        <button onClick={this.handleClick} className='background-alt'>Import</button>
         <div className='textarea'>
-          <textarea spellCheck='false' className='background-bg foreground-fg' ref='textarea' />
+          <textarea spellCheck='false' className='background-bg' ref='textarea' />
         </div>
       </div>
     );

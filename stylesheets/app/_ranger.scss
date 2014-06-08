@@ -1,0 +1,68 @@
+.ranger:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.pane {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  border-right: 1px solid rgba(#fff, 0.2);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.parent-pane {
+  left: 0;
+  width: 30%;
+}
+
+.active-pane {
+  left: 30%;
+  width: 30%;
+}
+
+.contents-pane {
+  left: 60%;
+  width: 40%;
+}
+
+.parent-pane .active {
+  background: rgba(#000, 0.3);
+}
+
+.contents-pane .active {
+  background: rgba(#000, 0.1);
+}
+
+.directory {
+  font-weight: bold;
+}
+
+.directory:after {
+  content: '/'
+}
+
+.file {
+}
+
+.active {
+  background: rgba(#fff, 0.1);
+}
+
+.file, .directory {
+  line-height: 40px;
+  padding: 0 20px;
+}
+
+input {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}

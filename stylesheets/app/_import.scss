@@ -4,10 +4,14 @@
 
   select {
     @include abs($pad, $pad, auto, 50%);
+    outline: 0;
+    border: 0;
   }
 
   button {
     @include abs($pad, 50%, auto, $pad);
+    border: 0;
+    outline: 0;
   }
 
   .textarea {
@@ -19,6 +23,14 @@
       margin: 0;
       border: 0;
       resize: none;
+
+      outline: 0;
+      border: 1px solid rgba(#000, 0.2);
+      box-shadow: 0 0 1px 0 rgba(#fff, 0.2);
+
+      &:focus {
+        border-color: rgba(#000, 0.5);
+      }
     }
   }
 

@@ -13,6 +13,7 @@ var autoprefix = require('gulp-autoprefixer');
 var source = require('vinyl-source-stream');
 
 var vendor = [
+  'buffer',
   'bluebird',
   'filereader-stream',
   'husl',
@@ -21,6 +22,7 @@ var vendor = [
   'react',
   'react/addons',
   'reactwm',
+  'react-ranger',
   'signals',
   'termcolors',
   'termio',

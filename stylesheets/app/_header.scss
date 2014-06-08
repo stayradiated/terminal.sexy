@@ -25,9 +25,16 @@
     display: inline-block;
     list-style-type: none;
     line-height: $header_height;
-    height: $header_height;
     padding: 0 20px;
     cursor: pointer;
+    vertical-align: top;
+  }
+
+  .seperator {
+    display: inline-block;
+    width: 5px;
+    background: rgba(#000, 0.2);
+    height: $header_height;
   }
 
   li:hover {

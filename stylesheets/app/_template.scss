@@ -2,6 +2,6 @@
   padding: 20px;
 
   pre {
-    width: 1000px;
+    @extend #scroll;
   }
 }

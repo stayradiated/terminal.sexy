@@ -1,6 +1,7 @@
 var React = require('react');
+var Ranger = require('react-ranger');
 var TemplateStore = require('../stores/TemplateStore');
-var TemplateBrowserItem = require('./TemplateBrowserItem.react');
+var AppActions = require('../actions/AppActions');
 
 var getTemplateBrowserState = function () {
   return {
@@ -22,16 +23,17 @@ var TemplateBrowser = React.createClass({
     TemplateStore.off('change', this._onChange);
   },
 
+  handleExecute: function (item) {
+    console.log(item.path);
+    AppActions.openWindow('template::' + item.path);
+  },
+
   render: function () {
-
-    var templates = this.state.templates.map(function (id) {
-      return <TemplateBrowserItem key={id} />;
-    });
-
     return (
-      <div className='template-browser'>
-        {templates}
-      </div>
+      <Ranger
+        data={Ranger.parseList(this.state.templates)}
+        onExecute={this.handleExecute}
+        />
     );
   },
 

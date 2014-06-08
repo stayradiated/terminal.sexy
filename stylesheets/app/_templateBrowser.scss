@@ -1,21 +1,3 @@
 .template-browser {
   padding: 20px;
-
-  .template-browser-item {
-    line-height: 40px;
-
-    .category {
-    }
-
-    .name {
-      font-weight: bold;
-    }
-
-    &:hover {
-      background: rgba(#000, 0.3);
-      cursor: pointer;
-    }
-
-  }
-
 }
