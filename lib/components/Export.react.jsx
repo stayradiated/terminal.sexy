@@ -2,6 +2,8 @@ var React = require('react');
 var termcolors = require('termcolors');
 var AppStore = require('../stores/AppStore');
 
+termcolors.json = require('../formats/json');
+
 var Export = React.createClass({
 
   getInitialState: function () {
@@ -32,6 +34,7 @@ var Export = React.createClass({
           <option value='termite'>Termite</option>
           <option value='xfce'>XFCE4 Terminal</option>
           <option value='xresources'>Xresources</option>
+          <option value='json'>JSON</option>
         </select>
         <button onClick={this.handleClick} className='background-alt'>Export</button>
         <div className='textarea'>
