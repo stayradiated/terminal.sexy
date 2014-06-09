@@ -1,0 +1,32 @@
+<span class="foreground-7"><span class="bold">CREATE</span></span> <span class="foreground-2"><span class="bold">TABLE</span></span><span class="foreground-7"> My_table(
+    my_field1   INT,
+    my_field2   </span><span class="foreground-3">VARCHAR</span><span class="foreground-7">(</span><span class="foreground-2"><span class="bold">50</span></span><span class="foreground-7">),
+    my_field3   </span><span class="foreground-3">DATE</span><span class="foreground-7">         <span class="bold">NOT</span></span> <span class="foreground-2"><span class="bold">NULL</span></span><span class="foreground-7">,
+    PRIMARY KEY (my_field1, my_field2)
+);
+
+<span class="bold">ALTER</span></span> <span class="foreground-2"><span class="bold">TABLE</span></span><span class="foreground-7"> My_table </span><span class="foreground-2"><span class="bold">ADD</span></span><span class="foreground-7"> my_field4 </span><span class="foreground-3">NUMBER</span><span class="foreground-7">(</span><span class="foreground-2"><span class="bold">3</span></span><span class="foreground-7">) <span class="bold">NOT</span></span> <span class="foreground-2"><span class="bold">NULL</span></span><span class="foreground-7">;
+
+<span class="bold">GRANT</span></span> <span class="bold">SELECT</span>, <span class="bold">UPDATE
+</span>    <span class="foreground-2"><span class="bold">ON</span></span><span class="foreground-7"> My_table
+    </span><span class="foreground-2"><span class="bold">TO</span></span><span class="foreground-7"> some_user, another_user;
+
+<span class="bold">REVOKE</span></span> <span class="bold">SELECT</span>, <span class="bold">UPDATE
+</span>    <span class="foreground-2"><span class="bold">ON</span></span><span class="foreground-7"> My_table
+    </span><span class="foreground-2"><span class="bold">FROM</span></span><span class="foreground-7"> some_user, another_user;
+
+<span class="bold">SELECT</span></span> Book.title,
+        COUNT(*) <span class="foreground-2"><span class="bold">AS</span></span><span class="foreground-7"> Authors
+    </span><span class="foreground-2"><span class="bold">FROM</span></span><span class="foreground-7">  Book JOIN Book_author
+       </span><span class="foreground-2"><span class="bold">ON</span></span><span class="foreground-7"> Book.isbn = Book_author.isbn
+    </span><span class="foreground-2"><span class="bold">GROUP</span></span><span class="foreground-7"> </span><span class="foreground-2"><span class="bold">BY</span></span><span class="foreground-7"> Book.title;
+</span><span class="foreground-0"><span class="bold">~
+~
+~
+~
+~
+~
+~
+~
+~
+</span></span><span class="foreground-7">&quot;sql.sql&quot; 22 lines, 497 characters

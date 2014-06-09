@@ -1,0 +1,32 @@
+
+<span class="foreground-7"> </span><span class="foreground-1"><span class="bold">var</span></span><span class="foreground-7"> ralpha = </span><span class="foreground-1">/alpha\([^)]*\)/i</span><span class="foreground-7">,
+    ropacity = </span><span class="foreground-1">/opacity=([^)]*)/</span><span class="foreground-7">,
+    </span><span class="foreground-0"><span class="bold">// fixed for IE9, see #8346
+</span></span><span class="foreground-7">    rupper = </span><span class="foreground-1">/([A-Z]|^ms)/g</span><span class="foreground-7">,
+    rnumpx = </span><span class="foreground-1">/^-?\d+(?:px)?$/i</span><span class="foreground-7">,
+    rnum = </span><span class="foreground-1">/^-?\d/</span><span class="foreground-7">,
+    rrelNum = </span><span class="foreground-1">/^([\-+])=([\-+.\de]+)/</span><span class="foreground-7">,
+
+    cssShow = <span class="bold">{</span></span> position: <span class="foreground-1">&quot;absolute&quot;</span><span class="foreground-7">, visibility: </span><span class="foreground-1">&quot;hidden&quot;</span><span class="foreground-7">, display: </span><span class="foreground-1">&quot;block&quot;</span><span class="foreground-7"> <span class="bold">}</span></span>,
+    cssWidth = <span class="bold">[</span> <span class="foreground-1">&quot;Left&quot;</span><span class="foreground-7">, </span><span class="foreground-1">&quot;Right&quot;</span><span class="foreground-7"> <span class="bold">]</span></span>,
+    cssHeight = <span class="bold">[</span> <span class="foreground-1">&quot;Top&quot;</span><span class="foreground-7">, </span><span class="foreground-1">&quot;Bottom&quot;</span><span class="foreground-7"> <span class="bold">]</span></span>,
+    curCSS,
+
+    <span class="foreground-7">getComputedStyle,
+    currentStyle;
+</span>
+<span class="foreground-7">jQuery.fn.css = <span class="bold">function</span></span>( name, value ) <span class="bold">{
+</span>    <span class="foreground-0"><span class="bold">// Setting &#x27;undefined&#x27; is a no-op
+</span></span><span class="foreground-7">    <span class="bold">if</span></span> ( <span class="foreground-1"><span class="bold">arguments</span></span><span class="foreground-7">.length === 2 &amp;&amp; value === <span class="bold">undefined</span></span> ) <span class="bold">{
+</span>        <span class="bold">return</span> <span class="foreground-1"><span class="bold">this</span></span><span class="foreground-7">;
+    <span class="bold">}</span></span>
+<span class="foreground-7">
+    <span class="bold">return</span></span> jQuery.access( <span class="foreground-1"><span class="bold">this</span></span><span class="foreground-7">, name, value, </span><span class="foreground-2"><span class="bold">true</span></span><span class="foreground-7">, <span class="bold">function</span></span>( elem, name, value ) <span class="bold">{
+</span>        <span class="bold">return</span> value !== <span class="bold">undefined</span> ?
+            jQuery.style( elem, name, value ) :
+            jQuery.css( elem, name );
+    <span class="bold">}</span>);
+<span class="foreground-7"><span class="bold">}</span></span>;
+<span class="foreground-0"><span class="bold">~
+~
+</span></span><span class="foreground-7">&quot;javascript.js&quot; 29 lines, 812 characters

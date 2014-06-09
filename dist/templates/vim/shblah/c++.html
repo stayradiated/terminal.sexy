@@ -1,0 +1,32 @@
+<span class="foreground-3"><span class="bold">#include </span></span><span class="foreground-1">&quot;algostuff.hpp&quot;
+</span><span class="foreground-7"><span class="bold">using</span></span> <span class="foreground-3">namespace</span><span class="foreground-7"> std;
+
+</span><span class="foreground-3">bool</span><span class="foreground-7"> bothEvenOrOdd (</span><span class="foreground-3">int</span><span class="foreground-7"> elem1, </span><span class="foreground-3">int</span><span class="foreground-7"> elem2)
+{
+    <span class="bold">return</span></span> elem1 % <span class="foreground-2"><span class="bold">2</span></span><span class="foreground-7"> == elem2 % </span><span class="foreground-2"><span class="bold">2</span></span><span class="foreground-7">;
+}
+
+</span><span class="foreground-3">int</span><span class="foreground-7"> main()
+{
+    vector&lt;</span><span class="foreground-3">int</span><span class="foreground-7">&gt; coll1;
+    list&lt;</span><span class="foreground-3">int</span><span class="foreground-7">&gt; coll2;
+
+    </span><span class="foreground-3">float</span><span class="foreground-7"> m = </span><span class="foreground-2"><span class="bold">40.0f</span></span><span class="foreground-7">;
+
+    INSERT_ELEMENTS(coll1,</span><span class="foreground-2"><span class="bold">1</span></span><span class="foreground-7">,</span><span class="foreground-2"><span class="bold">7</span></span><span class="foreground-7">);
+    INSERT_ELEMENTS(coll2,</span><span class="foreground-2"><span class="bold">3</span></span><span class="foreground-7">,</span><span class="foreground-2"><span class="bold">9</span></span><span class="foreground-7">);
+
+    PRINT_ELEMENTS(coll1,</span><span class="foreground-1">&quot;coll1: </span><span class="foreground-2"><span class="bold">\n</span></span><span class="foreground-1">&quot;</span><span class="foreground-7">);
+    PRINT_ELEMENTS(coll2,</span><span class="foreground-1">&quot;coll2: </span><span class="foreground-2"><span class="bold">\n</span></span><span class="foreground-1">&quot;</span><span class="foreground-7">);
+
+    </span><span class="foreground-0"><span class="bold">// check whether both collections are equal
+</span></span><span class="foreground-7">    <span class="bold">if</span></span> (equal (coll1.begin(), coll1.end(),  <span class="foreground-0"><span class="bold">// first range
+</span></span><span class="foreground-7">               coll2.begin())) {</span>            <span class="foreground-0"><span class="bold">// second range
+</span></span><span class="foreground-7">        cout &lt;&lt; </span><span class="foreground-1">&quot;coll1 == coll2&quot;</span><span class="foreground-7"> &lt;&lt; endl;
+    } </span><span class="foreground-0"><span class="bold">/* </span></span><span class="background-1"><span class="foreground-7"><span class="bold">TODO</span></span></span><span class="foreground-0"><span class="bold"> Shouldn&#x27;t there be an &#x27;else&#x27; case? */
+</span></span><span class="foreground-7">
+    </span><span class="foreground-0"><span class="bold">// check for corresponding even and odd elements
+</span></span><span class="foreground-7">    <span class="bold">if</span></span> (equal (coll1.begin(), coll1.end(),  <span class="foreground-0"><span class="bold">// first range
+</span></span><span class="foreground-7">               coll2.begin(),               </span><span class="foreground-0"><span class="bold">// second range
+~
+</span></span><span class="foreground-7">&quot;c++.cpp&quot; 30 lines, 787 characters

@@ -1,0 +1,32 @@
+<span class="foreground-3"><span class="bold">import</span></span><span class="foreground-7"> System
+</span><span class="foreground-3"><span class="bold">import</span></span><span class="foreground-7"> Foreign
+</span><span class="foreground-3"><span class="bold">import</span></span><span class="foreground-7"> </span><span class="foreground-3"><span class="bold">qualified</span></span><span class="foreground-7"> Data.ByteString </span><span class="foreground-3"><span class="bold">as</span></span><span class="foreground-7"> B
+
+main <span class="bold">=</span></span> <span class="bold">do
+</span>    w <span class="bold">&lt;-</span> getArgs <span class="bold">&gt;&gt;=</span> readIO <span class="bold">.</span> head
+    <span class="bold">let</span> n      <span class="bold">=</span> w <span class="bold">`div`</span> <span class="foreground-2"><span class="bold">8
+</span></span><span class="foreground-7">    </span>    <span class="foreground-7">loop_y <span class="bold">=</span></span> B.unfoldrN n (next_x w (<span class="foreground-2"><span class="bold">2</span></span><span class="foreground-7"><span class="bold">/</span></span>fromIntegral w) n)
+
+        <span class="foreground-7">unfold x <span class="bold">=</span></span> <span class="bold">case</span> loop_y x <span class="bold">of
+</span>                    (s, Nothing) <span class="bold">-&gt;</span> B.putStr s
+                    (s, Just x)  <span class="bold">-&gt;</span> B.putStr s <span class="bold">&gt;&gt;</span> unfold x
+
+    putStrLn (<span class="foreground-1">&quot;P4</span><span class="foreground-2"><span class="bold">\n</span></span><span class="foreground-1">&quot;</span><span class="foreground-7"><span class="bold">++</span></span>show w<span class="bold">++</span><span class="foreground-1">&quot; &quot;</span><span class="foreground-7"><span class="bold">++</span></span>show w)
+    unfold (T <span class="foreground-2"><span class="bold">1</span></span><span class="foreground-7"> </span><span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7"> </span><span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7"> (<span class="bold">-</span></span><span class="foreground-2"><span class="bold">1</span></span><span class="foreground-7">))
+
+</span><span class="foreground-3">data</span><span class="foreground-7"> T <span class="bold">=</span></span> T <span class="bold">!</span>Int <span class="bold">!</span>Int <span class="bold">!</span>Int <span class="bold">!</span>Double
+
+next_x <span class="bold">!</span>w <span class="bold">!</span>iw <span class="bold">!</span>bw (T bx x y ci)
+    <span class="bold">|</span> y  <span class="bold">==</span> w   <span class="bold">=</span> Nothing
+    <span class="foreground-7"><span class="bold">|</span></span> bx <span class="bold">==</span> bw  <span class="bold">=</span> Just (loop_x w x <span class="foreground-2"><span class="bold">8</span></span><span class="foreground-7"> iw ci </span><span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7">, T </span><span class="foreground-2"><span class="bold">1</span></span><span class="foreground-7"> </span><span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7">    (y<span class="bold">+</span></span><span class="foreground-2"><span class="bold">1</span></span><span class="foreground-7">)   (iw<span class="bold">+</span></span>ci))
+    <span class="bold">|</span> otherwise <span class="bold">=</span> Just (loop_x w x <span class="foreground-2"><span class="bold">8</span></span><span class="foreground-7"> iw ci </span><span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7">, T (bx<span class="bold">+</span></span><span class="foreground-2"><span class="bold">1</span></span><span class="foreground-7">) (x<span class="bold">+</span></span><span class="foreground-2"><span class="bold">8</span></span><span class="foreground-7">) y ci)
+
+loop_x <span class="bold">!</span></span>w <span class="bold">!</span>x <span class="bold">!</span>n <span class="bold">!</span>iw <span class="bold">!</span>ci <span class="bold">!</span>b
+    <span class="bold">|</span> x <span class="bold">&lt;</span> w <span class="bold">=</span> <span class="bold">if</span> n <span class="bold">==</span> <span class="foreground-2"><span class="bold">0
+</span></span><span class="foreground-7">                    <span class="bold">then</span></span> b
+                    <span class="foreground-7"><span class="bold">else</span></span> loop_x w (x<span class="bold">+<span class="foreground-2">1</span></span><span class="foreground-7">) (n<span class="bold">-</span></span><span class="foreground-2"><span class="bold">1</span></span><span class="foreground-7">) iw ci (b<span class="bold">+</span></span>b<span class="bold">+</span>v)
+    <span class="bold">|</span> otherwise <span class="bold">=</span> b <span class="bold">`shiftL`</span> n
+  <span class="foreground-3">where
+</span><span class="foreground-7">    v <span class="bold">=</span></span> fractal <span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7"> </span><span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7"> (fromIntegral x <span class="bold">*</span></span> iw <span class="bold">-</span> <span class="foreground-2"><span class="bold">1.5</span></span><span class="foreground-7">) ci </span><span class="foreground-2"><span class="bold">50
+</span></span><span class="foreground-0"><span class="bold">~
+</span></span><span class="foreground-7">&quot;haskell.hs&quot; 30 lines, 880 characters

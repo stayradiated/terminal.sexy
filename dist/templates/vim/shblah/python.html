@@ -1,0 +1,32 @@
+<span class="foreground-7"><span class="bold">def</span></span> <span class="bold">dump_args</span>(func):
+    <span class="foreground-1">&quot;This decorator dumps out the arguments passed to a function before calling it&quot;
+</span><span class="foreground-7">    argnames = func.func_code.co_varnames[:func.func_code.co_argcount]
+    fname = func.func_name
+    <span class="bold">def</span></span> <span class="bold">echo_func</span>(*args,**kwargs):
+        <span class="bold">print</span> fname, <span class="foreground-1">&quot;:&quot;</span><span class="foreground-7">, </span><span class="foreground-1">&#x27;, &#x27;</span><span class="foreground-7">.join(
+            </span><span class="foreground-1">&#x27;%s=%r&#x27;</span><span class="foreground-7"> % entry
+</span>            <span class="foreground-7"><span class="bold">for</span></span> entry <span class="bold">in</span> <span class="bold">zip</span>(argnames,args) + kwargs.items())
+        <span class="bold">return</span> func(*args, **kwargs)
+    <span class="bold">return</span> echo_func
+
+<span class="foreground-3"><span class="bold">@</span></span><span class="foreground-7"><span class="bold">dump_args
+def</span></span> <span class="bold">f1</span>(a,b,c):
+    <span class="bold">print</span> a + b + c
+
+f1(<span class="foreground-2"><span class="bold">1</span></span><span class="foreground-7">, </span><span class="foreground-2"><span class="bold">2</span></span><span class="foreground-7">, </span><span class="foreground-2"><span class="bold">3</span></span><span class="foreground-7">)
+
+<span class="bold">def</span></span> <span class="bold">precondition</span>(precondition, use_conditions=DEFAULT_ON):
+    <span class="bold">return</span> conditions(precondition, <span class="bold">None</span>, use_conditions)
+
+<span class="bold">def</span> <span class="bold">postcondition</span>(postcondition, use_conditions=DEFAULT_ON):
+    <span class="bold">return</span> conditions(<span class="bold">None</span>, postcondition, use_conditions)
+
+<span class="bold">class</span> <span class="bold">conditions</span>(<span class="bold">object</span>):
+    __slots__ = (<span class="foreground-1">&#x27;__precondition&#x27;</span><span class="foreground-7">, </span><span class="foreground-1">&#x27;__postcondition&#x27;</span><span class="foreground-7">)
+
+    <span class="bold">def</span></span> <span class="bold">__init__</span>(self, pre, post, use_conditions=DEFAULT_ON):
+        <span class="bold">if</span> <span class="bold">not</span> use_conditions:
+            pre, post = <span class="bold">None</span>, <span class="bold">None
+<span class="foreground-0">~
+~
+</span></span><span class="foreground-7">&quot;python.py&quot; 29 lines, 932 characters

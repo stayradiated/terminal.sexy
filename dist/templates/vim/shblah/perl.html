@@ -1,0 +1,32 @@
+<span class="foreground-7"><span class="bold">package</span></span><span class="foreground-3"> Dancer::Handler::Standalone</span><span class="foreground-7">;
+
+<span class="bold">use strict</span></span>;
+<span class="bold">use warnings</span>;
+
+<span class="bold">use </span>HTTP::Server::Simple::PSGI;
+<span class="bold">use base</span> <span class="foreground-1">&#x27;Dancer::Handler&#x27;</span><span class="foreground-7">, </span><span class="foreground-1">&#x27;HTTP::Server::Simple::PSGI&#x27;</span><span class="foreground-7">;
+
+<span class="bold">use </span></span>Dancer::HTTP;
+ome/maurice/fishsticks.pm[+] unix PERL <span class="foreground-2"><span class="bold">9</span></span><span class="foreground-7">/</span><span class="foreground-2"><span class="bold">22
+</span></span><span class="foreground-7">        </span><span class="foreground-1"><span class="bold">$dancer-&gt;run</span></span><span class="foreground-7">();
+    }
+}
+
+<span class="bold">sub print_startup_info </span></span>{
+    <span class="bold">my</span> <span class="foreground-1"><span class="bold">$pid</span></span><span class="foreground-7">    = <span class="bold">shift</span></span>;
+    <span class="bold">my</span> <span class="foreground-1"><span class="bold">$ipaddr</span></span><span class="foreground-7"> = setting(</span><span class="foreground-1">&#x27;server&#x27;</span><span class="foreground-7">);
+    <span class="bold">my</span></span> <span class="foreground-1"><span class="bold">$port</span></span><span class="foreground-7">   = setting(</span><span class="foreground-1">&#x27;port&#x27;</span><span class="foreground-7">);
+
+    </span><span class="foreground-0"><span class="bold"># we only print the info if we need to
+</span></span><span class="foreground-7">    setting(</span><span class="foreground-1">&#x27;startup_info&#x27;</span><span class="foreground-7">) <span class="bold">or</span></span> <span class="bold">return</span>;
+
+    <span class="foreground-0"><span class="bold"># bare minimum
+</span></span><span class="foreground-7">    <span class="bold">print</span></span> <span class="foreground-1"><span class="bold">STDERR</span></span><span class="foreground-7"> </span><span class="foreground-1">&quot;&gt;&gt; Dancer <span class="bold">$</span></span><span class="foreground-3">Dancer::</span><span class="foreground-1"><span class="bold">VERSION</span></span> server <span class="bold">$pid</span> listening &quot;<span class="foreground-7"> .
+                 </span><span class="foreground-1">&quot;on http://<span class="bold">$ipaddr</span></span>:<span class="bold">$port<span class="foreground-2">\n</span></span><span class="foreground-1">&quot;</span><span class="foreground-7">;
+
+    </span><span class="foreground-0"><span class="bold"># all loaded plugins
+</span></span><span class="foreground-7">    <span class="bold">foreach</span></span> <span class="bold">my</span> <span class="foreground-1"><span class="bold">$module</span></span><span class="foreground-7"> ( <span class="bold">grep {</span></span> <span class="foreground-1"><span class="bold">$_</span></span><span class="foreground-7"> =~ <span class="bold">m{</span></span><span class="foreground-1">^Dancer/Plugin/</span><span class="foreground-7"><span class="bold">}</span></span> <span class="bold">}</span> <span class="bold">keys</span> <span class="foreground-1"><span class="bold">%INC</span></span><span class="foreground-7"> ) {
+        </span><span class="foreground-1"><span class="bold">$module</span></span><span class="foreground-7"> =~ <span class="bold">s{</span></span><span class="foreground-1">/</span><span class="foreground-7"><span class="bold">}{</span></span><span class="foreground-1">::</span><span class="foreground-7"><span class="bold">}g</span></span>;  <span class="foreground-0"><span class="bold"># change / to ::
+~
+~
+</span></span><span class="foreground-7">&quot;perl.pl&quot; 29 lines, 737 characters

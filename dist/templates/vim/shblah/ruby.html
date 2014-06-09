@@ -1,0 +1,32 @@
+<span class="foreground-3"><span class="bold">def</span></span><span class="foreground-7"> <span class="bold">power</span></span>(x,n)
+  result = <span class="foreground-2"><span class="bold">1
+</span></span><span class="foreground-7">  <span class="bold">while</span></span> n.nonzero?
+    <span class="bold">if</span> n[<span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7">].nonzero?
+      result *= x
+      n -= </span><span class="foreground-2"><span class="bold">1
+</span></span><span class="foreground-7">    <span class="bold">end
+</span></span>    x *= x
+    n /= <span class="foreground-2"><span class="bold">2
+</span></span><span class="foreground-7">  <span class="bold">end</span></span>
+  <span class="bold">return</span> result
+<span class="foreground-3"><span class="bold">end</span></span><span class="foreground-7">
+
+</span><span class="foreground-3"><span class="bold">def</span></span><span class="foreground-7"> <span class="bold">f</span></span>(x)
+  <span class="foreground-3">Math</span><span class="foreground-7">.sqrt(x.abs) + </span><span class="foreground-2"><span class="bold">5</span></span><span class="foreground-7">*x ** </span><span class="foreground-2"><span class="bold">3
+</span></span><span class="foreground-3"><span class="bold">end</span></span><span class="foreground-7">
+
+(</span><span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7">...</span><span class="foreground-2"><span class="bold">11</span></span><span class="foreground-7">).collect{ gets.to_i }.reverse.each <span class="bold">do</span></span> |<span class="foreground-1"><span class="bold">x</span></span><span class="foreground-7">|
+  y = f(x)
+  puts </span><span class="foreground-2"><span class="bold">&quot;#{</span></span><span class="foreground-7">x</span><span class="foreground-2"><span class="bold">}</span></span><span class="foreground-1"> </span><span class="foreground-2"><span class="bold">#{</span></span><span class="foreground-7">y.infinite? ? </span><span class="foreground-2"><span class="bold">&#x27;</span></span><span class="foreground-1">TOO LARGE</span><span class="foreground-2"><span class="bold">&#x27;</span></span><span class="foreground-7"> : y</span><span class="foreground-2"><span class="bold">}&quot;
+</span></span><span class="foreground-7"><span class="bold">end</span></span>
+<span class="foreground-0"><span class="bold"># Map color names to short hex
+</span></span><span class="foreground-3">COLORS</span><span class="foreground-7"> = { </span><span class="foreground-2"><span class="bold">:black</span></span><span class="foreground-7">   =&gt; </span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-1">000</span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-7">,
+           </span><span class="foreground-2"><span class="bold">:red</span></span><span class="foreground-7">     =&gt; </span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-1">f00</span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-7">,
+           </span><span class="foreground-2"><span class="bold">:green</span></span><span class="foreground-7">   =&gt; </span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-1">0f0</span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-7">,
+           </span><span class="foreground-2"><span class="bold">:yellow</span></span><span class="foreground-7">  =&gt; </span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-1">ff0</span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-7">,
+           </span><span class="foreground-2"><span class="bold">:blue</span></span><span class="foreground-7">    =&gt; </span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-1">00f</span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-7">,
+           </span><span class="foreground-2"><span class="bold">:magenta</span></span><span class="foreground-7"> =&gt; </span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-1">f0f</span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-7">,
+</span>           <span class="foreground-2"><span class="bold">:cyan</span></span><span class="foreground-7">    =&gt; </span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-1">0ff</span><span class="foreground-2"><span class="bold">&quot;</span></span><span class="foreground-7">,
+</span><span class="foreground-0"><span class="bold">~
+~
+</span></span><span class="foreground-7">&quot;ruby.rb&quot; 29 lines, 553 characters
