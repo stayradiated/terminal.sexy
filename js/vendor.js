@@ -26494,6 +26494,20 @@ Ranger.parseList = function (list) {
 
 };
 
+
+Ranger.parseFiles = function (files, options) {
+
+  var id = options.id;
+  var root = new Directory('');
+
+  files.forEach(function (file) {
+    file = new File(file[id], file);
+    root.contents.add(file);
+  });
+
+  return root;
+};
+
 },{"./models/directory":73,"./models/file":74,"./views/ranger":80,"lodash":"K2RcUv","path":44}],73:[function(require,module,exports){
 var _ = require('lodash');
 var ItemList = require('./itemList');
@@ -26523,10 +26537,11 @@ module.exports = Directory;
 },{"./itemList":75,"lodash":"K2RcUv"}],74:[function(require,module,exports){
 var _ = require('lodash');
 
-var File = function (name) {
+var File = function (name, contents) {
   this.name = name;
   this.path = name;
   this.parent = null;
+  this.contents = contents;
 };
 
 _.extend(File.prototype, {
@@ -26800,7 +26815,7 @@ var Ranger = React.createClass({displayName: 'Ranger',
     var active = this.state.directory.contents.active() || {};
     var directory = this.state.directory;
     var parent = this.state.directory.parent;
-    var child = active.contents && active.contents.active();
+    var child = (active.contents instanceof Directory) && active.contents.active();
 
     var panes = [
       Pane( {key:"ParentPane", type:"parent", item:parent, active:directory} ),

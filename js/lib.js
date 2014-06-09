@@ -22,7 +22,7 @@ var AppActions = {
 
 module.exports = AppActions;
 
-},{"../constants/AppConstants":12,"../dispatchers/AppDispatcher":13}],2:[function(require,module,exports){
+},{"../constants/AppConstants":11,"../dispatchers/AppDispatcher":12}],2:[function(require,module,exports){
 /** @jsx React.DOM */var React = require('react');
 var ReactWM = require('reactwm');
 var AppStore = require('../stores/AppStore');
@@ -69,7 +69,7 @@ var App = React.createClass({displayName: 'App',
 
 module.exports = App;
 
-},{"../stores/AppStore":28,"../stores/WindowStore":32,"./Header.react":5,"./Stylesheet.react":9,"react":"M6d2gk","reactwm":"OGX3iI"}],3:[function(require,module,exports){
+},{"../stores/AppStore":32,"../stores/WindowStore":36,"./Header.react":5,"./Stylesheet.react":8,"react":"M6d2gk","reactwm":"OGX3iI"}],3:[function(require,module,exports){
 /** @jsx React.DOM */var _ = require('lodash');
 var React = require('react');
 var AppStore = require('../stores/AppStore');
@@ -135,10 +135,12 @@ var Editor = React.createClass({displayName: 'Editor',
 
 module.exports = Editor;
 
-},{"../stores/AppStore":28,"lodash":"K2RcUv","react":"M6d2gk"}],4:[function(require,module,exports){
+},{"../stores/AppStore":32,"lodash":"K2RcUv","react":"M6d2gk"}],4:[function(require,module,exports){
 /** @jsx React.DOM */var React = require('react');
 var termcolors = require('termcolors');
 var AppStore = require('../stores/AppStore');
+
+termcolors.json = require('../formats/json');
 
 var Export = React.createClass({displayName: 'Export',
 
@@ -169,7 +171,8 @@ var Export = React.createClass({displayName: 'Export',
           React.DOM.option( {value:"terminator"}, "Terminator"),
           React.DOM.option( {value:"termite"}, "Termite"),
           React.DOM.option( {value:"xfce"}, "XFCE4 Terminal"),
-          React.DOM.option( {value:"xresources"}, "Xresources")
+          React.DOM.option( {value:"xresources"}, "Xresources"),
+          React.DOM.option( {value:"json"}, "JSON")
         ),
         React.DOM.button( {onClick:this.handleClick, className:"background-alt"}, "Export"),
         React.DOM.div( {className:"textarea"}, 
@@ -184,7 +187,7 @@ var Export = React.createClass({displayName: 'Export',
 
 module.exports = Export;
 
-},{"../stores/AppStore":28,"react":"M6d2gk","termcolors":"39CK3B"}],5:[function(require,module,exports){
+},{"../formats/json":15,"../stores/AppStore":32,"react":"M6d2gk","termcolors":"39CK3B"}],5:[function(require,module,exports){
 /** @jsx React.DOM */var React = require('react');
 var AppActions = require('../actions/AppActions');
 
@@ -251,44 +254,29 @@ var Import = React.createClass({displayName: 'Import',
 module.exports = Import;
 
 },{"../actions/AppActions":1,"react":"M6d2gk","termcolors":"39CK3B"}],7:[function(require,module,exports){
-/** @jsx React.DOM */var React = require('react');
+/** @jsx React.DOM */var _ = require('lodash');
+var React = require('react');
 var AppActions = require('../actions/AppActions');
-
-var SchemeItem = React.createClass({displayName: 'SchemeItem',
-
-  handleClick: function () {
-    AppActions.setAllColors(this.props.scheme.colors);
-  },
-
-  render: function () {
-    return (
-      React.DOM.li( {className:"scheme-item", onClick:this.handleClick}, 
-        React.DOM.span( {className:"name"}, this.props.scheme.name),
-        React.DOM.span( {className:"foreground-7 author"}, this.props.scheme.author)
-      )
-    );
-  }
-
-});
-
-module.exports = SchemeItem;
-
-},{"../actions/AppActions":1,"react":"M6d2gk"}],8:[function(require,module,exports){
-/** @jsx React.DOM */var React = require('react');
 var SchemeStore = require('../stores/SchemeStore');
-var SchemeItem = require('./SchemeItem.react');
+var Ranger = require('react-ranger');
 
 var Schemes = React.createClass({displayName: 'Schemes',
 
+  handleExecute: function (file) {
+    console.log(file);
+    AppActions.setAllColors(file.contents.colors);
+  },
+
   render: function () {
 
-    var schemes = SchemeStore.getSchemes().map(function (scheme) {
-      return SchemeItem( {key:scheme.name, scheme:scheme} );
+    var schemes = Ranger.parseFiles(SchemeStore.getSchemes(), {
+      id: 'name'
     });
 
     return (
-      React.DOM.ul( {className:"schemes background-bg foreground-fg"}, 
-        schemes
+      Ranger(
+        {data:schemes,
+        onExecute:this.handleExecute}
       )
     );
   }
@@ -297,7 +285,7 @@ var Schemes = React.createClass({displayName: 'Schemes',
 
 module.exports = Schemes;
 
-},{"../stores/SchemeStore":30,"./SchemeItem.react":7,"react":"M6d2gk"}],9:[function(require,module,exports){
+},{"../actions/AppActions":1,"../stores/SchemeStore":34,"lodash":"K2RcUv","react":"M6d2gk","react-ranger":"LH8Omh"}],8:[function(require,module,exports){
 /** @jsx React.DOM */var React = require('react');
 var CSS = require('../formats/css');
 
@@ -315,7 +303,7 @@ var StyleSheet = React.createClass({displayName: 'StyleSheet',
 
 module.exports = StyleSheet;
 
-},{"../formats/css":15,"react":"M6d2gk"}],10:[function(require,module,exports){
+},{"../formats/css":14,"react":"M6d2gk"}],9:[function(require,module,exports){
 /** @jsx React.DOM */var React = require('react');
 var TemplateStore = require('../stores/TemplateStore');
 
@@ -342,7 +330,7 @@ var Template = React.createClass({displayName: 'Template',
 
 module.exports = Template;
 
-},{"../stores/TemplateStore":31,"react":"M6d2gk"}],11:[function(require,module,exports){
+},{"../stores/TemplateStore":35,"react":"M6d2gk"}],10:[function(require,module,exports){
 /** @jsx React.DOM */var React = require('react');
 var Ranger = require('react-ranger');
 var TemplateStore = require('../stores/TemplateStore');
@@ -390,7 +378,7 @@ var TemplateBrowser = React.createClass({displayName: 'TemplateBrowser',
 
 module.exports = TemplateBrowser;
 
-},{"../actions/AppActions":1,"../stores/TemplateStore":31,"react":"M6d2gk","react-ranger":"LH8Omh"}],12:[function(require,module,exports){
+},{"../actions/AppActions":1,"../stores/TemplateStore":35,"react":"M6d2gk","react-ranger":"LH8Omh"}],11:[function(require,module,exports){
 var _ = require('lodash');
 module.exports = _.forIn({
 
@@ -399,7 +387,7 @@ module.exports = _.forIn({
 
 }, function (value, key, obj) { obj[key] = key; });
 
-},{"lodash":"K2RcUv"}],13:[function(require,module,exports){
+},{"lodash":"K2RcUv"}],12:[function(require,module,exports){
 var _ = require('lodash');
 var Dispatcher = require('./Dispatcher');
 
@@ -416,7 +404,7 @@ var AppDispatcher = _.extend(Dispatcher, {
 
 module.exports = AppDispatcher;
 
-},{"./Dispatcher":14,"lodash":"K2RcUv"}],14:[function(require,module,exports){
+},{"./Dispatcher":13,"lodash":"K2RcUv"}],13:[function(require,module,exports){
 var Promise = require('bluebird');
 var _ = require('lodash');
 
@@ -466,7 +454,7 @@ var Dispatcher = {
 
 module.exports = Dispatcher;
 
-},{"bluebird":"EjIH/G","lodash":"K2RcUv"}],15:[function(require,module,exports){
+},{"bluebird":"EjIH/G","lodash":"K2RcUv"}],14:[function(require,module,exports){
 var _ = require('lodash');
 
 var termcolors = require('termcolors');
@@ -487,7 +475,20 @@ module.exports = {
   })
 };
 
-},{"lodash":"K2RcUv","termcolors":"39CK3B","tinytinycolor":"2EHlwd"}],16:[function(require,module,exports){
+},{"lodash":"K2RcUv","termcolors":"39CK3B","tinytinycolor":"2EHlwd"}],15:[function(require,module,exports){
+var _ = require('lodash');
+
+var termcolors = require('termcolors');
+
+var template = "{\n  \"name\": \"\",\n  \"author\": \"\",\n  \"color\": [\n    \"{{=c[0]}}\",\n    \"{{=c[1]}}\",\n    \"{{=c[2]}}\",\n    \"{{=c[3]}}\",\n    \"{{=c[4]}}\",\n    \"{{=c[5]}}\",\n    \"{{=c[6]}}\",\n    \"{{=c[7]}}\",\n    \"{{=c[8]}}\",\n    \"{{=c[9]}}\",\n    \"{{=c[10]}}\",\n    \"{{=c[11]}}\",\n    \"{{=c[12]}}\",\n    \"{{=c[13]}}\",\n    \"{{=c[14]}}\",\n    \"{{=c[15]}}\"\n    ],\n  \"foreground\": \"{{=c.foreground}}\",\n  \"background\": \"{{=c.background}}\"\n}\n\n";
+
+module.exports = {
+  export: termcolors.export(template, _.partialRight(_.mapValues, function (color) {
+    return color.toHexString();
+  }))
+};
+
+},{"lodash":"K2RcUv","termcolors":"39CK3B"}],16:[function(require,module,exports){
 (function (Buffer){
 var _ = require('lodash');
 var base64 = require('urlsafe-base64');
@@ -565,6 +566,59 @@ $(function () {
 
 },{"./components/App.react":2,"jquery":"HlZQrA","react":"M6d2gk"}],18:[function(require,module,exports){
 module.exports={
+  "name": "Base16 Default (dark)",
+  "author": "Chris Kempson",
+  "color": [
+    "#151515",
+    "#ac4142",
+    "#90a959",
+    "#f4bf75",
+    "#6a9fb5",
+    "#aa759f",
+    "#75b5aa",
+    "#d0d0d0",
+    "#505050",
+    "#d28445",
+    "#202020",
+    "#303030",
+    "#b0b0b0",
+    "#e0e0e0",
+    "#8f5536",
+    "#f5f5f5"
+    ],
+  "foreground": "#d0d0d0",
+  "background": "#151515"
+}
+
+
+},{}],19:[function(require,module,exports){
+module.exports={
+  "name": "Base16 Default (light)",
+  "author": "Chris Kempson",
+  "color": [
+    "#202020",
+    "#ac4142",
+    "#90a959",
+    "#f4bf75",
+    "#6a9fb5",
+    "#8f5536",
+    "#75b5aa",
+    "#e0e0e0",
+    "#151515",
+    "#d28445",
+    "#303030",
+    "#505050",
+    "#b0b0b0",
+    "#aa759f",
+    "#d0d0d0",
+    "#f5f5f5"
+    ],
+  "foreground": "#303030",
+  "background": "#f5f5f5"
+}
+
+},{}],20:[function(require,module,exports){
+module.exports={
 	"name": "Classy Touch",
 	"author": "Jason 'Graawr'",
 	"color": [
@@ -590,7 +644,7 @@ module.exports={
 }
 
 
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports={
 	"name": "erosion",
 	"color": [
@@ -615,7 +669,7 @@ module.exports={
 	"background":  "#181512"
 }
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 module.exports={
 	"name": "jetplane-dark",
 	"color": [
@@ -632,7 +686,7 @@ module.exports={
 	"foreground": "#edf9ff"
 }
 
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports={
 	"name": "jetplane",
 	"color": [
@@ -657,7 +711,7 @@ module.exports={
 	"background": "#edf9ff"
 }
 
-},{}],22:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports={
 	"name": "kasugano",
 	"author": "Kori Ayakashi",
@@ -684,7 +738,7 @@ module.exports={
 }
 
 
-},{}],23:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 module.exports={
 	"name": "monokai",
 	"author": "Wimer Hazenberg (http://monokai.nl)",
@@ -702,7 +756,7 @@ module.exports={
 	"background": "#272822"
 }
 
-},{}],24:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 module.exports={
 	"name": "My first colorscheme!",
 	"author": "jmbi",
@@ -728,7 +782,33 @@ module.exports={
 	"background": "#1e1e1e"
 }
 
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
+module.exports={
+  "name": "Navy and Ivory",
+  "author": "hal",
+  "color": [
+    "#032c36",
+    "#c2454e",
+    "#7cbf9e",
+    "#8a7a63",
+    "#2e3340",
+    "#ff5879",
+    "#44b5b1",
+    "#f2f1b9",
+    "#065f73",
+    "#ef5847",
+    "#a2d9b1",
+    "#beb090",
+    "#61778d",
+    "#ff99a1",
+    "#9ed9d8",
+    "#f6f6c9"
+    ],
+  "foreground": "#e8dfd6",
+  "background": "#021b21"
+}
+
+},{}],28:[function(require,module,exports){
 module.exports={
 	"name": "not_monokai",
 	"author": "crshd (http://crshd.github.io)",
@@ -746,7 +826,7 @@ module.exports={
 	"background":  "#272822"
 }
 
-},{}],26:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module.exports={
 	"name": "papirus-dark",
 	"author": "franksn",
@@ -772,7 +852,7 @@ module.exports={
 	"foreground": "#d1c3b8"
 }
 
-},{}],27:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 module.exports={
 	"name": "tillwhen",
 	"color": [
@@ -789,7 +869,33 @@ module.exports={
 	"background": "#3d3032"
 }
 
-},{}],28:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
+module.exports={
+  "name": "Vacuous 2",
+  "author": "hal",
+  "color": [
+    "#202020",
+    "#b91e2e",
+    "#81957c",
+    "#f9bb80",
+    "#356579",
+    "#2d2031",
+    "#0b3452",
+    "#909090",
+    "#606060",
+    "#d14548",
+    "#a7b79a",
+    "#fae3a0",
+    "#7491a1",
+    "#87314e",
+    "#0f829d",
+    "#fff0f0"
+    ],
+  "foreground": "#d2c5bc",
+  "background": "#101010"
+}
+
+},{}],32:[function(require,module,exports){
 var _ = require('lodash');
 var Signals = require('signals');
 var termcolors = require('termcolors');
@@ -835,7 +941,7 @@ AppStore.on('change', function () {
 
 module.exports = AppStore;
 
-},{"../constants/AppConstants":12,"../dispatchers/AppDispatcher":13,"../formats/url":16,"lodash":"K2RcUv","signals":"/C63EU","termcolors":"39CK3B"}],29:[function(require,module,exports){
+},{"../constants/AppConstants":11,"../dispatchers/AppDispatcher":12,"../formats/url":16,"lodash":"K2RcUv","signals":"/C63EU","termcolors":"39CK3B"}],33:[function(require,module,exports){
 var LocalStore = {
 
   save: function (name, content) {
@@ -856,7 +962,7 @@ var LocalStore = {
 
 module.exports = LocalStore;
 
-},{}],30:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 var _ = require('lodash');
 
 var Signals = require('signals');
@@ -916,7 +1022,11 @@ var _schemes = [
   require('../schemes/my-first-colorscheme'),
   require('../schemes/not_monokai'),
   require('../schemes/papirus-dark'),
-  require('../schemes/tillwhen')
+  require('../schemes/tillwhen'),
+  require('../schemes/navy-and-ivory'),
+  require('../schemes/vacuous2'),
+  require('../schemes/base16-default-dark'),
+  require('../schemes/base16-default-light'),
 ].map(loadScheme);
 
 var SchemeStore = Signals.convert({
@@ -929,7 +1039,7 @@ var SchemeStore = Signals.convert({
 
 module.exports = SchemeStore;
 
-},{"../schemes/classy-touch":18,"../schemes/erosion":19,"../schemes/jetplane":21,"../schemes/jetplane-dark":20,"../schemes/kasugano":22,"../schemes/monokai":23,"../schemes/my-first-colorscheme":24,"../schemes/not_monokai":25,"../schemes/papirus-dark":26,"../schemes/tillwhen":27,"husl":"6E6oPq","lodash":"K2RcUv","signals":"/C63EU","tinytinycolor":"2EHlwd"}],31:[function(require,module,exports){
+},{"../schemes/base16-default-dark":18,"../schemes/base16-default-light":19,"../schemes/classy-touch":20,"../schemes/erosion":21,"../schemes/jetplane":23,"../schemes/jetplane-dark":22,"../schemes/kasugano":24,"../schemes/monokai":25,"../schemes/my-first-colorscheme":26,"../schemes/navy-and-ivory":27,"../schemes/not_monokai":28,"../schemes/papirus-dark":29,"../schemes/tillwhen":30,"../schemes/vacuous2":31,"husl":"6E6oPq","lodash":"K2RcUv","signals":"/C63EU","tinytinycolor":"2EHlwd"}],35:[function(require,module,exports){
 var $ = require('jquery');
 var Signals = require('signals');
 
@@ -1033,7 +1143,7 @@ var TemplateStore = Signals.convert({
 
 module.exports = TemplateStore;
 
-},{"jquery":"HlZQrA","signals":"/C63EU"}],32:[function(require,module,exports){
+},{"jquery":"HlZQrA","signals":"/C63EU"}],36:[function(require,module,exports){
 var _ = require('lodash');
 var ReactWM = require('reactwm');
 var Signals = require('signals');
@@ -1045,8 +1155,8 @@ var LocalStore = require('../stores/LocalStore');
 var Editor = require('../components/Editor.react');
 var Import = require('../components/Import.react');
 var Export = require('../components/Export.react');
-var Schemes = require('../components/Schemes.react');
 var Template = require('../components/Template.react');
+var SchemeBrowser = require('../components/SchemeBrowser.react');
 var TemplateBrowser = require('../components/TemplateBrowser.react');
 
 var STORAGE_ID = 'window::store';
@@ -1078,8 +1188,8 @@ var windows = {
   },
 
   schemes: {
-    component: Schemes,
-    title: 'Schemes',
+    component: SchemeBrowser,
+    title: 'Scheme Browser',
     width: 330,
     height: 330,
     x: 850
@@ -1193,4 +1303,4 @@ AppDispatcher.register(function (payload) {
 
 module.exports = WindowStore;
 
-},{"../components/Editor.react":3,"../components/Export.react":4,"../components/Import.react":6,"../components/Schemes.react":8,"../components/Template.react":10,"../components/TemplateBrowser.react":11,"../constants/AppConstants":12,"../dispatchers/AppDispatcher":13,"../stores/AppStore":28,"../stores/LocalStore":29,"lodash":"K2RcUv","reactwm":"OGX3iI","signals":"/C63EU"}]},{},[17])
+},{"../components/Editor.react":3,"../components/Export.react":4,"../components/Import.react":6,"../components/SchemeBrowser.react":7,"../components/Template.react":9,"../components/TemplateBrowser.react":10,"../constants/AppConstants":11,"../dispatchers/AppDispatcher":12,"../stores/AppStore":32,"../stores/LocalStore":33,"lodash":"K2RcUv","reactwm":"OGX3iI","signals":"/C63EU"}]},{},[17])
