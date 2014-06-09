@@ -1,0 +1,32 @@
+<span class="foreground-0"><span class="bold"># Source global definitions
+</span></span><span class="foreground-7"><span class="bold">if [</span></span> <span class="bold">-f</span> /etc/bashrc <span class="bold">]</span>; <span class="bold">then
+</span>       <span class="foreground-7"><span class="bold"> . </span></span>/etc/bashrc
+<span class="bold">fi
+<span class="foreground-0">#
+# aliases
+</span><span class="foreground-7">alias </span><span class="foreground-1">grpe</span><span class="foreground-7">=grep
+alias </span><span class="foreground-1">grep</span><span class="foreground-7">=&#x27;</span></span><span class="foreground-1">grep --color --line-number</span><span class="foreground-7"><span class="bold">&#x27;
+alias </span></span><span class="foreground-1"><span class="bold">vim</span></span><span class="foreground-7"><span class="bold">=&quot;</span></span><span class="foreground-1">vim -p</span><span class="foreground-7"><span class="bold">&quot;
+alias </span></span><span class="foreground-1"><span class="bold">rebash</span></span><span class="foreground-7"><span class="bold">=&quot;</span></span><span class="foreground-1">source ~/.bashrc</span><span class="foreground-7"><span class="bold">&quot;
+
+alias </span></span><span class="foreground-1"><span class="bold">install</span></span><span class="foreground-7"><span class="bold">=&#x27;</span></span><span class="foreground-1">sudo apt-get -y install</span><span class="foreground-7"><span class="bold">&#x27;
+alias </span></span><span class="foreground-1"><span class="bold">search</span></span><span class="foreground-7"><span class="bold">=&#x27;</span></span><span class="foreground-1">apt-cache search</span><span class="foreground-7"><span class="bold">&#x27;
+alias </span></span><span class="foreground-1"><span class="bold">purge</span></span><span class="foreground-7"><span class="bold">=&#x27;</span></span><span class="foreground-1">sudo apt-get purge</span><span class="foreground-7"><span class="bold">&#x27;
+
+export</span></span><span class="foreground-1"><span class="bold"> EDITOR=</span></span><span class="foreground-7">vim
+
+</span><span class="foreground-0"><span class="bold"># set up the prompt to the hostname
+</span></span><span class="foreground-7"><span class="bold">shopt</span></span> <span class="foreground-2"><span class="bold">-s</span></span><span class="foreground-7"> checkwinsize
+</span><span class="foreground-1"><span class="bold">PS1</span></span><span class="foreground-7">=<span class="bold">&quot;</span></span><span class="foreground-2"><span class="bold">\e</span></span><span class="foreground-1">[1;35m[</span><span class="foreground-2"><span class="bold">\w</span></span><span class="foreground-1">]   ---   </span><span class="foreground-2"><span class="bold">\@</span></span><span class="foreground-1"> </span><span class="foreground-2"><span class="bold">\d</span></span><span class="foreground-1"> </span><span class="foreground-2"><span class="bold">\n</span></span><span class="foreground-1">$&gt;</span><span class="foreground-2"><span class="bold">\[\e</span></span><span class="foreground-1">[0m</span><span class="foreground-2"><span class="bold">\]</span></span><span class="foreground-7"><span class="bold">&quot;
+</span></span><span class="foreground-1"><span class="bold">PS2</span></span><span class="foreground-7">=<span class="bold">&quot;</span></span><span class="foreground-2"><span class="bold">\e</span></span><span class="foreground-1">[1;35m-&gt;</span><span class="foreground-2"><span class="bold">\[\e</span></span><span class="foreground-1">[0m</span><span class="foreground-2"><span class="bold">\]</span></span><span class="foreground-7"><span class="bold">&quot;
+
+</span></span><span class="foreground-0"><span class="bold">#--------------------------------------------------
+#    grabs some definitions from google
+#--------------------------------------------------
+</span></span><span class="foreground-7"><span class="bold">define () {
+</span></span> lynx <span class="foreground-2"><span class="bold">-dump</span></span><span class="foreground-7"> <span class="bold">&quot;</span></span><span class="foreground-1">http://www.google.com/search?hl=en&amp;q=define%3A+</span><span class="foreground-3"><span class="bold">${1}</span></span><span class="foreground-7"><span class="bold">&quot;</span></span> <span class="bold">|</span> <span class="bold">grep</span> <span class="foreground-2"><span class="bold">-m</span></span><span class="foreground-7"> </span><span class="foreground-2"><span class="bold">25</span></span><span class="foreground-7"> </span><span class="foreground-2"><span class="bold">-w</span></span><span class="foreground-7"> <span class="bold">&quot;</span></span><span class="foreground-1">*</span><span class="foreground-7"><span class="bold">&quot;</span></span>  <span class="bold">|</span> <span class="bold">sed</span> <span class="bold">&#x27;</span><span class="foreground-1">s/;/ -/g</span><span class="foreground-7"><span class="bold">&#x27;</span></span> <span class="bold">|</span> cut <span class="foreground-2"><span class="bold">-d-</span></span><span class="foreground-7"> </span><span class="foreground-2"><span class="bold">-f5</span></span><span class="foreground-7"> <span class="bold">&gt;</span></span> /tmp/templookup.txt
+             <span class="foreground-7"><span class="bold">if </span></span><span class="foreground-2"><span class="bold">[[</span></span><span class="foreground-7"> <span class="bold">-s</span></span>  /tmp/templookup.txt <span class="foreground-2"><span class="bold">]]</span></span><span class="foreground-7"> ;<span class="bold">then
+</span></span>                 <span class="foreground-7"><span class="bold">until ! read response
+                     do
+</span></span><span class="foreground-0"><span class="bold">~
+

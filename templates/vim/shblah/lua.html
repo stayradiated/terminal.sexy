@@ -1,0 +1,32 @@
+<span class="foreground-7"><span class="bold">function</span></span> settable_event (table, key, value)
+    <span class="bold">local</span> h
+    <span class="bold">if</span> <span class="foreground-1"><span class="bold">type</span></span><span class="foreground-7">(table) == </span><span class="foreground-1">&quot;table&quot;</span><span class="foreground-7"> <span class="bold">then
+</span></span>        <span class="bold">local</span> v = <span class="foreground-1"><span class="bold">rawget</span></span><span class="foreground-7">(table, key)
+        </span><span class="foreground-0"><span class="bold">-- if key is present, do raw assignment
+</span></span><span class="foreground-7">        <span class="bold">if</span></span> v ~= <span class="foreground-2"><span class="bold">nil</span></span><span class="foreground-7"> <span class="bold">then</span></span> <span class="foreground-1"><span class="bold">rawset</span></span><span class="foreground-7">(table, key, value); <span class="bold">return</span></span> <span class="bold">end
+</span>        h = metatable(table).__newindex
+        <span class="bold">if</span> h == <span class="foreground-2"><span class="bold">nil</span></span><span class="foreground-7"> <span class="bold">then</span></span> <span class="foreground-1"><span class="bold">rawset</span></span><span class="foreground-7">(table, key, value); <span class="bold">return</span></span> <span class="bold">end
+</span>    <span class="bold">else
+</span>        h = metatable(table).__newindex
+        <span class="bold">if</span> h == <span class="foreground-2"><span class="bold">nil</span></span><span class="foreground-7"> <span class="bold">then</span></span>
+            <span class="foreground-1"><span class="bold">error</span></span><span class="foreground-7">(···)
+        <span class="bold">end
+</span></span>    <span class="bold">end</span>
+    <span class="bold">if</span> <span class="foreground-1"><span class="bold">type</span></span><span class="foreground-7">(h) == </span><span class="foreground-1">&quot;function&quot;</span><span class="foreground-7"> <span class="bold">then
+</span></span>        h(table, key,value)           <span class="foreground-0"><span class="bold">-- call the handler
+</span></span><span class="foreground-7">    <span class="bold">else</span></span> h[key] = value             <span class="foreground-0"><span class="bold">-- or repeat operation on it
+</span></span><span class="foreground-7">    <span class="bold">end
+end</span></span>
+<span class="foreground-0"><span class="bold">~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+</span></span><span class="foreground-7">&quot;lua.lua&quot; 19 lines, 631 characters

@@ -1,0 +1,32 @@
+<span class="foreground-3">integer</span><span class="foreground-7"> :: my_seed
+        becomes
+</span>  <span class="foreground-3">integer</span><span class="foreground-7">, </span><span class="foreground-3">optional</span><span class="foreground-7"> :: my_seed
+</span><span class="foreground-3"><span class="bold">module</span></span><span class="foreground-7"> ran_mod
+</span><span class="foreground-0"><span class="bold">! ran1 returns a uniform random number between 0-1
+! the seed is optional and used to reset the generator
+</span></span><span class="foreground-3"><span class="bold">contains
+</span></span><span class="foreground-7">   </span><span class="foreground-3"><span class="bold">function</span></span><span class="foreground-7"> ran1(my_seed)
+      </span><span class="foreground-3"><span class="bold">use</span></span><span class="foreground-7"> numz
+      </span><span class="foreground-3">implicit</span><span class="foreground-7"> </span><span class="foreground-3">none
+      real</span><span class="foreground-7">(b8) ran1,r
+      </span><span class="foreground-3">integer</span><span class="foreground-7">, </span><span class="foreground-3">optional</span><span class="foreground-7"> ,</span><span class="foreground-3">intent</span><span class="foreground-7">(</span><span class="foreground-3">in</span><span class="foreground-7">) :: my_seed  </span><span class="foreground-0"><span class="bold">! optional argument not changed in the routine
+</span></span><span class="foreground-7">      </span><span class="foreground-3">integer</span><span class="foreground-7">,</span><span class="foreground-3">allocatable</span><span class="foreground-7"> :: seed(:)
+      </span><span class="foreground-3">integer</span><span class="foreground-7"> the_size,j
+</span>      <span class="foreground-7"><span class="bold">if</span></span>(<span class="bold">present</span>(my_seed))<span class="bold">then</span>            <span class="foreground-0"><span class="bold">! use the seed if present
+</span></span><span class="foreground-7">          <span class="bold">call</span></span> <span class="bold">random_seed</span>(<span class="bold">size=</span>the_size) <span class="foreground-0"><span class="bold">! how big is the intrisic seed?
+</span></span>          <span class="foreground-7"><span class="bold">allocate</span></span>(seed(the_size))        <span class="foreground-0"><span class="bold">! allocate space for seed
+</span></span><span class="foreground-7">          <span class="bold">do</span></span> j<span class="bold">=<span class="foreground-2">1</span></span><span class="foreground-7">,the_size                 </span><span class="foreground-0"><span class="bold">! create the seed
+</span></span><span class="foreground-7">             seed(j)<span class="bold">=abs</span></span>(my_seed)<span class="bold">+</span>(j<span class="bold">-<span class="foreground-2">1</span></span><span class="foreground-7">)   </span><span class="foreground-0"><span class="bold">! abs is generic
+</span></span><span class="foreground-7">          <span class="bold">enddo
+</span></span>          <span class="bold">call</span> <span class="bold">random_seed</span>(put<span class="bold">=</span>seed)      <span class="foreground-0"><span class="bold">! assign the seed
+</span></span>          <span class="foreground-7"><span class="bold">deallocate</span></span>(seed)                <span class="foreground-0"><span class="bold">! deallocate space
+</span></span><span class="foreground-7">      <span class="bold">endif
+</span></span>      <span class="bold">call</span> <span class="bold">random_number</span>(r)
+      ran1<span class="bold">=</span>r
+  <span class="foreground-3"><span class="bold">end function</span></span><span class="foreground-7"> ran1
+</span><span class="foreground-3"><span class="bold">end module
+</span></span>
+<span class="foreground-3"><span class="bold">program</span></span><span class="foreground-7"> darwin</span>
+<span class="foreground-7">    </span><span class="foreground-3"><span class="bold">use</span></span><span class="foreground-7"> numz
+</span><span class="foreground-0"><span class="bold">~
+</span></span><span class="foreground-7">&quot;fortran.f90&quot; 30 lines, 1025 characters

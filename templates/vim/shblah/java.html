@@ -1,0 +1,32 @@
+<span class="foreground-3"><span class="bold">import</span></span><span class="foreground-7"> java.io.*;
+</span><span class="foreground-3"><span class="bold">import</span></span><span class="foreground-7"> java.util.*;
+
+</span><span class="foreground-3">public</span><span class="foreground-7"> </span><span class="foreground-3">class</span><span class="foreground-7"> KeyboardIntegerReader {
+
+ </span><span class="foreground-3">public</span><span class="foreground-7"> </span><span class="foreground-3">static</span><span class="foreground-7"> </span><span class="foreground-3">void</span><span class="foreground-7"> main (String[] args) </span><span class="foreground-3">throws</span><span class="foreground-7"> java.io.IOException {
+  String s1;
+  String s2;
+</span>  <span class="foreground-3">int</span><span class="foreground-7"> num = </span><span class="foreground-2"><span class="bold">0</span></span><span class="foreground-7">;
+  </span>
+<span class="foreground-7">  </span><span class="foreground-0"><span class="bold">// set up the buffered reader to read from the keyboard
+</span></span><span class="foreground-7">  BufferedReader br = <span class="bold">new</span></span> BufferedReader (<span class="bold">new</span> InputStreamReader (
+            <span class="foreground-7">System.in));
+
+  </span><span class="foreground-3">boolean</span><span class="foreground-7"> cont = </span><span class="foreground-2"><span class="bold">true</span></span><span class="foreground-7">;
+
+  <span class="bold">while</span></span> (cont)
+     <span class="foreground-7">{
+      System.out.print (</span><span class="foreground-1">&quot;Enter an integer:&quot;</span><span class="foreground-7">);
+      s1 = br.readLine();
+      StringTokenizer st = <span class="bold">new</span></span> StringTokenizer (s1);
+      s2 = <span class="foreground-1">&quot;&quot;</span><span class="foreground-7">;
+
+      <span class="bold">while</span></span> (cont &amp;&amp; st.hasMoreTokens())
+     {
+          <span class="bold">try</span>
+          {
+<span class="foreground-7">           s2 = st.nextToken();
+           num = Integer.parseInt(s2);
+           cont = </span><span class="foreground-2"><span class="bold">false</span></span><span class="foreground-7">;
+</span><span class="foreground-0"><span class="bold">~
+</span></span><span class="foreground-7">&quot;java.java&quot; 30 lines, 696 characters
