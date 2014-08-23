@@ -18,20 +18,34 @@
       text-align: right;
     }
 
+    .dark .color {
+      color: rgba(#fff, 0.5);
+    }
+
+    .light .color {
+      color: rgba(#000, 0.5);
+    }
+
     .color {
+      cursor: default;
+
       display: inline-block;
       vertical-align: middle;
       background: #888;
       width: 160px;
-      box-shadow: inset 0 -5px 0 rgba(#000, 0.2);
       margin: 0 0 10px 5px;
       height: $height;
 
       text-align: center;
       line-height: $height;
-      color: rgba(#000, 0.4);
       font-weight: bold;
       text-transform: uppercase;
+      box-shadow: inset 0 -5px 0 rgba(#000, 0.2);
+
+      &:hover {
+        box-shadow: none;
+        color: rgba(#fff, 0);
+      }
     }
   }
 

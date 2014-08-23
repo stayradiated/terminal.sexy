@@ -1,0 +1,182 @@
+.colorpicker {
+  color: #fff;
+  @include abs(0, 0, 0, 0);
+
+  .map {
+    @include abs(25px, 56px, 56px, 181px);
+    position: absolute;
+    user-select: none;
+    overflow: hidden;
+
+    &.active {
+      cursor: none;
+    }
+
+    &.dark .pointer {
+      border-color: #fff;
+    }
+
+    &.light .pointer {
+      border-color: #000;
+    }
+
+    .pointer {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      margin-left: -5px;
+      margin-top: -5px;
+      border-radius: 100%;
+      border: 1px solid #000;
+    }
+
+    .background {
+      top: 0;
+      left: 0;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+
+    .background:before,
+    .background:after {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    .background:after {
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%);
+    }
+
+    .background:before {
+      background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+    }
+
+  }
+
+  .slider {
+    position: absolute;
+    user-select: none;
+
+    &.vertical {
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 10px;
+      cursor: ns-resize;
+
+      .track {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 6px;
+        margin-left: -3px;
+      }
+    }
+
+    &.horizontal {
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 10px;
+      cursor: ew-resize;
+
+      .track {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 6px;
+        margin-top: -3px;
+      }
+    }
+
+    .track {
+      border-radius: 3px;
+      background: #888;
+    }
+
+    .pointer {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      width: 14px;
+      height: 14px;
+      background: #ddd;
+      margin-left: -7px;
+      margin-bottom: -7px;
+      border-radius: 14px;
+    }
+
+  }
+
+  .sat-slider {
+    @include abs(auto, 56px, 33px, 181px);
+  }
+
+  .light-slider {
+    @include abs(25px, 23px, 56px, auto);
+  }
+
+  .hue-slider {
+    @include abs(25px, auto, 56px, 158px);
+    
+    .track {
+      background: linear-gradient(to bottom,
+        #FF0000 0%,
+        #FF0099 10%,
+        #CD00FF 20%,
+        #3200FF 30%,
+        #0066FF 40%,
+        #00FFFD 50%,
+        #00FF66 60%,
+        #35FF00 70%,
+        #CDFF00 80%,
+        #FF9900 90%,
+        #FF0000 100%
+      );
+    }
+
+  }
+
+  .sample {
+    @include abs(25px, auto, auto, 25px);
+    width: 100px;
+    height: 100px;
+    background: #bcb83e;
+  }
+
+  .details {
+    @include abs(140px, auto, 0, 25px);
+    width: 100px;
+    overflow: hidden;
+
+    ul {
+      padding: 0;
+      margin: 0 0 20px 0;
+
+      li {
+        list-style-type: none;
+      }
+    }
+
+    label {
+      color: #888;
+    }
+
+    .value {
+      color: #ccc;
+    }
+
+    .hex {
+      text-transform: uppercase;
+    }
+
+  }
+}

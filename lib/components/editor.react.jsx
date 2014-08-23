@@ -2,6 +2,7 @@ var React = require('react');
 var Reflux = require('reflux');
 
 var AppStore = require('../stores/app');
+var EditorBlock = require('./editorBlock.react');
 
 var colorNames = [
   'bg', 'fg',
@@ -29,16 +30,11 @@ var Editor = React.createClass({
       else if (name == 'fg') id = 'foreground';
       else id = name;
 
-      return (
-        /* jshint ignore: start */
-        <div key={name} className='block'>
-          <label className='foreground-8'>{name}</label>
-          <div className={'color background-'+name}>
-            {this.state.colors[id].toHex()}
-          </div>
-        </div>
-        /* jshint ignore: end */
-      );
+      return new EditorBlock({
+        key: id,
+        label: name.toString(),
+        color: this.state.colors[id]
+      });
     }, this);
 
     return (
