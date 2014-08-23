@@ -1,99 +1,62 @@
-var log = require('log_');
-var brfs = require('brfs');
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var reactify = require('reactify');
-var insert = require('gulp-insert');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var connect = require('gulp-connect');
-var plumber = require('gulp-plumber');
-var browserify = require('browserify');
-var autoprefix = require('gulp-autoprefixer');
-var source = require('vinyl-source-stream');
+var gulp         = require('gulp');
+var brfs         = require('brfs');
+var source       = require('vinyl-source-stream');
+var connect      = require('gulp-connect');
+var sass         = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
+var reactify     = require('reactify');
+var browserify   = require('browserify');
+var watchify     = require('watchify');
+var uglify       = require('gulp-uglify');
 
-var vendor = [
-  'buffer',
-  'bluebird',
-  'filereader-stream',
-  'husl',
-  'jquery',
-  'lodash',
-  'react',
-  'react/addons',
-  'reactwm',
-  'react-ranger',
-  'signals',
-  'termcolors',
-  'termio',
-  'tinytinycolor',
-  'urlsafe-base64'
-];
+gulp.task('default', ['lib', 'style'], function () {
+  gulp.watch('./stylesheets/**/*.scss', ['style']);
 
-gulp.task('default', ['sass', 'vendor'], function () {
-  return gulp.start('bundle');
-});
-
-gulp.task('watch', ['default'], function () {
-  gulp.watch('stylesheets/**/*.scss', ['sass']);
-  gulp.watch('lib/**/*', ['bundle']);
-});
-
-gulp.task('connect', ['watch'], function () {
-  connect.server({
+  return connect.server({
     root: ['dist'],
     port: 8000,
     livereload: true
   });
+}); 
+
+gulp.task('lib', function () {
+  var bundler = watchify(browserify({
+    cache: {},
+    packageCache: {},
+    fullPaths: true,
+    extensions: '.jsx'
+  }));
+
+  bundler.add('./lib/init.js');
+  bundler.transform(reactify);
+  bundler.transform(brfs);
+
+  bundler.on('update', rebundle);
+
+  function rebundle () {
+    console.log('rebundling');
+    return bundler.bundle()
+      .on('error', function (err) {
+        console.log(err.message);
+      })
+      .pipe(source('main.js'))
+      .pipe(gulp.dest('./dist/js'))
+      .pipe(connect.reload());
+  }
+
+  return rebundle();
 });
 
-gulp.task('sass', function () {
-  return gulp.src('stylesheets/main.scss')
-    .pipe(sass({ outputStyle: 'compressed', errLogToConsole: true }))
-    .pipe(autoprefix())
-    .pipe(gulp.dest('dist/css'))
+gulp.task('style', function () {
+  return gulp.src('./stylesheets/main.scss')
+    .pipe(sass({errLogToConsole: true, outputStyle: 'compressed'}))
+    .pipe(autoprefixer())
+    .pipe(gulp.dest('./dist/css'))
     .pipe(connect.reload());
 });
 
-gulp.task('lib', function (cb) {
-  var logErr = log('browserify', 'blue');
-
-  browserify({ extensions: '.jsx' })
-  .add('./lib/init.jsx')
-  .transform(reactify)
-  .transform(brfs)
-  .external(vendor)
-  .bundle()
-  .on('error', function (error) {
-    logErr(error);
-    cb();
-  })
-  .pipe(source('lib.js'))
-  .pipe(gulp.dest('dist/js'))
-  .on('end', cb);
-});
-
-gulp.task('bundle', ['lib'], function () {
-  return gulp.src([
-    'dist/js/vendor.js',
-    'dist/js/lib.js'
-  ])
-  .pipe(insert.prepend(';'))
-  .pipe(concat('bundle.js'))
-  .pipe(gulp.dest('dist/js'))
-  .pipe(connect.reload());
-});
-
-gulp.task('vendor', function () {
-  return browserify().exclude('stylus')
-  .require(vendor)
-  .bundle()
-  .pipe(source('vendor.js'))
-  .pipe(gulp.dest('dist/js'));
-});
-
-gulp.task('minify', ['bundle'], function () {
-  return gulp.src('dist/js/bundle.js')
+gulp.task('minify', function () {
+  return gulp.src('./dist/js/*')
     .pipe(uglify())
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('./dist/js'));
 });

@@ -1,6 +1,7 @@
 var React = require('react');
 var termcolors = require('termcolors');
-var AppStore = require('../stores/AppStore');
+
+var AppStore = require('../stores/app');
 
 termcolors.json = require('../formats/json');
 
@@ -13,7 +14,7 @@ var Export = React.createClass({
   },
 
   handleClick: function () {
-    var colors = AppStore.getColors();
+    var colors = AppStore.getState().colors;
     var type = this.refs.select.getDOMNode().value;
     this.setState({
       text: termcolors[type].export(colors)
@@ -22,6 +23,7 @@ var Export = React.createClass({
 
   render: function () {
     return (
+      /* jshint ignore: start */
       <div className='export'>
         <select ref='select' defaultValue='xresources' className='background-alt'>
           <option value='gnome'>Gnome Terminal</option>
@@ -42,6 +44,7 @@ var Export = React.createClass({
             className='background-bg' ref='textarea' />
         </div>
       </div>
+      /* jshint ignore: end */
     );
   }
 

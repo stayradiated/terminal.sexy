@@ -7,7 +7,9 @@ var StyleSheet = React.createClass({
     var styles = CSS.export(this.props.colors);
 
     return (
+      /* jshint ignore: start */
       <style dangerouslySetInnerHTML={{__html: styles}} />
+      /* jshint ignore: end */
     );
   }
 

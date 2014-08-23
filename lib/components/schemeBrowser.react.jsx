@@ -1,27 +1,28 @@
-var _ = require('lodash');
 var React = require('react');
-var AppActions = require('../actions/AppActions');
-var SchemeStore = require('../stores/SchemeStore');
 var Ranger = require('react-ranger');
+
+var actions = require('../actions');
+var SchemeStore = require('../stores/scheme');
 
 var Schemes = React.createClass({
 
   handleExecute: function (file) {
     console.log(file);
-    AppActions.setAllColors(file.contents.colors);
+    actions.setAllColors(file.contents.colors);
   },
 
   render: function () {
-
     var schemes = Ranger.parseFiles(SchemeStore.getSchemes(), {
       id: 'name'
     });
 
     return (
+      /* jshint ignore: start */
       <Ranger
-        data={schemes}
+        initialDir={schemes}
         onExecute={this.handleExecute}
       />
+      /* jshint ignore: end */
     );
   }
 

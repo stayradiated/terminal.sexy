@@ -1,6 +1,7 @@
 var React = require('react');
 var termcolors = require('termcolors');
-var AppActions = require('../actions/AppActions');
+
+var actions = require('../actions');
 
 var Import = React.createClass({
 
@@ -9,11 +10,12 @@ var Import = React.createClass({
     var text = this.refs.textarea.getDOMNode().value;
     var colors = termcolors[type].import(text);
     colors = termcolors.defaults.fill(colors);
-    AppActions.setAllColors(colors);
+    actions.setAllColors(colors);
   },
 
   render: function () {
     return (
+      /* jshint ignore: start */
       <div className='import'>
         <select ref='select' defaultValue='xresources' className='background-alt'>
           <option value='iterm'>iTerm2</option>
@@ -26,6 +28,7 @@ var Import = React.createClass({
           <textarea spellCheck='false' className='background-bg' ref='textarea' />
         </div>
       </div>
+      /* jshint ignore: end */
     );
   }
 

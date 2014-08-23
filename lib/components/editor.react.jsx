@@ -1,6 +1,7 @@
-var _ = require('lodash');
 var React = require('react');
-var AppStore = require('../stores/AppStore');
+var Reflux = require('reflux');
+
+var AppStore = require('../stores/app');
 
 var colorNames = [
   'bg', 'fg',
@@ -8,55 +9,51 @@ var colorNames = [
   4, 12, 5, 13, 6, 14, 7, 15
 ];
 
-var getEditorState = function () {
-  return {
-    colors: AppStore.getColors()
-  };
-};
-
 var Editor = React.createClass({
 
+  mixins: [Reflux.ListenerMixin],
+
   getInitialState: function () {
-    return getEditorState();
+    return {
+      colors: AppStore.getState().colors
+    };
   },
 
   componentDidMount: function () {
-    AppStore.on('change', this._onChange);
-  },
-
-  componentWillUnmount: function () {
-    AppStore.off('change', this._onChange);
+    this.listenTo(AppStore, this._onChange);
   },
 
   render: function () {
-    var colors = AppStore.getColors();
-
-    var palette = _.map(colorNames, function (name) {
+    var palette = colorNames.map(function (name) {
       if (name === 'bg') id = 'background';
       else if (name == 'fg') id = 'foreground';
       else id = name;
 
       return (
+        /* jshint ignore: start */
         <div key={name} className='block'>
           <label className='foreground-8'>{name}</label>
           <div className={'color background-'+name}>
-            {colors[id].toHexString()}
+            {this.state.colors[id].toHex()}
           </div>
         </div>
+        /* jshint ignore: end */
       );
     }, this);
 
     return (
+      /* jshint ignore: start */
       <div className='editor'>
         <div className='palette'>
           {palette}
         </div>
       </div>
+      /* jshint ignore: end */
     );
   },
 
   _onChange: function () {
-    this.setState(getEditorState());
+    this.setState(this.getInitialState());
   }
 
 });

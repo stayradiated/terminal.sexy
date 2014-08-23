@@ -1,14 +1,16 @@
 var React = require('react');
-var AppActions = require('../actions/AppActions');
+
+var actions = require('../actions');
 
 var Header = React.createClass({
 
   open: function (name) {
-    AppActions.openWindow(name);
+    actions.openWindow(name);
   },
 
   render: function () {
     return (
+      /* jshint ignore: start */
       <header className='header foreground-fg background-bg'>
         <h1>terminal.sexy</h1>
         <ul>
@@ -20,6 +22,7 @@ var Header = React.createClass({
           <li onClick={this.open.bind(this, 'export')}>Export</li>
         </ul>
       </header>
+      /* jshint ignore: end */
     );
   }
 
