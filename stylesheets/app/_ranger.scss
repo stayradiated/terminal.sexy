@@ -30,14 +30,6 @@
   width: 40%;
 }
 
-.parent-pane .active {
-  background: rgba(#000, 0.3);
-}
-
-.contents-pane .active {
-  background: rgba(#000, 0.1);
-}
-
 .directory {
   font-weight: bold;
 }
@@ -50,7 +42,7 @@
 }
 
 .active {
-  background: rgba(#fff, 0.1);
+  background: rgba(#000, 0.3);
 }
 
 .file, .directory {

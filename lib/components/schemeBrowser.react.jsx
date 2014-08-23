@@ -7,7 +7,6 @@ var SchemeStore = require('../stores/scheme');
 var Schemes = React.createClass({
 
   handleExecute: function (file) {
-    console.log(file);
     actions.setAllColors(file.contents.colors);
   },
 

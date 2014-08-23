@@ -3,7 +3,7 @@ var Reflux = require('reflux');
 var Ranger = require('react-ranger');
 
 var TemplateStore = require('../stores/template');
-var AppActions = require('../actions');
+var actions = require('../actions');
 
 var TemplateBrowser = React.createClass({
 
@@ -20,8 +20,7 @@ var TemplateBrowser = React.createClass({
   },
 
   handleExecute: function (item) {
-    console.log(item.path);
-    AppActions.openWindow('template::' + item.path);
+    actions.openTemplate(item.path);
   },
 
   render: function () {

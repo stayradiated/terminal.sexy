@@ -20,6 +20,7 @@ var ColorPicker = React.createClass({
   },
 
   handleChange: function (color) {
+    Picker.onChange(color);
   },
 
   render: function () {

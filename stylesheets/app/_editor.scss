@@ -18,6 +18,11 @@
       text-align: right;
     }
 
+    .focus .color,
+    .focus .color:hover {
+      outline: 3px solid #fff;
+    }
+
     .dark .color {
       color: rgba(#fff, 0.5);
     }
@@ -43,8 +48,7 @@
       box-shadow: inset 0 -5px 0 rgba(#000, 0.2);
 
       &:hover {
-        box-shadow: none;
-        color: rgba(#fff, 0);
+        outline: 3px solid #333;
       }
     }
   }
