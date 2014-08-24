@@ -3,19 +3,24 @@
 
   .palette {
     @extend #clearfix;
-    $height: 60px;
+    $height: 70px;
 
     .block {
       display: inline-block;
-      width: 50%;
+      width: 170px;
       clear: both;
-    }
 
-    label {
-      display: inline-block;
-      vertical-align: middle;
-      width: 20px;
-      text-align: right;
+      .label {
+        margin-top: $height/6;
+        line-height: $height/2;
+        font-size: 25px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .hex {
+        font-size: 12px;
+      }
     }
 
     .focus .color,
@@ -42,10 +47,7 @@
       height: $height;
 
       text-align: center;
-      line-height: $height;
-      font-weight: bold;
-      text-transform: uppercase;
-      box-shadow: inset 0 -5px 0 rgba(#000, 0.2);
+      box-shadow: 0 0 0 1px rgba(#000, 0.2), inset 0 -5px rgba(#000, 0.2);
 
       &:hover {
         outline: 3px solid #333;

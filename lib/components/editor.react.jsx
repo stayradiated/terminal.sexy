@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react');
 var Reflux = require('reflux');
 
@@ -26,9 +28,13 @@ var Editor = React.createClass({
 
   render: function () {
     var palette = colorNames.map(function (name) {
-      if (name === 'bg') id = 'background';
-      else if (name == 'fg') id = 'foreground';
-      else id = name;
+      var id = name;
+
+      if (name === 'bg') {
+        id = 'background';
+      } else if (name === 'fg') {
+        id = 'foreground';
+      } 
 
       return new EditorBlock({
         key: id,

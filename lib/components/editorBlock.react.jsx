@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react/addons');
 var Colr = require('colr');
 
@@ -29,13 +31,16 @@ var EditorBlock = React.createClass({
     return (
       /* jshint ignore: start */
       <div key={this.props.label} className={classes}>
-        <input className='hidden' ref='input' onFocus={this.handleFocus} onBlur={this.handleBlur} />
-        <label className='foreground-8'>{this.props.label}</label>
+        <input
+          className='hidden' ref='input'
+          onFocus={this.handleFocus} onBlur={this.handleBlur}
+        />
         <div
           className={'color background-'+this.props.label}
           onClick={this.handleClick}
         >
-          {this.props.color.toHex()}
+          <div className='label'>{this.props.label}</div>
+          <div className='hex'>{this.props.color.toHex()}</div>
         </div>
       </div>
       /* jshint ignore: end */
