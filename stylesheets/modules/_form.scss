@@ -1,0 +1,26 @@
+.button {
+  cursor: default;
+  font-size: 14px;
+  line-height: 30px;
+  padding: 0 20px;
+
+  -webkit-appearance: none;
+  background: #808080;
+  border: 0;
+  outline: 0;
+
+  &:active {
+    margin: 1px;
+  }
+}
+
+select {
+  $height: 30px;
+
+  background: #808080;
+  outline: 0;
+  border: 0;
+  height: $height;
+  line-height: $height;
+  padding: 0 20px;
+}

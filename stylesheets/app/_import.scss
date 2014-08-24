@@ -3,15 +3,12 @@
   @include abs(0, 0, 0, 0);
 
   select {
-    @include abs($pad, $pad, auto, 50%);
-    outline: 0;
-    border: 0;
+    @include abs($pad, $pad, auto, auto);
+    width: 200px;
   }
 
-  button {
-    @include abs($pad, 50%, auto, $pad);
-    border: 0;
-    outline: 0;
+  .button {
+    @include abs($pad, 200px + $pad + $pad, auto, $pad);
   }
 
   .textarea {

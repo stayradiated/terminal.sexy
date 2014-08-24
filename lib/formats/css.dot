@@ -75,3 +75,12 @@
 .ranger .active {
   background: {{=c.desktop}} !important;
 }
+
+select, .button {
+  background: {{=c.bgSubtle}} !important;
+}
+
+.button:hover {
+  background: {{=c.background}} !important;
+  outline: 4px solid {{=c.bgSubtle}};
+}
