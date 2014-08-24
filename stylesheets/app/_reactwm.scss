@@ -32,8 +32,8 @@ $foreground: #fff;
       .title {
         font-size: 14px;
         font-weight: bold;
-        text-indent: $window_header_height / 4;
         color: $foreground;
+        text-align: center;
       }
       .close {
         position: absolute;
