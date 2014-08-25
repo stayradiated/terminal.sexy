@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Nitro</title>
+  <link href="css/screen.css" rel="stylesheet" type="text/css" charset="utf-8">
+  <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+  <!--
+  =============================================================================
+    P A N E L
+  =============================================================================
+  -->
+  <header class="panel">
+    <section class="windowcontrols">
+      <img class="close" src="img/close.png" alt="X" title="Close">
+      <img class="minimize" src="img/minimize.png" alt="-" title="Minimize">
+      <img class="maximize" src="img/maximize.png" alt="+" title="Maximize">
+    </section>
+    <section class="avatar">
+      <div class="user">
+        <div class="name">Kanye West</div>
+        <div class="pro t">go pro</div>
+      </div>
+      <div class="img"></div>
+    </section>
+  </header>
+
+  <!--
+  =============================================================================
+    T A S K S
+  =============================================================================
+  -->
+
+  <section class="main tasks">
+    <div class="title entrance">
+
+      <div class="list-name-container">
+        <h1 class="editable list-name" contenteditable="true">List Name</h1>
+        <div class="list-menu dropdown-menu">
+          <ul class="menu-contents">
+            <li class="t sort">Sort Tasks</li>
+            <li class="t print">Print List</li>
+            <li class="t delete">Delete List</li>
+          </ul>
+        </div>
+      </div>
+
+      <input class="p task-input" type="text" placeholder="What do you need to do?">
+    </div>
+
+    <div class="tasks-container entrance">
+      <ul>
+        <!-- tasks go here -->
+      </ul>
+      <div class="message"></div>
+      <div class="datepicker-wrapper">
+        <div class="datepicker-container"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!--
+  =============================================================================
+    S I D E B A R
+  =============================================================================
+  -->
+
+  <aside class="sidebar">
+    <div class='wrapper'>
+      <h2 class="title">Nitro</h2>
+
+      <div class="all special list">
+        <span class="t name">All Tasks</span>
+        <div class="count"></div>
+      </div>
+
+      <div class="completed special list">
+        <span class="t name">Completed</span>
+        <div class="count"></div>
+      </div>
+
+      <ul class="lists"></ul>
+
+      <input class="p create-list" placeholder="New List">
+    </div>
+
+    <div class="prefsbuttons">
+      <button id="open-settings-button" title="Open Settings"></button>
+      <button id="sync-button" title="Sync"></button>
+    </div>
+
+  </aside>
+

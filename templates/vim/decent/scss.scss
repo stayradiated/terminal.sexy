@@ -30,7 +30,8 @@ $foreground: #fff;
       cursor: move;
 
       .title {
-        font-weight: $bold;
+        font-size: 14px;
+        font-weight: bold;
         color: $foreground;
         text-align: center;
       }
@@ -98,41 +99,3 @@ $foreground: #fff;
       &.e-resize {
         right: 0;
       }
-
-      &.w-resize {
-        left: 0;
-      }
-
-      &.s-resize {
-        height: $size;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        cursor: ns-resize;
-      }
-    }
-
-  }
-
-}
-
-$fade: opacity .1s ease-in;
-
-.windows-enter {
-  opacity: 0.01;
-  transition: $fade;
-}
-
-.windows-enter-active {
-  opacity: 1;
-}
-
-.windows-leave {
-  opacity: 1;
-  transition: $fade;
-}
-
-.windows-leave-active {
-  opacity: 0.01;
-}
-

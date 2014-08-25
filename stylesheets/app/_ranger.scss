@@ -1,56 +1,57 @@
-.ranger:after {
-  content: '';
-  display: table;
-  clear: both;
-}
+.ranger {
 
-.pane {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  padding: 10px;
-  box-sizing: border-box;
-  border-right: 1px solid rgba(#fff, 0.2);
-  overflow-y: auto;
-  overflow-x: hidden;
-}
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
 
-.parent-pane {
-  left: 0;
-  width: 30%;
-}
+  .pane {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
 
-.active-pane {
-  left: 30%;
-  width: 30%;
-}
+    // overridden by css.js
+    border-right: 1px solid rgba(#fff, 0.2);
+  }
 
-.contents-pane {
-  left: 60%;
-  width: 40%;
-}
+  .parent-pane {
+    left: 0;
+    width: 30%;
+  }
 
-.directory {
-  font-weight: bold;
-}
+  .active-pane {
+    left: 30%;
+    width: 30%;
+  }
 
-.directory:after {
-  content: '/'
-}
+  .contents-pane {
+    left: 60%;
+    width: 40%;
+    border-right: none !important;
+  }
 
-.file {
-}
+  .directory {
+    font-weight: $bold;
+  }
 
-.file, .directory {
-  line-height: 40px;
-  padding: 0 20px;
-}
+  .directory:after {
+    content: '/'
+  }
 
-input {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  opacity: 0;
-  width: 0;
-  height: 0;
+  .file {
+  }
+
+  .file, .directory {
+    padding: 5px 10px;
+  }
+
+  input {
+    @extend #hidden_input;
+  }
+
 }

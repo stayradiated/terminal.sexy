@@ -43,7 +43,7 @@
     "reactwm": "0.0.10",
     "reflux": "^0.1.7",
     "termcolors": "0.0.10",
-    "termio": "^0.0.4",
+    "termio": "^0.0.5",
     "through": "^2.3.4",
     "urlsafe-base64": "0.0.2"
   }

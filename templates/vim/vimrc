@@ -1,0 +1,47 @@
+
+if has('vim_starting')
+  set nocompatible
+  set runtimepath+=~/.vim/bundle/neobundle.vim
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Themes
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'stayradiated/vim-termorrow'
+NeoBundle 'noahfrederick/vim-noctu'
+
+" Extensions
+NeoBundle 'tpope/vim-sensible'
+
+" Languages
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'nelstrom/vim-markdown-folding'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'fatih/vim-go'
+
+call neobundle#end()
+
+filetype plugin indent on
+
+" Check plugins
+NeoBundleCheck
+
+" Settings
+" -----------------------------------------------------------------------------
+
+set number               " show absolute line number on current line
+set mouse=a              " enable mouse in all modes
+
+set expandtab            " replace tabs with spaces
+set shiftwidth=2         " spaces for autoindenting
+set softtabstop=2        " spaces for editing, e.g. <Tab> or <BS>
+set tabstop=2            " spaces for <Tab>
+
+let g:hybrid_use_Xresources = 1
+colorscheme hybrid

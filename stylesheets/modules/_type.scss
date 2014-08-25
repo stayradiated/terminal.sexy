@@ -1,7 +1,20 @@
+$font-size: 14px;
+$font-family: 'tamzen7x14', 'source code pro', monospace;
+$font: $font-size $font-family;
+
+$bold: 800;
+$line-height: $font-size * 1.5;
+
 body {
-  font-family: "source code pro", monospace;
+  font: $font;
+  line-height: $line-height;
 }
 
 textarea, pre {
-  font: 14px "source code pro", monospace;
+  font: $font;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font: $font;
+  font-weight: $bold;
 }

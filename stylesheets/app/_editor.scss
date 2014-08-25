@@ -14,12 +14,8 @@
         margin-top: $height/6;
         line-height: $height/2;
         font-size: 25px;
-        font-weight: bold;
+        font-weight: $bold;
         text-transform: uppercase;
-      }
-
-      .hex {
-        font-size: 12px;
       }
     }
 
@@ -53,6 +49,10 @@
         outline: 3px solid #333;
       }
     }
+  }
+
+  input {
+    @extend #hidden_input;
   }
 
 }

@@ -72,8 +72,17 @@
   background: {{=c.background}} !important;
 }
 
+.ranger .pane {
+  border-right: 4px solid {{=c.bgSubtle}};
+}
+
 .ranger .active {
   background: {{=c.desktop}} !important;
+  outline: 1px solid {{=c.bgSubtle}};
+}
+
+.ranger .directory {
+  color: {{=c.fgSubtle}};
 }
 
 select, .button {
@@ -83,4 +92,8 @@ select, .button {
 .button:hover {
   background: {{=c.background}} !important;
   outline: 4px solid {{=c.bgSubtle}};
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: {{=c.bgSubtle}};
 }

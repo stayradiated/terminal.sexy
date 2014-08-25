@@ -18,7 +18,7 @@
     "{{=c[13]}}",
     "{{=c[14]}}",
     "{{=c[15]}}"
-    ],
+  ],
   "foreground": "{{=c.foreground}}",
   "background": "{{=c.background}}"
 }

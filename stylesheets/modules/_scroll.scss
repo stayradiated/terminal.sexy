@@ -1,25 +1,27 @@
 #scroll {
   -webkit-overflow-scrolling: touch;
+}
 
-  &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
 
-  &::-webkit-scrollbar-track {
-    background-color: transparent !important;
-  }
+::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
 
-  &::-webkit-scrollbar-track-piece {
-    background-color: transparent !important;
-  }
+::-webkit-scrollbar-track-piece {
+  background-color: transparent !important;
+}
 
-  &::-webkit-scrollbar-corner {
-    background-color: transparent !important;
-  }
+::-webkit-scrollbar-corner {
+  background-color: transparent !important;
+}
 
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(#fff, 0.3);
-    border: 0;
-  }
+::-webkit-scrollbar-thumb {
+  border: 0;
+
+  // override by css.js
+  // background-color: rgba(#fff, 0.3);
 }

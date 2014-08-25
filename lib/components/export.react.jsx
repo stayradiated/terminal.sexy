@@ -16,8 +16,9 @@ var Export = React.createClass({
   },
 
   handleClick: function () {
-    var colors = AppStore.getState().colors;
     var type = this.refs.select.getDOMNode().value;
+    if (! type) { return; }
+    var colors = AppStore.getState().colors;
     this.setState({
       text: termcolors[type].export(colors)
     });
@@ -38,7 +39,9 @@ var Export = React.createClass({
           <option value='termite'>Termite</option>
           <option value='xfce'>XFCE4 Terminal</option>
           <option value='xresources'>Xresources</option>
-          <option value='json'>JSON</option>
+          <option value=''>-- OTHER --</option>
+          <option value='textmate'>Textmate</option>
+          <option value='json'>JSON Scheme</option>
         </select>
         <div onClick={this.handleClick} className='button'>Export</div>
         <div className='textarea'>
