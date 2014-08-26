@@ -39,7 +39,7 @@
     "lodash": "^2.4.1",
     "react": "^0.11.1",
     "react-colorpicker": "0.0.7",
-    "react-ranger": "^0.3.3",
+    "react-ranger": "^0.4.3",
     "reactwm": "0.0.10",
     "reflux": "^0.1.7",
     "termcolors": "0.0.10",

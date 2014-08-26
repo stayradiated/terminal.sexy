@@ -1,10 +1,23 @@
 .ranger {
+  cursor: default;
+  user-select: none;
 
+  // clearfix
   &:after {
     content: '';
     display: table;
     clear: both;
   }
+
+  // hide input
+  input {
+    @extend #hidden_input;
+  }
+
+
+  /*
+   * PANES
+   */
 
   .pane {
     position: absolute;
@@ -12,8 +25,6 @@
     bottom: 0;
     padding: 10px;
     box-sizing: border-box;
-    overflow-y: auto;
-    overflow-x: hidden;
 
     // overridden by css.js
     border-right: 1px solid rgba(#fff, 0.2);
@@ -35,6 +46,26 @@
     border-right: none !important;
   }
 
+
+  /*
+   * ITEM LIST
+   */
+
+  .item-list {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+
+  /*
+   * FILES AND DIRECTORIES
+   */
+
   .directory {
     font-weight: $bold;
   }
@@ -43,15 +74,20 @@
     content: '/'
   }
 
-  .file {
+  .pane .active {
+    // set by css.js
+  }
+
+  &.focus .pane .active {
+    // set by css.js
   }
 
   .file, .directory {
     padding: 5px 10px;
-  }
 
-  input {
-    @extend #hidden_input;
+    &:active {
+      background: rgba(#000, 0.1);
+    }
   }
 
 }

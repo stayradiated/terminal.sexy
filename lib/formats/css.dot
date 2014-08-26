@@ -77,7 +77,12 @@
 }
 
 .ranger .active {
-  background: {{=c.desktop}} !important;
+  background: {{=c.bgSubtle}};
+  outline: none;
+}
+
+.ranger.focus .active {
+  background: {{=c.desktop}};
   outline: 1px solid {{=c.bgSubtle}};
 }
 
