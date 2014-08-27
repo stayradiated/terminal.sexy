@@ -24,13 +24,11 @@ var Picker = React.createClass({
 
     return (
       /* jshint ignore: start */
-      <div>
       <ReactColorPicker
         key={state.origin}
         color={state.color}
         onChange={this.handleChange}
       />
-      </div>
       /* jshint ignore: end */
     );
   },
