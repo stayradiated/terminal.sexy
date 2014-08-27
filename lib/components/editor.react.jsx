@@ -16,17 +16,13 @@ var Editor = React.createClass({
 
   mixins: [Reflux.ListenerMixin],
 
-  getInitialState: function () {
-    return {
-      colors: AppStore.getState().colors
-    };
-  },
-
   componentDidMount: function () {
     this.listenTo(AppStore, this._onChange);
   },
 
   render: function () {
+    var colors = AppStore.getState().colors;
+
     var palette = colorNames.map(function (name) {
       var id = name;
 
@@ -39,7 +35,7 @@ var Editor = React.createClass({
       return new EditorBlock({
         key: id,
         label: name.toString(),
-        color: this.state.colors[id]
+        color: colors[id],
       });
     }, this);
 
@@ -55,7 +51,7 @@ var Editor = React.createClass({
   },
 
   _onChange: function () {
-    this.setState(this.getInitialState());
+    this.forceUpdate();
   }
 
 });

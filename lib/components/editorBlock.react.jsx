@@ -13,9 +13,7 @@ var EditorBlock = React.createClass({
   },
 
   getInitialState: function () {
-    return {
-      focused: false
-    };
+    return { focused: false };
   },
 
   render: function () {

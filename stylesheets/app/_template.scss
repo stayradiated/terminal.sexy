@@ -6,11 +6,11 @@
     padding: 20px;
     @extend #scroll;
     cursor: default;
-  }
 
-  span:hover {
-    background: rgba(#fff, 0.1) !important;
-    outline: 1px solid #fff;
+    span:hover {
+      background: rgba(#fff, 0.1) !important;
+      outline: 1px solid #fff;
+    }
   }
 
   .status-bar {

@@ -4,42 +4,41 @@ var React = require('react');
 var Reflux = require('reflux');
 var ReactColorPicker = require('react-colorpicker');
 
-var Picker = require('../stores/picker');
+var PickerStore = require('../stores/picker');
 var actions = require('../actions');
 
-var ColorPicker = React.createClass({
+var Picker = React.createClass({
 
   mixins: [Reflux.ListenerMixin],
 
   componentDidMount: function () {
-    this.listenTo(Picker, this._onChange);
-  },
-
-  getInitialState: function () {
-    return {
-      color: Picker.getState().color
-    };
+    this.listenTo(PickerStore, this._onChange);
   },
 
   handleChange: function (color) {
-    Picker.onChange(color);
+    PickerStore.onChange(color);
   },
 
   render: function () {
+    var state = PickerStore.getState();
+
     return (
       /* jshint ignore: start */
+      <div>
       <ReactColorPicker
-        color={this.state.color}
+        key={state.origin}
+        color={state.color}
         onChange={this.handleChange}
       />
+      </div>
       /* jshint ignore: end */
     );
   },
 
   _onChange: function () {
-    this.setState(this.getInitialState());
+    this.forceUpdate();
   }
 
 });
 
-module.exports = ColorPicker;
+module.exports = Picker;

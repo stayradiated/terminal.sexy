@@ -149,7 +149,14 @@
     @include abs(25px, auto, auto, 25px);
     width: 100px;
     height: 100px;
-    background: #bcb83e;
+
+    .current {
+      height: 50%;
+    }
+
+    .origin {
+      height: 50%;
+    }
   }
 
   .details {
@@ -167,15 +174,27 @@
     }
 
     label {
+      display: inline-block;
       color: #888;
+      width: 15px;
+      margin-right: 5px;
+      text-align: right;
     }
 
-    .value {
-      color: #ccc;
-    }
-
-    .hex {
+    input {
+      width: 74px;
       text-transform: uppercase;
+      background: none;
+      border-radius: 3px;
+      border: none;
+      outline: none;
+      color: #ccc;
+      background: rgba(#000, 0.1);
+
+      &:focus {
+        color: #333;
+        background: rgba(#fff, 0.9);
+      }
     }
 
   }
