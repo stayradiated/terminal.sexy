@@ -25,8 +25,7 @@ var Picker = React.createClass({
     return (
       /* jshint ignore: start */
       <ReactColorPicker
-        key={state.origin}
-        color={state.color}
+        color={state.color.toHex()}
         onChange={this.handleChange}
       />
       /* jshint ignore: end */
