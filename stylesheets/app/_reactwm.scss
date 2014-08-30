@@ -67,7 +67,7 @@ $foreground: #fff;
     }
 
     .resize {
-      $size: 10px;
+      $size: 4px;
       @include abs(auto, auto, 0, 0);
 
       &.se-resize,
