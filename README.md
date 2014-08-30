@@ -1,4 +1,4 @@
-16-colors
+terminal.sexy
 =========
 
-View terminal colorschemes in the browser.
+Create, view and edit terminal colorschemes.
