@@ -1,4 +1,4 @@
-terminal.sexy
-=========
+# terminal.sexy
 
 Create, view and edit terminal colorschemes.
+
