@@ -16,12 +16,12 @@ $foreground: #fff;
     $window_header_height: 30px;
 
     position: absolute;
-    background: #888;
+    // background: #888;
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(#000, 0.3);
 
     &.active {
-      background: #333;
+      // background: #333;
     }
 
     header {
@@ -31,7 +31,7 @@ $foreground: #fff;
 
       .title {
         font-weight: $bold;
-        color: $foreground;
+        // color: $foreground;
         text-align: center;
       }
       .close {
@@ -44,7 +44,7 @@ $foreground: #fff;
         &:after {
           display: block;
           content: 'x';
-          color: #fff;
+          // color: #fff;
           text-align: center;
           width: $window_header_height;
         }

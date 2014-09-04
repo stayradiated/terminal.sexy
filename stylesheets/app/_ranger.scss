@@ -46,6 +46,17 @@
     border-right: none !important;
   }
 
+  &.hide-parent {
+    .active-pane {
+      left: 0;
+      width: 50%;
+    }
+    .contents-pane {
+      left: 50%;
+      width: 50%;
+    }
+  }
+
 
   /*
    * ITEM LIST

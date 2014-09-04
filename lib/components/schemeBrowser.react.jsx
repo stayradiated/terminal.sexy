@@ -46,6 +46,7 @@ var Schemes = React.createClass({
       <Ranger
         store={SchemeStore.rangerStore()}
         view={ItemView}
+        hideParent={true}
       />
       /* jshint ignore: end */
     );
