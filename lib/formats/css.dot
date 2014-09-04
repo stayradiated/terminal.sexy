@@ -102,3 +102,8 @@ select, .button {
 ::-webkit-scrollbar-thumb {
   background-color: {{=c.bgSubtle}};
 }
+
+body, textarea, pre, h1, h2, h3, h4, h5, h6 {
+  font-family: {{=c.font.name}} !important;
+  font-size: {{=c.font.size}} !important;
+}

@@ -1,4 +1,5 @@
 [
+  "tig/tig",
   "vim/default/bash",
   "vim/default/c++",
   "vim/default/fortran",
