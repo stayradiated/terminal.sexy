@@ -1,0 +1,24 @@
+{
+  "name": "Derp",
+  "author": "",
+  "color": [
+    "#111111",
+    "#d36265",
+    "#aece91",
+    "#e7e18c",
+    "#5297cf",
+    "#963c59",
+    "#5e7175",
+    "#bebebe",
+    "#666666",
+    "#ef8171",
+    "#cfefb3",
+    "#fff796",
+    "#74b8ef",
+    "#b85e7b",
+    "#a3babf",
+    "#ffffff"
+  ],
+  "foreground": "#ffffff",
+  "background": "#000000"
+}

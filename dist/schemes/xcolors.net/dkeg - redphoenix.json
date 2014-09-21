@@ -1,0 +1,24 @@
+{
+  "name": "Red Phoenix",
+  "author": "dkeg",
+  "color": [
+    "#131313",
+    "#2d2d2d",
+    "#4c3a3d",
+    "#4e4e4e",
+    "#6f6f6f",
+    "#909090",
+    "#aaa998",
+    "#b1b1b1",
+    "#d1d1d1",
+    "#d2c3ad",
+    "#df9767",
+    "#e1e1e1",
+    "#ededed",
+    "#ed4b19",
+    "#f2361e",
+    "#fa390f"
+  ],
+  "foreground": "#ffffff",
+  "background": "#111111"
+}

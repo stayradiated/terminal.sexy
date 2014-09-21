@@ -1,0 +1,24 @@
+{
+  "name": "Low Contrast",
+  "author": "Muzieca",
+  "color": [
+    "#5f5f5f",
+    "#d96468",
+    "#a2d964",
+    "#d9c964",
+    "#64a2d9",
+    "#9a64d9",
+    "#64d9d5",
+    "#989898",
+    "#828282",
+    "#d98f93",
+    "#b8d98f",
+    "#d9cf8f",
+    "#8f99d9",
+    "#b08fd9",
+    "#8fd9d5",
+    "#c5c5c5"
+  ],
+  "foreground": "#93a1a1",
+  "background": "#3c3b37"
+}

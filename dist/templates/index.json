@@ -42,6 +42,7 @@
   "vim/stayrad/python",
   "vim/stayrad/ruby",
   "vim/stayrad/sql",
+  "vim/stayrad/gulpfile.js",
   "vim/shblah/bash",
   "vim/shblah/c++",
   "vim/shblah/fortran",

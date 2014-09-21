@@ -1,0 +1,24 @@
+{
+  "name": "Splurge",
+  "author": "",
+  "color": [
+    "#4a4b4a",
+    "#d7699a",
+    "#80d468",
+    "#d7a169",
+    "#6985d7",
+    "#c86ad4",
+    "#6fccd1",
+    "#dbdcdc",
+    "#696969",
+    "#f5a2b5",
+    "#a3f2a0",
+    "#f5cda2",
+    "#a2c1f5",
+    "#d2a2f5",
+    "#a0e9f2",
+    "#fdfdfd"
+  ],
+  "foreground": "#ffffff",
+  "background": "#000000"
+}

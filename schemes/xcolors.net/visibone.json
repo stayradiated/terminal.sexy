@@ -1,0 +1,24 @@
+{
+  "name": "VisiBone",
+  "author": "",
+  "color": [
+    "#666666",
+    "#cc6666",
+    "#66cc99",
+    "#cc9966",
+    "#6699cc",
+    "#cc6699",
+    "#66cccc",
+    "#cccccc",
+    "#999999",
+    "#ff9999",
+    "#99ffcc",
+    "#ffcc99",
+    "#99ccff",
+    "#ff99cc",
+    "#99ffff",
+    "#ffffff"
+  ],
+  "foreground": "#ffffff",
+  "background": "#000000"
+}

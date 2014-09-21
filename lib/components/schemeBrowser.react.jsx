@@ -9,6 +9,10 @@ var ItemView = React.createClass({
   render: function () {
     var item = this.props.item.contents;
 
+    if (item == null) {
+      return null;
+    }
+
     var colorSquares = [];
     var background = item.colors.background.toHex();
 
@@ -46,7 +50,7 @@ var Schemes = React.createClass({
       <Ranger
         store={SchemeStore.rangerStore()}
         view={ItemView}
-        hideParent={true}
+        hideParent={false}
       />
       /* jshint ignore: end */
     );

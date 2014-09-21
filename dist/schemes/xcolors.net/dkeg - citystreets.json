@@ -1,0 +1,24 @@
+{
+  "name": "City Streets",
+  "author": "dkeg",
+  "color": [
+    "#201e24",
+    "#2d2b30",
+    "#3f3d40",
+    "#413c3e",
+    "#423e41",
+    "#4e4a4b",
+    "#6e6765",
+    "#837e81",
+    "#837c78",
+    "#89827d",
+    "#a7a099",
+    "#c2bec1",
+    "#c3bcb2",
+    "#cbc5ba",
+    "#e3ddd2",
+    "#efe8dc"
+  ],
+  "foreground": "#d3d3d3",
+  "background": "#000000"
+}

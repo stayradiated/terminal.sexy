@@ -1,0 +1,24 @@
+{
+  "name": "Sex Colors",
+  "author": "",
+  "color": [
+    "#252525",
+    "#ff9f95",
+    "#a6e22e",
+    "#fd971f",
+    "#435e87",
+    "#789ec6",
+    "#5e7175",
+    "#dbdcdc",
+    "#454545",
+    "#ff8d80",
+    "#b6e354",
+    "#fd971f",
+    "#587aa4",
+    "#46a4ff",
+    "#a3babf",
+    "#fdfdfd"
+  ],
+  "foreground": "#ffffff",
+  "background": "#000000"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "X::DotShare",
+  "author": "crshd",
+  "color": [
+    "#101010",
+    "#E84F4F",
+    "#B8D68C",
+    "#E1AA5D",
+    "#7DC1CF",
+    "#9B64FB",
+    "#6D878D",
+    "#DDDDDD",
+    "#404040",
+    "#D23D3D",
+    "#A0CF5D",
+    "#F39D21",
+    "#4E9FB1",
+    "#8542FF",
+    "#42717B",
+    "#DDDDDD"
+  ],
+  "foreground": "#D7D0C7",
+  "background": "#151515"
+}
+
