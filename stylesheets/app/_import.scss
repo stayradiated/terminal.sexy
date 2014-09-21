@@ -1,34 +1,46 @@
 .import, .export {
-  $pad: 20px;
   @include abs(0, 0, 0, 0);
+  $pad: 20px;
+
+  padding: $pad;
+
+  display: flex;
+  flex-direction: column;
 
   select {
-    @include abs($pad, $pad, auto, auto);
-    width: 200px;
+    width: 100%;
+    margin-bottom: $pad;
   }
 
-  .button {
-    @include abs($pad, 200px + $pad + $pad, auto, $pad);
-  }
+  textarea {
+    flex: 1;
 
-  .textarea {
-    @include abs(60px, $pad, $pad, $pad);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    resize: none;
 
-    textarea {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      border: 0;
-      resize: none;
+    outline: 0;
+    border: 1px solid rgba(#000, 0.2);
+    box-shadow: 0 0 1px 0 rgba(#fff, 0.2);
 
-      outline: 0;
-      border: 1px solid rgba(#000, 0.2);
-      box-shadow: 0 0 1px 0 rgba(#fff, 0.2);
-
-      &:focus {
-        border-color: rgba(#000, 0.5);
-      }
+    &:focus {
+      border-color: rgba(#000, 0.5);
     }
   }
 
+  .buttons {
+    display: flex;
+    margin-top: $pad;
+  }
+
+  .button {
+    flex: 1;
+    margin-right: $pad;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }

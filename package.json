@@ -34,6 +34,7 @@
     "bluebird": "^2.3.2",
     "colr": "~1.2.1",
     "filereader-stream": "^0.1.1",
+    "filesaver.js": "^0.1.0",
     "husl": "^4.0.2",
     "jquery": "^2.1.0",
     "lodash": "^2.4.1",

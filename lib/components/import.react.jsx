@@ -25,9 +25,9 @@ var Import = React.createClass({
           <option value='url'>URL</option>
           <option value='xresources'>Xresources</option>
         </select>
-        <div onClick={this.handleClick} className='button'>Import</div>
-        <div className='textarea'>
-          <textarea spellCheck='false' className='background-bg' ref='textarea' />
+        <textarea spellCheck='false' className='background-bg' ref='textarea' />
+        <div className='buttons'>
+          <div onClick={this.handleClick} className='button button-import'>Import</div>
         </div>
       </div>
       /* jshint ignore: end */

@@ -2,6 +2,7 @@
 
 var React = require('react');
 var termcolors = require('termcolors');
+var saveAs = require('filesaver.js');
 
 var AppStore = require('../stores/app');
 
@@ -15,13 +16,20 @@ var Export = React.createClass({
     };
   },
 
-  handleClick: function () {
+  handleExport: function () {
     var type = this.refs.select.getDOMNode().value;
     if (! type) { return; }
     var colors = AppStore.getState().colors;
     this.setState({
       text: termcolors[type].export(colors)
     });
+  },
+
+  handleDownload: function () {
+    saveAs(
+      new Blob([this.state.text], {type: 'text/plain;charset=utf-8'}),
+      'terminal-sexy.txt'
+    );
   },
 
   render: function () {
@@ -43,10 +51,11 @@ var Export = React.createClass({
           <option value='textmate'>Textmate</option>
           <option value='json'>JSON Scheme</option>
         </select>
-        <div onClick={this.handleClick} className='button'>Export</div>
-        <div className='textarea'>
-          <textarea value={this.state.text} readOnly spellCheck='false'
-            className='background-bg' ref='textarea' />
+        <textarea value={this.state.text} readOnly spellCheck='false'
+          className='background-bg' ref='textarea' />
+        <div className='buttons'>
+          <div onClick={this.handleExport} className='button button-export'>Export</div>
+          <div onClick={this.handleDownload} className='button button-download'>Download</div>
         </div>
       </div>
       /* jshint ignore: end */
