@@ -1,0 +1,24 @@
+{
+  "name": "Belge",
+  "author": "",
+  "color": [
+    "#252525",
+    "#ef6769",
+    "#a6e22e",
+    "#fd971f",
+    "#6495ed",
+    "#deb887",
+    "#b0c4de",
+    "#dbdcdc",
+    "#454545",
+    "#fc7ca5",
+    "#b6e354",
+    "#fd971f",
+    "#87ceeb",
+    "#996600",
+    "#87ceeb",
+    "#fdfdfd"
+  ],
+  "foreground": "#ffffff",
+  "background": "#000000"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "hund",
+  "author": "hund",
+  "color": [
+    "#222222",
+    "#E84F4F",
+    "#B7CE42",
+    "#FEA63C",
+    "#66AABB",
+    "#B7416E",
+    "#6D878D",
+    "#DDDDDD",
+    "#666666",
+    "#D23D3D",
+    "#BDE077",
+    "#FFE863",
+    "#AACCBB",
+    "#E16A98",
+    "#42717B",
+    "#CCCCCC"
+  ],
+  "foreground": "#FFFFFF",
+  "background": "#161616"
+}
+

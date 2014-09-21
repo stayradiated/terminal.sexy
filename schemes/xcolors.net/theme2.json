@@ -1,0 +1,24 @@
+{
+  "name": "theme2",
+  "author": "",
+  "color": [
+    "#191919",
+    "#eb3d51",
+    "#66b61a",
+    "#d98e1d",
+    "#23ffa8",
+    "#ff00da",
+    "#68a783",
+    "#eaeaea",
+    "#484848",
+    "#be6262",
+    "#4b8a10",
+    "#e5d95e",
+    "#23aaff",
+    "#ab005b",
+    "#bbcd81",
+    "#bbbbbb"
+  ],
+  "foreground": "#ffffff",
+  "background": "#000000"
+}

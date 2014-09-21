@@ -1,0 +1,24 @@
+{
+  "name": "Tangoesque",
+  "author": "",
+  "color": [
+    "#202020",
+    "#ff6565",
+    "#93d44f",
+    "#eab93d",
+    "#204a87",
+    "#ce5c00",
+    "#89b6e2",
+    "#cccccc",
+    "#606060",
+    "#ff8d8d",
+    "#c8e7a8",
+    "#ffc123",
+    "#3465a4",
+    "#f57900",
+    "#46a4ff",
+    "#ffffff"
+  ],
+  "foreground": "#aaaaaa",
+  "background": "#000000"
+}

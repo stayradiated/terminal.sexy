@@ -1,0 +1,24 @@
+{
+  "name": "FarSide",
+  "author": "Baskerville",
+  "color": [
+    "#303030",
+    "#a43261",
+    "#006ca5",
+    "#007086",
+    "#6751a6",
+    "#913e88",
+    "#0061b1",
+    "#c6c6c6",
+    "#5e5e5e",
+    "#ff9fc9",
+    "#3bd6ff",
+    "#00ddf4",
+    "#d5b8ff",
+    "#ffa7f6",
+    "#93c9ff",
+    "#ffffff"
+  ],
+  "foreground": "#919191",
+  "background": "#000000"
+}
