@@ -17,17 +17,12 @@
 
     width: 100%;
     margin: 0;
-    padding: 0;
-    border: 0;
+    padding: 10px;
     resize: none;
 
     outline: 0;
-    border: 1px solid rgba(#000, 0.2);
-    box-shadow: 0 0 1px 0 rgba(#fff, 0.2);
-
-    &:focus {
-      border-color: rgba(#000, 0.5);
-    }
+    border: 2px solid red;
+    box-sizing: border-box;
   }
 
   .buttons {

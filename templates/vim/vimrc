@@ -13,6 +13,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'stayradiated/vim-termorrow'
 NeoBundle 'noahfrederick/vim-noctu'
+NeoBundle 'whatyouhide/vim-gotham'
 
 " Extensions
 NeoBundle 'tpope/vim-sensible'
@@ -44,4 +45,4 @@ set softtabstop=2        " spaces for editing, e.g. <Tab> or <BS>
 set tabstop=2            " spaces for <Tab>
 
 let g:hybrid_use_Xresources = 1
-colorscheme hybrid
+colorscheme gotham

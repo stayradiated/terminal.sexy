@@ -22,11 +22,11 @@ var Settings = React.createClass({
       <div className='settings'>
         <div className='control'>
           <label>Font Name</label>
-          <input className='background-subtle' defaultValue={state.name} ref='fontName'/>
+          <input defaultValue={state.name} ref='fontName'/>
         </div>
         <div className='control'>
           <label>Font Size</label>
-          <input className='background-subtle' defaultValue={state.size} ref='fontSize'/>
+          <input defaultValue={state.size} ref='fontSize'/>
         </div>
         <div onClick={this.save} className='button'>Save</div>
       </div>

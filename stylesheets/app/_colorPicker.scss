@@ -170,6 +170,7 @@
 
       li {
         list-style-type: none;
+        margin-bottom: 5px;
       }
     }
 
@@ -184,17 +185,6 @@
     input {
       width: 74px;
       text-transform: uppercase;
-      background: none;
-      border-radius: 3px;
-      border: none;
-      outline: none;
-      color: #ccc;
-      background: rgba(#000, 0.1);
-
-      &:focus {
-        color: #333;
-        background: rgba(#fff, 0.9);
-      }
     }
 
   }

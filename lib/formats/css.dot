@@ -97,13 +97,19 @@
   color: {{=c.fgSubtle}};
 }
 
-select, .button {
-  background: {{=c.bgSubtle}} !important;
+select, textarea, input {
+  border-color: {{=c.bgSubtle}} !important;
+}
+textarea:focus, input:focus {
+  border-color: {{=c.fgSubtle}} !important;
 }
 
+.button {
+  background: {{=c.bgSubtle}};
+  border-color: {{=c.bgSubtle}};
+}
 .button:hover {
-  background: {{=c.background}} !important;
-  outline: 4px solid {{=c.bgSubtle}};
+  background: {{=c.background}};
 }
 
 ::-webkit-scrollbar-thumb {

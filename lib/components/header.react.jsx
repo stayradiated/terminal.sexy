@@ -9,6 +9,7 @@ var WindowStore = require('../stores/window');
 
 var Header = React.createClass({
 
+  /*
   mixins: [Reflux.ListenerMixin],
 
   componentDidMount: function () {
@@ -27,6 +28,11 @@ var Header = React.createClass({
       });
     });
   },
+  */
+
+  open: function (id) {
+    actions.openWindow(id);
+  },
 
   render: function () {
     return (
@@ -34,13 +40,13 @@ var Header = React.createClass({
       <header className='header foreground-fg background-desktop'>
         <h1 onClick={actions.resetLayout}>terminal.sexy</h1>
         <ul ref='menu'>
-          <li data-id='editor'>Editor</li>
-          <li data-id='templates'>Templates</li>
-          <li data-id='schemes'>Schemes</li>
-          <li data-id='random'>Random</li>
-          <li data-id='settings'>Settings</li>
-          <li data-id='import'>Import</li>
-          <li data-id='export'>Export</li>
+          <li onClick={this.open.bind(this, 'editor')}>Editor</li>
+          <li onClick={this.open.bind(this, 'templates')}>Templates</li>
+          <li onClick={this.open.bind(this, 'schemes')}>Schemes</li>
+          <li onClick={this.open.bind(this, 'random')}>Randomiser</li>
+          <li onClick={this.open.bind(this, 'settings')}>Settings</li>
+          <li onClick={this.open.bind(this, 'import')}>Import</li>
+          <li onClick={this.open.bind(this, 'export')}>Export</li>
         </ul>
       </header>
       /* jshint ignore: end */

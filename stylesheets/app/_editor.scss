@@ -1,17 +1,15 @@
 .editor {
-  padding: 20px 0 0 20px;
-
   .palette {
-    @extend #clearfix;
-    $height: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+
+    $height: 80px;
 
     .block {
-      display: inline-block;
-      width: 170px;
-      clear: both;
+      min-width: 50%;
 
       .label {
-        margin-top: $height/6;
         line-height: $height/2;
         font-size: 25px;
         font-weight: $bold;
@@ -21,7 +19,7 @@
 
     .focus .color,
     .focus .color:hover {
-      outline: 3px solid #fff;
+      outline: 2px solid #fff;
     }
 
     .dark .color {
@@ -35,18 +33,15 @@
     .color {
       cursor: default;
 
-      display: inline-block;
-      vertical-align: middle;
-      background: #888;
-      width: 160px;
-      margin: 0 0 10px 5px;
+      margin: 5px;
+      background: red;
       height: $height;
 
       text-align: center;
       box-shadow: 0 0 0 1px rgba(#000, 0.2), inset 0 -5px rgba(#000, 0.2);
 
       &:hover {
-        outline: 3px solid #333;
+        outline: 2px solid rgba(#fff, 0.5);
       }
     }
   }

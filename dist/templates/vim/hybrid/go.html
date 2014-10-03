@@ -1,123 +1,123 @@
-<span class="foreground-8">  1 </span><span class="foreground-12">package</span><span class="foreground-15"> session</span>                                                                                 
-<span class="foreground-8">  2 </span>                                                                                                
-<span class="foreground-8">  3 </span><span class="foreground-12">import</span><span class="foreground-15"> (</span>                                                                                        
-<span class="foreground-8">  4 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;bytes&quot;</span>                                                                                       
-<span class="foreground-8">  5 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;crypto/rand&quot;</span>                                                                                 
-<span class="foreground-8">  6 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;crypto/sha1&quot;</span>                                                                                 
-<span class="foreground-8">  7 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;encoding/hex&quot;</span>                                                                                
-<span class="foreground-8">  8 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;encoding/json&quot;</span>                                                                               
-<span class="foreground-8">  9 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;fmt&quot;</span>                                                                                         
-<span class="foreground-8"> 10 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;io/ioutil&quot;</span>                                                                                   
-<span class="foreground-8"> 11 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;net/http&quot;</span>                                                                                    
-<span class="foreground-8"> 12 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;strings&quot;</span>                                                                                     
-<span class="foreground-8"> 13 </span><span class="foreground-15">)</span>                                                                                               
-<span class="foreground-8"> 14 </span>                                                                                                
-<span class="foreground-8"> 15 </span><span class="foreground-12">type</span><span class="foreground-15"> RequestSignature </span><span class="foreground-3">string</span>                                                                    
-<span class="foreground-8"> 16 </span>                                                                                                
-<span class="foreground-8"> 17 </span><span class="foreground-12">type</span><span class="foreground-15"> </span><span class="foreground-11">Request</span><span class="foreground-15"> </span><span class="foreground-12">struct</span><span class="foreground-15"> {</span>                                                                           
-<span class="foreground-8"> 18 </span><span class="foreground-15">  Url     </span><span class="foreground-3">string</span>                                                                                
-<span class="foreground-8"> 19 </span><span class="foreground-15">  Method  </span><span class="foreground-3">string</span>                                                                                
-<span class="foreground-8"> 20 </span><span class="foreground-15">  Session *Session</span>                                                                              
-<span class="foreground-8"> 21 </span><span class="foreground-15">  Body    *Body</span>                                                                                 
-<span class="foreground-8"> 22 </span><span class="foreground-15">}</span>                                                                                               
-<span class="foreground-8"> 23 </span>                                                                                                
-<span class="foreground-8"> 24 </span><span class="foreground-12">type</span><span class="foreground-15"> </span><span class="foreground-11">Body</span><span class="foreground-15"> </span><span class="foreground-12">struct</span><span class="foreground-15"> {</span>                                                                              
-<span class="foreground-8"> 25 </span><span class="foreground-15">  Method     *</span><span class="foreground-3">string</span><span class="foreground-15">     </span><span class="foreground-10">`json:&quot;method&quot;`</span>                                                        
-<span class="foreground-8"> 26 </span><span class="foreground-15">  Header     *Header     </span><span class="foreground-10">`json:&quot;header&quot;`</span>                                                        
-<span class="foreground-8"> 27 </span><span class="foreground-15">  Parameters </span><span class="foreground-12">interface</span><span class="foreground-15">{} </span><span class="foreground-10">`json:&quot;parameters&quot;`</span>                                                    
-<span class="foreground-8"> 28 </span><span class="foreground-15">}</span>                                                                                               
-<span class="foreground-8"> 29 </span>                                                                                                
-<span class="foreground-8"> 30 </span><span class="foreground-12">type</span><span class="foreground-15"> </span><span class="foreground-11">Header</span><span class="foreground-15"> </span><span class="foreground-12">struct</span><span class="foreground-15"> {</span>                                                                            
-<span class="foreground-8"> 31 </span><span class="foreground-15">  Privacy</span>        <span class="foreground-3">int</span>              <span class="foreground-10">`json:&quot;privacy&quot;`</span>                                              
-<span class="foreground-8"> 32 </span><span class="foreground-15">  Client</span>         <span class="foreground-3">string</span>           <span class="foreground-10">`json:&quot;client&quot;`</span>                                               
-<span class="foreground-8"> 33 </span><span class="foreground-15">  ClientRevision </span><span class="foreground-3">string</span>           <span class="foreground-10">`json:&quot;clientRevision&quot;`</span>                                       
-<span class="foreground-8"> 34 </span><span class="foreground-15">  UUID</span>           <span class="foreground-3">string</span>           <span class="foreground-10">`json:&quot;uuid&quot;`</span>                                                 
-<span class="foreground-8"> 35 </span><span class="foreground-15">  Country</span>        <span class="foreground-15">*Country</span>         <span class="foreground-10">`json:&quot;country&quot;`</span>                                              
-<span class="foreground-8"> 36 </span><span class="foreground-15">  SessionId      SessionId</span>        <span class="foreground-10">`json:&quot;session&quot;`</span>                                              
-<span class="foreground-8"> 37 </span><span class="foreground-15">  Token</span>          <span class="foreground-15">RequestSignature </span><span class="foreground-10">`json:&quot;token,omitempty&quot;`</span>                                      
-<span class="foreground-8"> 38 </span><span class="foreground-15">}</span>                                                                                               
-<span class="foreground-8"> 39 </span>                                                                                                
-<span class="foreground-8"> 40 </span><span class="foreground-7">// NewRequest creates a new request</span>                                                             
-<span class="foreground-8"> 41 </span><span class="foreground-12">func</span><span class="foreground-15"> </span><span class="foreground-11">NewRequest</span><span class="foreground-15">(session *Session, method </span><span class="foreground-3">string</span><span class="foreground-15">, parameters </span><span class="foreground-12">interface</span><span class="foreground-15">{}) (request *Request) {</span>   
-<span class="foreground-8"> 42 </span><span class="foreground-15">  request = &amp;</span><span class="foreground-11">Request</span><span class="foreground-15">{</span>                                                                           
-<span class="foreground-8"> 43 </span><span class="foreground-15">    Url:     </span><span class="foreground-10">&quot;http://grooveshark.com/more.php?&quot;</span><span class="foreground-14"> + </span><span class="foreground-15">method,</span>                                       
-<span class="foreground-8"> 44 </span><span class="foreground-15">    Method:  method,</span>                                                                            
-<span class="foreground-8"> 45 </span><span class="foreground-15">    Session: session,</span>                                                                           
-<span class="foreground-8"> 46 </span><span class="foreground-15">  }</span>                                                                                             
-<span class="foreground-8"> 47 </span>                                                                                                
-<span class="foreground-8"> 48 </span><span class="foreground-15">  body </span><span class="foreground-14">:=</span><span class="foreground-15"> &amp;</span><span class="foreground-11">Body</span><span class="foreground-15">{</span>                                                                                
-<span class="foreground-8"> 49 </span><span class="foreground-15">    Method:     &amp;(*request).Method,</span>                                                             
-<span class="foreground-8"> 50 </span><span class="foreground-15">    Parameters: parameters,</span>                                                                     
-<span class="foreground-8"> 51 </span>                                                                                                
-<span class="foreground-8"> 52 </span><span class="foreground-15">    Header: &amp;</span><span class="foreground-11">Header</span><span class="foreground-15">{</span>                                                                            
-<span class="foreground-8"> 53 </span><span class="foreground-15">      Client:</span>         <span class="foreground-15">session.Client,</span>                                                           
-<span class="foreground-8"> 54 </span><span class="foreground-15">      ClientRevision: session.ClientRevision,</span>                                                   
-<span class="foreground-8"> 55 </span>                                                                                                
-<span class="foreground-8"> 56 </span><span class="foreground-15">      Privacy: </span><span class="foreground-9">0</span><span class="foreground-15">,</span>                                                                               
-<span class="foreground-8"> 57 </span><span class="foreground-15">      Country: session.Country,</span>                                                                 
-<span class="foreground-8"> 58 </span>                                                                                                
-<span class="foreground-8"> 59 </span><span class="foreground-15">      UUID:      session.UUID,</span>                                                                  
-<span class="foreground-8"> 60 </span><span class="foreground-15">      SessionId: session.SessionId,</span>                                                             
-<span class="foreground-8"> 61 </span><span class="foreground-15">    },</span>                                                                                          
-<span class="foreground-8"> 62 </span><span class="foreground-15">  }</span>                                                                                             
-<span class="foreground-8"> 63 </span>                                                                                                
-<span class="foreground-8"> 64 </span><span class="foreground-15">  request.Body = body</span>                                                                           
-<span class="foreground-8"> 65 </span>                                                                                                
-<span class="foreground-8"> 66 </span><span class="foreground-15">  </span><span class="foreground-12">return</span><span class="foreground-15"> request</span>                                                                                
-<span class="foreground-8"> 67 </span><span class="foreground-15">}</span>                                                                                               
-<span class="foreground-8"> 68 </span>                                                                                                
-<span class="foreground-8"> 69 </span><span class="foreground-7">// Sign generates a signature for this request</span>                                                  
-<span class="foreground-8"> 70 </span><span class="foreground-12">func</span><span class="foreground-15"> (r *Request) </span><span class="foreground-11">Sign</span><span class="foreground-15">() {</span>                                                                      
-<span class="foreground-8"> 71 </span><span class="foreground-15">  </span><span class="foreground-7">// get the session token</span>                                                                      
-<span class="foreground-8"> 72 </span><span class="foreground-15">  token </span><span class="foreground-14">:=</span><span class="foreground-15"> r.Session.</span><span class="foreground-3">Token</span><span class="foreground-15">()</span>                                                                    
-<span class="foreground-8"> 73 </span>                                                                                                
-<span class="foreground-8"> 74 </span><span class="foreground-15">  </span><span class="foreground-7">// generate random nonce</span>                                                                      
-<span class="foreground-8"> 75 </span><span class="foreground-15">  nonceBytes </span><span class="foreground-14">:=</span><span class="foreground-15"> </span><span class="foreground-12">make</span><span class="foreground-15">([]</span><span class="foreground-3">byte</span><span class="foreground-15">, </span><span class="foreground-9">3</span><span class="foreground-15">)</span>                                                                 
-<span class="foreground-8"> 76 </span><span class="foreground-15">  rand.</span><span class="foreground-3">Read</span><span class="foreground-15">(nonceBytes)</span>                                                                         
-<span class="foreground-8"> 77 </span><span class="foreground-15">  nonce </span><span class="foreground-14">:=</span><span class="foreground-15"> hex.</span><span class="foreground-3">EncodeToString</span><span class="foreground-15">(nonceBytes)</span>                                                       
-<span class="foreground-8"> 78 </span>                                                                                                
-<span class="foreground-8"> 79 </span><span class="foreground-15">  </span><span class="foreground-7">// concat values together</span>                                                                     
-<span class="foreground-8"> 80 </span><span class="foreground-15">  input </span><span class="foreground-14">:=</span><span class="foreground-15"> strings.</span><span class="foreground-3">Join</span><span class="foreground-15">([]</span><span class="foreground-3">string</span><span class="foreground-15">{</span>                                                               
-<span class="foreground-8"> 81 </span><span class="foreground-15">    r.Method, </span><span class="foreground-3">string</span><span class="foreground-15">(token), r.Session.Salt, nonce,</span>                                             
-<span class="foreground-8"> 82 </span><span class="foreground-15">  }, </span><span class="foreground-10">&quot;:&quot;</span><span class="foreground-15">)</span>                                                                                       
-<span class="foreground-8"> 83 </span>                                                                                                
-<span class="foreground-8"> 84 </span><span class="foreground-15">  </span><span class="foreground-7">// hash with sha1</span>                                                                             
-<span class="foreground-8"> 85 </span><span class="foreground-15">  hash </span><span class="foreground-14">:=</span><span class="foreground-15"> sha1.</span><span class="foreground-3">New</span><span class="foreground-15">()</span>                                                                            
-<span class="foreground-8"> 86 </span><span class="foreground-15">  hash.</span><span class="foreground-3">Write</span><span class="foreground-15">([]</span><span class="foreground-3">byte</span><span class="foreground-15">(input))</span>                                                                     
-<span class="foreground-8"> 87 </span>                                                                                                
-<span class="foreground-8"> 88 </span><span class="foreground-15">  </span><span class="foreground-7">// convert to hex</span>                                                                             
-<span class="foreground-8"> 89 </span><span class="foreground-15">  signature </span><span class="foreground-14">:=</span><span class="foreground-15"> hex.</span><span class="foreground-3">EncodeToString</span><span class="foreground-15">(hash.</span><span class="foreground-3">Sum</span><span class="foreground-15">(</span><span class="foreground-12">nil</span><span class="foreground-15">))</span>                                                
-<span class="foreground-8"> 90 </span>                                                                                                
-<span class="foreground-8"> 91 </span><span class="foreground-15">  </span><span class="foreground-7">// add to header</span>                                                                              
-<span class="foreground-8"> 92 </span><span class="foreground-15">  header </span><span class="foreground-14">:=</span><span class="foreground-15"> (*r.Body).Header</span>                                                                    
-<span class="foreground-8"> 93 </span><span class="foreground-15">  (*header).Token = RequestSignature(nonce</span><span class="foreground-14"> + </span><span class="foreground-15">signature)</span>                                         
-<span class="foreground-8"> 94 </span><span class="foreground-15">}</span>                                                                                               
-<span class="foreground-8"> 95 </span>                                                                                                
-<span class="foreground-8"> 96 </span><span class="foreground-7">// Send makes the request</span>                                                                       
-<span class="foreground-8"> 97 </span><span class="foreground-12">func</span><span class="foreground-15"> (r *Request) </span><span class="foreground-11">Send</span><span class="foreground-15">(resp </span><span class="foreground-12">interface</span><span class="foreground-15">{}) </span><span class="foreground-3">error</span><span class="foreground-15"> {</span>                                                
-<span class="foreground-8"> 98 </span><span class="foreground-15">  data, err </span><span class="foreground-14">:=</span><span class="foreground-15"> json.</span><span class="foreground-3">Marshal</span><span class="foreground-15">(*r.Body)</span>                                                            
-<span class="foreground-8"> 99 </span><span class="foreground-15">  </span><span class="foreground-12">if</span><span class="foreground-15"> err </span><span class="foreground-14">!=</span><span class="foreground-15"> </span><span class="foreground-12">nil</span><span class="foreground-15"> {</span>                                                                               
-<span class="foreground-8">100 </span><span class="foreground-15">    </span><span class="foreground-12">return</span><span class="foreground-15"> err</span>                                                                                  
-<span class="foreground-8">101 </span><span class="foreground-15">  }</span>                                                                                             
-<span class="foreground-8">102 </span>                                                                                                
-<span class="foreground-8">103 </span><span class="foreground-15">  body </span><span class="foreground-14">:=</span><span class="foreground-15"> bytes.</span><span class="foreground-3">NewReader</span><span class="foreground-15">(data)</span>                                                                 
-<span class="foreground-8">104 </span>                                                                                                
-<span class="foreground-8">105 </span><span class="foreground-15">  res, err </span><span class="foreground-14">:=</span><span class="foreground-15"> http.</span><span class="foreground-3">Post</span><span class="foreground-15">(r.Url, </span><span class="foreground-10">&quot;application/json&quot;</span><span class="foreground-15">, body)</span>                                        
-<span class="foreground-8">106 </span><span class="foreground-15">  </span><span class="foreground-12">if</span><span class="foreground-15"> err </span><span class="foreground-14">!=</span><span class="foreground-15"> </span><span class="foreground-12">nil</span><span class="foreground-15"> {</span>                                                                               
-<span class="foreground-8">107 </span><span class="foreground-15">    </span><span class="foreground-12">return</span><span class="foreground-15"> err</span>                                                                                  
-<span class="foreground-8">108 </span><span class="foreground-15">  }</span>                                                                                             
-<span class="foreground-8">109 </span>                                                                                                
-<span class="foreground-8">110 </span><span class="foreground-15">  resBody, err </span><span class="foreground-14">:=</span><span class="foreground-15"> ioutil.</span><span class="foreground-3">ReadAll</span><span class="foreground-15">(res.Body)</span>                                                      
-<span class="foreground-8">111 </span><span class="foreground-15">  </span><span class="foreground-12">if</span><span class="foreground-15"> err </span><span class="foreground-14">!=</span><span class="foreground-15"> </span><span class="foreground-12">nil</span><span class="foreground-15"> {</span>                                                                               
-<span class="foreground-8">112 </span><span class="foreground-15">    </span><span class="foreground-12">return</span><span class="foreground-15"> err</span>                                                                                  
-<span class="foreground-8">113 </span><span class="foreground-15">  }</span>                                                                                             
-<span class="foreground-8">114 </span>                                                                                                
-<span class="foreground-8">115 </span><span class="foreground-15">  err = json.</span><span class="foreground-3">Unmarshal</span><span class="foreground-15">(resBody, &amp;resp)</span>                                                          
-<span class="foreground-8">116 </span><span class="foreground-15">  </span><span class="foreground-12">if</span><span class="foreground-15"> err </span><span class="foreground-14">!=</span><span class="foreground-15"> </span><span class="foreground-12">nil</span><span class="foreground-15"> {</span>                                                                               
-<span class="foreground-8">117 </span><span class="foreground-15">    fmt.</span><span class="foreground-3">Printf</span><span class="foreground-15">(</span><span class="foreground-10">&quot;%+v\n&quot;</span><span class="foreground-15">, res)</span>                                                                    
-<span class="foreground-8">118 </span><span class="foreground-15">    fmt.</span><span class="foreground-3">Println</span><span class="foreground-15">(</span><span class="foreground-3">string</span><span class="foreground-15">(resBody))</span>                                                                
-<span class="foreground-8">119 </span><span class="foreground-15">    </span><span class="foreground-12">return</span><span class="foreground-15"> err</span>                                                                                  
-<span class="foreground-8">120 </span><span class="foreground-15">  }</span>                                                                                             
-<span class="foreground-8">121 </span>                                                                                                
-<span class="foreground-8">122 </span><span class="foreground-15">  </span><span class="foreground-12">return</span><span class="foreground-15"> </span><span class="foreground-12">nil</span>                                                                                    
-<span class="foreground-8">123 </span><span class="foreground-15">}</span>                                                                                               
+<span class="foreground-8">  1 </span><span class="foreground-12">package</span><span class="foreground-15"> session</span>
+<span class="foreground-8">  2 </span>
+<span class="foreground-8">  3 </span><span class="foreground-12">import</span><span class="foreground-15"> (</span>
+<span class="foreground-8">  4 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;bytes&quot;</span>
+<span class="foreground-8">  5 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;crypto/rand&quot;</span>
+<span class="foreground-8">  6 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;crypto/sha1&quot;</span>
+<span class="foreground-8">  7 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;encoding/hex&quot;</span>
+<span class="foreground-8">  8 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;encoding/json&quot;</span>
+<span class="foreground-8">  9 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;fmt&quot;</span>
+<span class="foreground-8"> 10 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;io/ioutil&quot;</span>
+<span class="foreground-8"> 11 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;net/http&quot;</span>
+<span class="foreground-8"> 12 </span><span class="foreground-15">  </span><span class="foreground-10">&quot;strings&quot;</span>
+<span class="foreground-8"> 13 </span><span class="foreground-15">)</span>
+<span class="foreground-8"> 14 </span>
+<span class="foreground-8"> 15 </span><span class="foreground-12">type</span><span class="foreground-15"> RequestSignature </span><span class="foreground-3">string</span>
+<span class="foreground-8"> 16 </span>
+<span class="foreground-8"> 17 </span><span class="foreground-12">type</span><span class="foreground-15"> </span><span class="foreground-11">Request</span><span class="foreground-15"> </span><span class="foreground-12">struct</span><span class="foreground-15"> {</span>
+<span class="foreground-8"> 18 </span><span class="foreground-15">  Url     </span><span class="foreground-3">string</span>
+<span class="foreground-8"> 19 </span><span class="foreground-15">  Method  </span><span class="foreground-3">string</span>
+<span class="foreground-8"> 20 </span><span class="foreground-15">  Session *Session</span>
+<span class="foreground-8"> 21 </span><span class="foreground-15">  Body    *Body</span>
+<span class="foreground-8"> 22 </span><span class="foreground-15">}</span>
+<span class="foreground-8"> 23 </span>
+<span class="foreground-8"> 24 </span><span class="foreground-12">type</span><span class="foreground-15"> </span><span class="foreground-11">Body</span><span class="foreground-15"> </span><span class="foreground-12">struct</span><span class="foreground-15"> {</span>
+<span class="foreground-8"> 25 </span><span class="foreground-15">  Method     *</span><span class="foreground-3">string</span><span class="foreground-15">     </span><span class="foreground-10">`json:&quot;method&quot;`</span>
+<span class="foreground-8"> 26 </span><span class="foreground-15">  Header     *Header     </span><span class="foreground-10">`json:&quot;header&quot;`</span>
+<span class="foreground-8"> 27 </span><span class="foreground-15">  Parameters </span><span class="foreground-12">interface</span><span class="foreground-15">{} </span><span class="foreground-10">`json:&quot;parameters&quot;`</span>
+<span class="foreground-8"> 28 </span><span class="foreground-15">}</span>
+<span class="foreground-8"> 29 </span>
+<span class="foreground-8"> 30 </span><span class="foreground-12">type</span><span class="foreground-15"> </span><span class="foreground-11">Header</span><span class="foreground-15"> </span><span class="foreground-12">struct</span><span class="foreground-15"> {</span>
+<span class="foreground-8"> 31 </span><span class="foreground-15">  Privacy</span>        <span class="foreground-3">int</span>              <span class="foreground-10">`json:&quot;privacy&quot;`</span>
+<span class="foreground-8"> 32 </span><span class="foreground-15">  Client</span>         <span class="foreground-3">string</span>           <span class="foreground-10">`json:&quot;client&quot;`</span>
+<span class="foreground-8"> 33 </span><span class="foreground-15">  ClientRevision </span><span class="foreground-3">string</span>           <span class="foreground-10">`json:&quot;clientRevision&quot;`</span>
+<span class="foreground-8"> 34 </span><span class="foreground-15">  UUID</span>           <span class="foreground-3">string</span>           <span class="foreground-10">`json:&quot;uuid&quot;`</span>
+<span class="foreground-8"> 35 </span><span class="foreground-15">  Country</span>        <span class="foreground-15">*Country</span>         <span class="foreground-10">`json:&quot;country&quot;`</span>
+<span class="foreground-8"> 36 </span><span class="foreground-15">  SessionId      SessionId</span>        <span class="foreground-10">`json:&quot;session&quot;`</span>
+<span class="foreground-8"> 37 </span><span class="foreground-15">  Token</span>          <span class="foreground-15">RequestSignature </span><span class="foreground-10">`json:&quot;token,omitempty&quot;`</span>
+<span class="foreground-8"> 38 </span><span class="foreground-15">}</span>
+<span class="foreground-8"> 39 </span>
+<span class="foreground-8"> 40 </span><span class="foreground-7">// NewRequest creates a new request</span>
+<span class="foreground-8"> 41 </span><span class="foreground-12">func</span><span class="foreground-15"> </span><span class="foreground-11">NewRequest</span><span class="foreground-15">(session *Session, method </span><span class="foreground-3">string</span><span class="foreground-15">, parameters </span><span class="foreground-12">interface</span><span class="foreground-15">{}) (request *Request) {</span>
+<span class="foreground-8"> 42 </span><span class="foreground-15">  request = &amp;</span><span class="foreground-11">Request</span><span class="foreground-15">{</span>
+<span class="foreground-8"> 43 </span><span class="foreground-15">    Url:     </span><span class="foreground-10">&quot;http://grooveshark.com/more.php?&quot;</span><span class="foreground-14"> + </span><span class="foreground-15">method,</span>
+<span class="foreground-8"> 44 </span><span class="foreground-15">    Method:  method,</span>
+<span class="foreground-8"> 45 </span><span class="foreground-15">    Session: session,</span>
+<span class="foreground-8"> 46 </span><span class="foreground-15">  }</span>
+<span class="foreground-8"> 47 </span>
+<span class="foreground-8"> 48 </span><span class="foreground-15">  body </span><span class="foreground-14">:=</span><span class="foreground-15"> &amp;</span><span class="foreground-11">Body</span><span class="foreground-15">{</span>
+<span class="foreground-8"> 49 </span><span class="foreground-15">    Method:     &amp;(*request).Method,</span>
+<span class="foreground-8"> 50 </span><span class="foreground-15">    Parameters: parameters,</span>
+<span class="foreground-8"> 51 </span>
+<span class="foreground-8"> 52 </span><span class="foreground-15">    Header: &amp;</span><span class="foreground-11">Header</span><span class="foreground-15">{</span>
+<span class="foreground-8"> 53 </span><span class="foreground-15">      Client:</span>         <span class="foreground-15">session.Client,</span>
+<span class="foreground-8"> 54 </span><span class="foreground-15">      ClientRevision: session.ClientRevision,</span>
+<span class="foreground-8"> 55 </span>
+<span class="foreground-8"> 56 </span><span class="foreground-15">      Privacy: </span><span class="foreground-9">0</span><span class="foreground-15">,</span>
+<span class="foreground-8"> 57 </span><span class="foreground-15">      Country: session.Country,</span>
+<span class="foreground-8"> 58 </span>
+<span class="foreground-8"> 59 </span><span class="foreground-15">      UUID:      session.UUID,</span>
+<span class="foreground-8"> 60 </span><span class="foreground-15">      SessionId: session.SessionId,</span>
+<span class="foreground-8"> 61 </span><span class="foreground-15">    },</span>
+<span class="foreground-8"> 62 </span><span class="foreground-15">  }</span>
+<span class="foreground-8"> 63 </span>
+<span class="foreground-8"> 64 </span><span class="foreground-15">  request.Body = body</span>
+<span class="foreground-8"> 65 </span>
+<span class="foreground-8"> 66 </span><span class="foreground-15">  </span><span class="foreground-12">return</span><span class="foreground-15"> request</span>
+<span class="foreground-8"> 67 </span><span class="foreground-15">}</span>
+<span class="foreground-8"> 68 </span>
+<span class="foreground-8"> 69 </span><span class="foreground-7">// Sign generates a signature for this request</span>
+<span class="foreground-8"> 70 </span><span class="foreground-12">func</span><span class="foreground-15"> (r *Request) </span><span class="foreground-11">Sign</span><span class="foreground-15">() {</span>
+<span class="foreground-8"> 71 </span><span class="foreground-15">  </span><span class="foreground-7">// get the session token</span>
+<span class="foreground-8"> 72 </span><span class="foreground-15">  token </span><span class="foreground-14">:=</span><span class="foreground-15"> r.Session.</span><span class="foreground-3">Token</span><span class="foreground-15">()</span>
+<span class="foreground-8"> 73 </span>
+<span class="foreground-8"> 74 </span><span class="foreground-15">  </span><span class="foreground-7">// generate random nonce</span>
+<span class="foreground-8"> 75 </span><span class="foreground-15">  nonceBytes </span><span class="foreground-14">:=</span><span class="foreground-15"> </span><span class="foreground-12">make</span><span class="foreground-15">([]</span><span class="foreground-3">byte</span><span class="foreground-15">, </span><span class="foreground-9">3</span><span class="foreground-15">)</span>
+<span class="foreground-8"> 76 </span><span class="foreground-15">  rand.</span><span class="foreground-3">Read</span><span class="foreground-15">(nonceBytes)</span>
+<span class="foreground-8"> 77 </span><span class="foreground-15">  nonce </span><span class="foreground-14">:=</span><span class="foreground-15"> hex.</span><span class="foreground-3">EncodeToString</span><span class="foreground-15">(nonceBytes)</span>
+<span class="foreground-8"> 78 </span>
+<span class="foreground-8"> 79 </span><span class="foreground-15">  </span><span class="foreground-7">// concat values together</span>
+<span class="foreground-8"> 80 </span><span class="foreground-15">  input </span><span class="foreground-14">:=</span><span class="foreground-15"> strings.</span><span class="foreground-3">Join</span><span class="foreground-15">([]</span><span class="foreground-3">string</span><span class="foreground-15">{</span>
+<span class="foreground-8"> 81 </span><span class="foreground-15">    r.Method, </span><span class="foreground-3">string</span><span class="foreground-15">(token), r.Session.Salt, nonce,</span>
+<span class="foreground-8"> 82 </span><span class="foreground-15">  }, </span><span class="foreground-10">&quot;:&quot;</span><span class="foreground-15">)</span>
+<span class="foreground-8"> 83 </span>
+<span class="foreground-8"> 84 </span><span class="foreground-15">  </span><span class="foreground-7">// hash with sha1</span>
+<span class="foreground-8"> 85 </span><span class="foreground-15">  hash </span><span class="foreground-14">:=</span><span class="foreground-15"> sha1.</span><span class="foreground-3">New</span><span class="foreground-15">()</span>
+<span class="foreground-8"> 86 </span><span class="foreground-15">  hash.</span><span class="foreground-3">Write</span><span class="foreground-15">([]</span><span class="foreground-3">byte</span><span class="foreground-15">(input))</span>
+<span class="foreground-8"> 87 </span>
+<span class="foreground-8"> 88 </span><span class="foreground-15">  </span><span class="foreground-7">// convert to hex</span>
+<span class="foreground-8"> 89 </span><span class="foreground-15">  signature </span><span class="foreground-14">:=</span><span class="foreground-15"> hex.</span><span class="foreground-3">EncodeToString</span><span class="foreground-15">(hash.</span><span class="foreground-3">Sum</span><span class="foreground-15">(</span><span class="foreground-12">nil</span><span class="foreground-15">))</span>
+<span class="foreground-8"> 90 </span>
+<span class="foreground-8"> 91 </span><span class="foreground-15">  </span><span class="foreground-7">// add to header</span>
+<span class="foreground-8"> 92 </span><span class="foreground-15">  header </span><span class="foreground-14">:=</span><span class="foreground-15"> (*r.Body).Header</span>
+<span class="foreground-8"> 93 </span><span class="foreground-15">  (*header).Token = RequestSignature(nonce</span><span class="foreground-14"> + </span><span class="foreground-15">signature)</span>
+<span class="foreground-8"> 94 </span><span class="foreground-15">}</span>
+<span class="foreground-8"> 95 </span>
+<span class="foreground-8"> 96 </span><span class="foreground-7">// Send makes the request</span>
+<span class="foreground-8"> 97 </span><span class="foreground-12">func</span><span class="foreground-15"> (r *Request) </span><span class="foreground-11">Send</span><span class="foreground-15">(resp </span><span class="foreground-12">interface</span><span class="foreground-15">{}) </span><span class="foreground-3">error</span><span class="foreground-15"> {</span>
+<span class="foreground-8"> 98 </span><span class="foreground-15">  data, err </span><span class="foreground-14">:=</span><span class="foreground-15"> json.</span><span class="foreground-3">Marshal</span><span class="foreground-15">(*r.Body)</span>
+<span class="foreground-8"> 99 </span><span class="foreground-15">  </span><span class="foreground-12">if</span><span class="foreground-15"> err </span><span class="foreground-14">!=</span><span class="foreground-15"> </span><span class="foreground-12">nil</span><span class="foreground-15"> {</span>
+<span class="foreground-8">100 </span><span class="foreground-15">    </span><span class="foreground-12">return</span><span class="foreground-15"> err</span>
+<span class="foreground-8">101 </span><span class="foreground-15">  }</span>
+<span class="foreground-8">102 </span>
+<span class="foreground-8">103 </span><span class="foreground-15">  body </span><span class="foreground-14">:=</span><span class="foreground-15"> bytes.</span><span class="foreground-3">NewReader</span><span class="foreground-15">(data)</span>
+<span class="foreground-8">104 </span>
+<span class="foreground-8">105 </span><span class="foreground-15">  res, err </span><span class="foreground-14">:=</span><span class="foreground-15"> http.</span><span class="foreground-3">Post</span><span class="foreground-15">(r.Url, </span><span class="foreground-10">&quot;application/json&quot;</span><span class="foreground-15">, body)</span>
+<span class="foreground-8">106 </span><span class="foreground-15">  </span><span class="foreground-12">if</span><span class="foreground-15"> err </span><span class="foreground-14">!=</span><span class="foreground-15"> </span><span class="foreground-12">nil</span><span class="foreground-15"> {</span>
+<span class="foreground-8">107 </span><span class="foreground-15">    </span><span class="foreground-12">return</span><span class="foreground-15"> err</span>
+<span class="foreground-8">108 </span><span class="foreground-15">  }</span>
+<span class="foreground-8">109 </span>
+<span class="foreground-8">110 </span><span class="foreground-15">  resBody, err </span><span class="foreground-14">:=</span><span class="foreground-15"> ioutil.</span><span class="foreground-3">ReadAll</span><span class="foreground-15">(res.Body)</span>
+<span class="foreground-8">111 </span><span class="foreground-15">  </span><span class="foreground-12">if</span><span class="foreground-15"> err </span><span class="foreground-14">!=</span><span class="foreground-15"> </span><span class="foreground-12">nil</span><span class="foreground-15"> {</span>
+<span class="foreground-8">112 </span><span class="foreground-15">    </span><span class="foreground-12">return</span><span class="foreground-15"> err</span>
+<span class="foreground-8">113 </span><span class="foreground-15">  }</span>
+<span class="foreground-8">114 </span>
+<span class="foreground-8">115 </span><span class="foreground-15">  err = json.</span><span class="foreground-3">Unmarshal</span><span class="foreground-15">(resBody, &amp;resp)</span>
+<span class="foreground-8">116 </span><span class="foreground-15">  </span><span class="foreground-12">if</span><span class="foreground-15"> err </span><span class="foreground-14">!=</span><span class="foreground-15"> </span><span class="foreground-12">nil</span><span class="foreground-15"> {</span>
+<span class="foreground-8">117 </span><span class="foreground-15">    fmt.</span><span class="foreground-3">Printf</span><span class="foreground-15">(</span><span class="foreground-10">&quot;%+v\n&quot;</span><span class="foreground-15">, res)</span>
+<span class="foreground-8">118 </span><span class="foreground-15">    fmt.</span><span class="foreground-3">Println</span><span class="foreground-15">(</span><span class="foreground-3">string</span><span class="foreground-15">(resBody))</span>
+<span class="foreground-8">119 </span><span class="foreground-15">    </span><span class="foreground-12">return</span><span class="foreground-15"> err</span>
+<span class="foreground-8">120 </span><span class="foreground-15">  }</span>
+<span class="foreground-8">121 </span>
+<span class="foreground-8">122 </span><span class="foreground-15">  </span><span class="foreground-12">return</span><span class="foreground-15"> </span><span class="foreground-12">nil</span>
+<span class="foreground-8">123 </span><span class="foreground-15">}</span>
