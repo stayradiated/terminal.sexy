@@ -58,18 +58,25 @@
 .foreground-subtle {color:{{=c.fgSubtle}} !important;}
 .background-subtle {background:{{=c.bgSubtle}} !important;}
 
-
-.window {
-  color: {{=c.foreground}};
-  background: {{=c.background}};
+.layout-container {
+  border-top-color: {{=c.bgSubtle}}
 }
 
-.window.active {
+.lm_goldenlayout {
+  color: {{=c.foreground}};
   background: {{=c.bgSubtle}};
 }
 
-.window .content {
+.lm_content {
   background: {{=c.background}};
+}
+
+.lm_splitter:hover {
+  background: {{=c[2]}}
+}
+
+.lm_tab {
+  background: {{=c.background}}
 }
 
 .ranger .pane {

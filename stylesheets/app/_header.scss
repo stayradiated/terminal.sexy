@@ -4,8 +4,7 @@
   left: 0;
   right: 0;
   height: $header_height;
-  background: #eee;
-  box-shadow: inset 0 -5px 0 rgba(#000, 0.2);
+  // background: #eee;
 
   h1 {
     line-height: $header_height;
@@ -29,16 +28,8 @@
     vertical-align: top;
   }
 
-  .seperator {
-    display: inline-block;
-    width: 5px;
-    background: rgba(#000, 0.2);
-    height: $header_height;
-  }
-
   li:hover {
     background: rgba(#fff, 0.1);
-    box-shadow: inset 0 -5px 0 rgba(#000, 0.2);
   }
 
   li:active {
