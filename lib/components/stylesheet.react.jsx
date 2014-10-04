@@ -10,7 +10,6 @@ var CSS = require('../formats/css');
 
 var CSSMixin = {
   render: function () {
-    console.log('rendering', this.props.id);
     var styles = CSS.export(this.props.id, this.props.data);
 
     return (

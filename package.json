@@ -33,6 +33,7 @@
   "dependencies": {
     "bluebird": "^2.3.4",
     "colr": "~1.2.1",
+    "concat-stream": "^1.4.6",
     "filereader-stream": "^0.1.1",
     "filesaver.js": "^0.1.0",
     "husl": "^5.0.1",
