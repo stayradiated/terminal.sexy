@@ -1,56 +1,18 @@
+/* ==== font ==== */
+
+body, textarea, pre, h1, h2, h3, h4, h5, h6 {
+  font-family: {{=c.name}} !important;
+  font-size: {{=c.size}} !important;
+}
+
+pre {
+  line-height: {{=c.line}} !important;
+}
+
+/* ==== background ==== */
+
 .foreground-bg{color:{{=c.background}} !important;}
 .background-bg{background:{{=c.background}} !important;}
-
-.foreground-fg{color:{{=c.foreground}} !important;}
-.background-fg{background:{{=c.foreground}} !important;}
-
-.foreground-0{color:{{=c[0]}} !important;}
-.background-0{background:{{=c[0]}} !important;}
-
-.foreground-1{color:{{=c[1]}} !important;}
-.background-1{background:{{=c[1]}} !important;}
-
-.foreground-2{color:{{=c[2]}} !important;}
-.background-2{background:{{=c[2]}} !important;}
-
-.foreground-3{color:{{=c[3]}} !important;}
-.background-3{background:{{=c[3]}} !important;}
-
-.foreground-4{color:{{=c[4]}} !important;}
-.background-4{background:{{=c[4]}} !important;}
-
-.foreground-5{color:{{=c[5]}} !important;}
-.background-5{background:{{=c[5]}} !important;}
-
-.foreground-6{color:{{=c[6]}} !important;}
-.background-6{background:{{=c[6]}} !important;}
-
-.foreground-7{color:{{=c[7]}} !important;}
-.background-7{background:{{=c[7]}} !important;}
-
-.bold .foreground-0, .foreground-0 .bold, .foreground-8{color:{{=c[8]}} !important;}
-.background-8{background:{{=c[8]}} !important;}
-
-.bold .foreground-1, .foreground-1 .bold, .foreground-9{color:{{=c[9]}} !important;}
-.background-9{background:{{=c[9]}} !important;}
-
-.bold .foreground-2, .foreground-2 .bold, .foreground-10{color:{{=c[10]}} !important;}
-.background-10{background:{{=c[10]}} !important;}
-
-.bold .foreground-3, .foreground-3 .bold, .foreground-11{color:{{=c[11]}} !important;}
-.background-11{background:{{=c[11]}} !important;}
-
-.bold .foreground-4, .foreground-4 .bold, .foreground-12{color:{{=c[12]}} !important;}
-.background-12{background:{{=c[12]}} !important;}
-
-.bold .foreground-5, .foreground-5 .bold, .foreground-13{color:{{=c[13]}} !important;}
-.background-13{background:{{=c[13]}} !important;}
-
-.bold .foreground-6, .foreground-6 .bold, .foreground-14{color:{{=c[14]}} !important;}
-.background-14{background:{{=c[14]}} !important;}
-
-.bold .foreground-7, .foreground-7 .bold, .foreground-15{color:{{=c[15]}} !important;}
-.background-15{background:{{=c[15]}} !important;}
 
 .foreground-desktop {color:{{=c.desktop}} !important;}
 .background-desktop {background:{{=c.desktop}} !important;}
@@ -63,16 +25,11 @@
 }
 
 .lm_goldenlayout {
-  color: {{=c.foreground}};
   background: {{=c.bgSubtle}};
 }
 
 .lm_content {
   background: {{=c.background}};
-}
-
-.lm_splitter:hover {
-  background: {{=c[2]}}
 }
 
 .lm_tab {
@@ -85,29 +42,23 @@
 
 .ranger .active {
   background: {{=c.bgSubtle}};
-  outline: none;
 }
 
 .ranger.focus .active {
   background: {{=c.desktop}};
-  outline: 1px solid {{=c.bgSubtle}};
+  outline-color: {{=c.bgSubtle}} !important;
 }
 
-.ranger .directory {
-  color: {{=c.fgSubtle}};
-}
 
 select, textarea, input {
   border-color: {{=c.bgSubtle}} !important;
-}
-textarea:focus, input:focus {
-  border-color: {{=c.fgSubtle}} !important;
 }
 
 .button {
   background: {{=c.bgSubtle}};
   border-color: {{=c.bgSubtle}};
 }
+
 .button:hover {
   background: {{=c.background}};
 }
@@ -116,7 +67,103 @@ textarea:focus, input:focus {
   background-color: {{=c.bgSubtle}};
 }
 
-body, textarea, pre, h1, h2, h3, h4, h5, h6 {
-  font-family: {{=c.font.name}} !important;
-  font-size: {{=c.font.size}} !important;
+/* ==== foreground ==== */
+
+.foreground-fg{color:{{=c.foreground}} !important;}
+.background-fg{background:{{=c.foreground}} !important;}
+
+.lm_goldenlayout {
+  color: {{=c.foreground}};
 }
+
+.ranger .directory {
+  color: {{=c.fgSubtle}};
+}
+
+textarea:focus, input:focus {
+  border-color: {{=c.fgSubtle}} !important;
+}
+
+/* ==== 0 ==== */
+
+.foreground-0{color:{{=c}} !important;}
+.background-0{background:{{=c}} !important;}
+
+/* ==== 1 ==== */
+
+.foreground-1{color:{{=c}} !important;}
+.background-1{background:{{=c}} !important;}
+
+/* ==== 2 ==== */
+
+.foreground-2{color:{{=c}} !important;}
+.background-2{background:{{=c}} !important;}
+
+.lm_splitter:hover {
+  background: {{=c}}
+}
+
+/* ==== 3 ==== */
+
+.foreground-3{color:{{=c}} !important;}
+.background-3{background:{{=c}} !important;}
+
+/* ==== 4 ==== */
+
+.foreground-4{color:{{=c}} !important;}
+.background-4{background:{{=c}} !important;}
+
+/* ==== 5 ==== */
+
+.foreground-5{color:{{=c}} !important;}
+.background-5{background:{{=c}} !important;}
+
+/* ==== 6 ==== */
+
+.foreground-6{color:{{=c}} !important;}
+.background-6{background:{{=c}} !important;}
+
+/* ==== 7 ==== */
+
+.foreground-7{color:{{=c}} !important;}
+.background-7{background:{{=c}} !important;}
+
+/* ==== 8 ==== */
+
+.bold .foreground-0, .foreground-0 .bold, .foreground-8{color:{{=c}} !important;}
+.background-8{background:{{=c}} !important;}
+
+/* ==== 9 ==== */
+
+.bold .foreground-1, .foreground-1 .bold, .foreground-9{color:{{=c}} !important;}
+.background-9{background:{{=c}} !important;}
+
+/* ==== 10 ==== */
+
+.bold .foreground-2, .foreground-2 .bold, .foreground-10{color:{{=c}} !important;}
+.background-10{background:{{=c}} !important;}
+
+/* ==== 11 ==== */
+
+.bold .foreground-3, .foreground-3 .bold, .foreground-11{color:{{=c}} !important;}
+.background-11{background:{{=c}} !important;}
+
+/* ==== 12 ==== */
+
+.bold .foreground-4, .foreground-4 .bold, .foreground-12{color:{{=c}} !important;}
+.background-12{background:{{=c}} !important;}
+
+/* ==== 13 ==== */
+
+.bold .foreground-5, .foreground-5 .bold, .foreground-13{color:{{=c}} !important;}
+.background-13{background:{{=c}} !important;}
+
+/* ==== 14 ==== */
+
+.bold .foreground-6, .foreground-6 .bold, .foreground-14{color:{{=c}} !important;}
+.background-14{background:{{=c}} !important;}
+
+/* ==== 15 ==== */
+
+.bold .foreground-7, .foreground-7 .bold, .foreground-15{color:{{=c}} !important;}
+.background-15{background:{{=c}} !important;}

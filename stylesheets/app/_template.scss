@@ -1,11 +1,12 @@
 .template {
 
   pre {
+    @extend #scroll;
     @include abs(0, 0, 30px, 0);
     margin: 0;
     padding: 20px;
-    @extend #scroll;
     cursor: default;
+    tab-size: 4;
 
     span:hover {
       background: rgba(#fff, 0.1) !important;

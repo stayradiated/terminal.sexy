@@ -20,19 +20,21 @@
 select {
   $height: 30px;
 
+  -webkit-appearance: none;
   background: transparent;
   outline: 0;
   height: $height;
   line-height: $height;
-  padding: 0 20px;
+  padding: 0 5px;
   border: 2px solid red;
+  border-radius: 0;
 }
 
 
 input {
   background: transparent;
   border: 2px solid red;
-  padding: 0 10px;
+  padding: 0 5px;
   line-height: $line-height;
   outline: 0;
   box-sizing: border-box;

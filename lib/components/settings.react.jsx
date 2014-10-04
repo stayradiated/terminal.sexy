@@ -8,10 +8,11 @@ var actions = require('../actions');
 var Settings = React.createClass({
 
   save: function () {
-    actions.setFont(
-      this.refs.fontName.getDOMNode().value,
-      this.refs.fontSize.getDOMNode().value
-    );
+    actions.setFont({
+      name: this.refs.fontName.getDOMNode().value,
+      size: this.refs.fontSize.getDOMNode().value,
+      line: this.refs.fontLine.getDOMNode().value,
+    });
   },
 
   render: function () {
@@ -27,6 +28,10 @@ var Settings = React.createClass({
         <div className='control'>
           <label>Font Size</label>
           <input defaultValue={state.size} ref='fontSize'/>
+        </div>
+        <div className='control'>
+          <label>Line Height</label>
+          <input defaultValue={state.line} ref='fontLine'/>
         </div>
         <div onClick={this.save} className='button'>Save</div>
       </div>

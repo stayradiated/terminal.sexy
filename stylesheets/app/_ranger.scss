@@ -86,11 +86,11 @@
   }
 
   .pane .active {
-    // set by css.js
+    outline: none;
   }
 
   &.focus .pane .active {
-    // set by css.js
+    outline: 1px solid red;
   }
 
   .file, .directory {

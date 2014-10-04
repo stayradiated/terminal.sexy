@@ -19,6 +19,7 @@ var Import = React.createClass({
     return (
       /* jshint ignore: start */
       <div className='import'>
+        <label>Format:</label>
         <select ref='select' defaultValue='xresources'>
           <option value='iterm'>iTerm2</option>
           <option value='termite'>Termite</option>
