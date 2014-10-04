@@ -1,0 +1,95 @@
+<span class="foreground-11">  1 </span><span class="background-0"><span class="foreground-9">var</span><span class="foreground-7"> _ </span><span class="foreground-14">=</span><span class="foreground-7"> require</span><span class="foreground-7">(</span><span class="foreground-2">&#x27;underscore&#x27;</span><span class="foreground-7">);</span></span>
+<span class="foreground-11">  2 </span><span class="background-0"><span class="foreground-9">var</span><span class="foreground-7"> TransformStream </span><span class="foreground-14">=</span><span class="foreground-7"> require(</span><span class="foreground-2">&#x27;stream&#x27;</span><span class="foreground-7">).Transform;</span></span>
+<span class="foreground-11">  3 </span>
+<span class="foreground-11">  4 </span><span class="background-0"><span class="foreground-9">var</span><span class="foreground-7"> tokenStream </span><span class="foreground-14">=</span><span class="foreground-7"> </span><span class="foreground-9">function</span><span class="foreground-7"> () {</span></span>
+<span class="foreground-11">  5 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-9">var</span><span class="foreground-7"> token </span><span class="foreground-14">=</span><span class="foreground-7"> </span><span class="foreground-14">new</span><span class="foreground-7"> Token();</span></span>                                                                   <span class="foreground-11">  6 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-9">var</span><span class="foreground-7"> stream </span><span class="foreground-14">=</span><span class="foreground-7"> TransformStream({ objectMode: </span><span class="foreground-13">true</span><span class="foreground-7"> });</span></span>
+<span class="foreground-11">  7 </span>
+<span class="foreground-11">  8 </span><span class="background-0"><span class="foreground-7">  stream._transform </span><span class="foreground-14">=</span><span class="foreground-7"> </span><span class="foreground-9">function</span><span class="foreground-7"> (chunk, encoding, done) {</span></span>
+<span class="foreground-11">  9 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-9">var</span><span class="foreground-7"> output </span><span class="foreground-14">=</span><span class="foreground-7"> token.write(chunk);</span></span>
+<span class="foreground-11"> 10 </span><span class="background-0"><span class="foreground-7">    _.each(output, stream.push, stream);</span></span>
+<span class="foreground-11"> 11 </span><span class="background-0"><span class="foreground-7">    done();</span></span>
+<span class="foreground-11"> 12 </span>  <span class="background-0"><span class="foreground-7">};</span></span>
+<span class="foreground-11"> 13 </span><span class="background-0"><span class="foreground-7">  </span></span>
+<span class="foreground-11"> 14 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-14">return</span><span class="foreground-7"> stream;</span></span>
+<span class="foreground-11"> 15 </span><span class="background-0"><span class="foreground-7">};</span></span>
+<span class="foreground-11"> 16 </span>
+<span class="foreground-11"> 17 </span><span class="background-0"><span class="foreground-9">var</span><span class="foreground-7"> Token </span><span class="foreground-14">=</span><span class="foreground-7"> </span><span class="foreground-9">function</span><span class="foreground-7"> (stream) {</span></span>
+<span class="foreground-11"> 18 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-9">this</span><span class="foreground-7">.tokens </span><span class="foreground-14">=</span><span class="foreground-7"> [</span></span>
+<span class="foreground-11"> 19 <span class="background-0">    // SGR escape codes</span></span>
+<span class="foreground-11"> 20 </span><span class="background-0"><span class="foreground-7">    [ </span><span class="foreground-2">/</span><span class="foreground-9">^\x</span><span class="foreground-2">1b</span><span class="foreground-9">\[</span><span class="foreground-2">(</span><span class="foreground-9">?:\d{0,3}</span><span class="foreground-2">;</span><span class="foreground-9">?</span><span class="foreground-2">)</span><span class="foreground-9">+</span><span class="foreground-2">m/</span><span class="foreground-7">, </span><span class="foreground-9">this</span><span class="foreground-7">.replaceAnsi ],</span></span>
+<span class="foreground-11"> 21 </span><span class="background-0"><span class="foreground-7">      </span></span>
+<span class="foreground-11"> 22 <span class="background-0">    // All other escape codes</span></span>
+<span class="foreground-11"> 23 </span><span class="background-0"><span class="foreground-7">    [ </span><span class="foreground-2">/</span><span class="foreground-9">^\x</span><span class="foreground-2">1b</span><span class="foreground-9">\[</span><span class="foreground-13">[^@-~]</span><span class="foreground-9">*</span><span class="foreground-13">[@-~]</span><span class="foreground-2">/</span><span class="foreground-7">, </span><span class="foreground-9">this</span><span class="foreground-7">.replaceOtherAnsi ],</span></span>
+<span class="foreground-11"> 24 </span><span class="background-0"><span class="foreground-7">    </span></span>
+<span class="foreground-11"> 25 <span class="background-0">    // Replace ^[ chars</span></span>
+<span class="foreground-11"> 26 </span>    <span class="background-0"><span class="foreground-7">[ </span><span class="foreground-2">/</span><span class="foreground-9">^\x</span><span class="foreground-2">1b/</span><span class="foreground-7">, </span><span class="foreground-9">this</span><span class="foreground-7">.replaceEscape ],</span></span>
+<span class="foreground-11"> 27 </span>
+<span class="foreground-11"> 28 <span class="background-0">    // Keep actual text</span></span>
+<span class="foreground-11"> 29 </span><span class="background-0"><span class="foreground-7">    [ </span><span class="foreground-2">/</span><span class="foreground-9">^</span><span class="foreground-2">(</span><span class="foreground-13">[^\x1b]</span><span class="foreground-9">+</span><span class="foreground-2">)/m</span><span class="foreground-7">, </span><span class="foreground-9">this</span><span class="foreground-7">.replaceText ]</span></span>
+<span class="foreground-11"> 30 </span><span class="background-0"><span class="foreground-7">  ];</span></span>
+<span class="foreground-11"> 31 </span><span class="background-0"><span class="foreground-7">};</span></span>
+<span class="foreground-11"> 32 </span>
+<span class="foreground-11"> 33 </span><span class="background-0"><span class="foreground-7">_.extend(Token.</span><span class="foreground-9">prototype</span><span class="foreground-7">, {</span></span>
+<span class="foreground-11"> 34 </span>
+<span class="foreground-11"> 35 </span><span class="background-0"><span class="foreground-7">  getNumbers: </span><span class="foreground-9">function</span><span class="foreground-7"> (string) {</span></span>
+<span class="foreground-11"> 36 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-14">return</span><span class="foreground-7"> _.map(string.match(</span><span class="foreground-2">/</span><span class="foreground-9">\d+</span><span class="foreground-2">/g</span><span class="foreground-7">), </span><span class="foreground-9">function</span><span class="foreground-7"> (number) {</span></span>
+<span class="foreground-11"> 37 </span><span class="background-0"><span class="foreground-7">      </span><span class="foreground-14">return</span><span class="foreground-7"> </span><span class="foreground-9">parseInt</span><span class="foreground-7">(number, </span><span class="foreground-9">10</span><span class="foreground-7">);</span></span>
+<span class="foreground-11"> 38 </span>    <span class="background-0"><span class="foreground-7">});</span></span>
+<span class="foreground-11"> 39 </span><span class="background-0"><span class="foreground-7">  },</span></span>
+<span class="foreground-11"> 40 </span><span class="background-0"><span class="foreground-7">    </span></span>
+<span class="foreground-11"> 41 </span>  <span class="background-0"><span class="foreground-7">replaceAnsi: </span><span class="foreground-9">function</span><span class="foreground-7"> (codes) {</span></span>
+<span class="foreground-11"> 42 </span><span class="background-0"><span class="foreground-7">    codes </span><span class="foreground-14">=</span><span class="foreground-7"> </span><span class="foreground-9">this</span><span class="foreground-7">.getNumbers(codes);</span></span>
+<span class="foreground-11"> 43 </span>    <span class="background-0"><span class="foreground-14">if</span><span class="foreground-7"> (</span><span class="foreground-14">!</span><span class="foreground-7"> codes.length) codes </span><span class="foreground-14">=</span><span class="foreground-7"> [</span><span class="foreground-9">0</span><span class="foreground-7">];</span></span>
+<span class="foreground-11"> 44 </span>    <span class="background-0"><span class="foreground-14">return</span><span class="foreground-7"> { type: </span><span class="foreground-2">&#x27;ansi&#x27;</span><span class="foreground-7">, value: codes };</span></span>
+<span class="foreground-11"> 45 </span>  <span class="background-0"><span class="foreground-7">},</span></span>
+<span class="foreground-11"> 46 </span>
+<span class="foreground-11"> 47 </span>  <span class="background-0"><span class="foreground-7">replaceOtherAnsi: </span><span class="foreground-9">function</span><span class="foreground-7"> (codes) {</span></span>
+<span class="foreground-11"> 48 </span>    <span class="background-0"><span class="foreground-14">return</span><span class="foreground-7"> { type: </span><span class="foreground-2">&#x27;ansi-other&#x27;</span><span class="foreground-7">, value: codes };</span></span>
+<span class="foreground-11"> 49 </span>  <span class="background-0"><span class="foreground-7">},</span></span>
+<span class="foreground-11"> 50 </span>
+<span class="foreground-11"> 51 </span><span class="background-0"><span class="foreground-7">  replaceText: </span><span class="foreground-9">function</span><span class="foreground-7"> (text) {</span></span>
+<span class="foreground-11"> 52 </span>    <span class="background-0"><span class="foreground-14">return</span><span class="foreground-7"> { type: </span><span class="foreground-2">&#x27;text&#x27;</span><span class="foreground-7">, value: text };</span></span>
+<span class="foreground-11"> 53 </span><span class="background-0"><span class="foreground-7">  },  </span></span>
+<span class="foreground-11"> 54 </span><span class="background-0"><span class="foreground-7">    </span></span>
+<span class="foreground-11"> 55 </span>  <span class="background-0"><span class="foreground-7">replaceEscape: </span><span class="foreground-9">function</span><span class="foreground-7"> () {</span></span>
+<span class="foreground-11"> 56 </span><span class="background-0"><span class="foreground-7">     </span><span class="foreground-14">return</span><span class="foreground-7"> { type: </span><span class="foreground-2">&#x27;text&#x27;</span><span class="foreground-7">, value: </span><span class="foreground-2">&#x27;ESC&#x27;</span><span class="foreground-7"> };</span></span>
+<span class="foreground-11"> 57 </span><span class="background-0"><span class="foreground-7">  },  </span></span>
+<span class="foreground-11"> 58 </span>
+<span class="foreground-11"> 59 </span><span class="background-0"><span class="foreground-7">  process: </span><span class="foreground-9">function</span><span class="foreground-7"> (fn, output) {</span></span>
+<span class="foreground-11"> 60 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-9">var</span><span class="foreground-7"> self </span><span class="foreground-14">=</span><span class="foreground-7"> </span><span class="foreground-9">this</span><span class="foreground-7">;</span></span>
+<span class="foreground-11"> 61 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-14">return</span><span class="foreground-7"> </span><span class="foreground-9">function</span><span class="foreground-7"> (match) {</span></span>
+<span class="foreground-11"> 62 </span>      <span class="background-0"><span class="foreground-7">output.push(fn.call(self, match));</span></span>
+<span class="foreground-11"> 63 </span><span class="background-0"><span class="foreground-7">      </span><span class="foreground-14">return</span><span class="foreground-7"> </span><span class="foreground-2">&#x27;&#x27;</span><span class="foreground-7">;</span></span>
+<span class="foreground-11"> 64 </span><span class="background-0"><span class="foreground-7">    };</span></span>
+<span class="foreground-11"> 65 </span>  <span class="background-0"><span class="foreground-7">},</span></span>
+<span class="foreground-11"> 66 </span><span class="background-0"><span class="foreground-7">  </span></span>
+<span class="foreground-11"> 67 </span>  <span class="background-0"><span class="foreground-7">write: </span><span class="foreground-9">function</span><span class="foreground-7"> (input) {</span></span>
+<span class="foreground-11"> 68 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-9">var</span><span class="foreground-7"> output </span><span class="foreground-14">=</span><span class="foreground-7"> [];</span></span>
+<span class="foreground-11"> 69 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-9">var</span><span class="foreground-7"> len;</span></span>
+<span class="foreground-11"> 70 </span>
+<span class="foreground-11"> 71 <span class="background-0">    // make sure it is not a buffer</span></span>
+<span class="foreground-11"> 72 </span><span class="background-0"><span class="foreground-7">    input </span><span class="foreground-14">=</span><span class="foreground-7"> input.toString();</span></span>
+<span class="foreground-11"> 73 </span>
+<span class="foreground-11"> 74 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-14">while</span><span class="foreground-7"> ((len </span><span class="foreground-14">=</span><span class="foreground-7"> input.length) </span><span class="foreground-14">&gt;</span><span class="foreground-7"> </span><span class="foreground-9">0</span><span class="foreground-7">) {</span></span>
+<span class="foreground-11"> 75 </span><span class="background-0"><span class="foreground-7">    </span></span>
+<span class="foreground-11"> 76 </span><span class="background-0"><span class="foreground-7">      forLoop:</span></span>
+<span class="foreground-11"> 77 </span>      <span class="background-0"><span class="foreground-14">for</span><span class="foreground-7"> (</span><span class="foreground-9">var</span><span class="foreground-7"> i </span><span class="foreground-14">=</span><span class="foreground-7"> </span><span class="foreground-9">0</span><span class="foreground-7">; i </span><span class="foreground-14">&lt;</span><span class="foreground-7"> </span><span class="foreground-9">this</span><span class="foreground-7">.tokens.length; i</span><span class="foreground-14">++</span><span class="foreground-7">) {</span></span>
+<span class="foreground-11"> 78 </span><span class="background-0"><span class="foreground-7">        </span><span class="foreground-9">var</span><span class="foreground-7"> token </span><span class="foreground-14">=</span><span class="foreground-7"> </span><span class="foreground-9">this</span><span class="foreground-7">.tokens[i];</span></span>
+<span class="foreground-11"> 79 </span>        <span class="background-0"><span class="foreground-14">if</span><span class="foreground-7"> (token[</span><span class="foreground-9">0</span><span class="foreground-7">].test(input)) {</span></span>
+<span class="foreground-11"> 80 </span>        <span class="background-0"><span class="foreground-7">  input </span><span class="foreground-14">=</span><span class="foreground-7"> input.replace(token[</span><span class="foreground-9">0</span><span class="foreground-7">], </span><span class="foreground-9">this</span><span class="foreground-7">.process(token[</span><span class="foreground-9">1</span><span class="foreground-7">], output));</span></span>
+<span class="foreground-11"> 81 </span><span class="background-0"><span class="foreground-7">          </span><span class="foreground-14">break</span><span class="foreground-7"> forLoop;</span></span>
+<span class="foreground-11"> 82 </span>        <span class="background-0"><span class="foreground-7">}</span></span>
+<span class="foreground-11"> 83 </span><span class="background-0"><span class="foreground-7">      }</span></span>
+<span class="foreground-11"> 84 </span>
+<span class="foreground-11"> 85 </span>      <span class="background-0"><span class="foreground-14">if</span><span class="foreground-7"> (input.length </span><span class="foreground-14">===</span><span class="foreground-7"> len) </span><span class="foreground-14">break</span><span class="foreground-7">;</span></span>
+<span class="foreground-11"> 86 </span><span class="background-0"><span class="foreground-7">    } </span></span>
+<span class="foreground-11"> 87 </span>
+<span class="foreground-11"> 88 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-14">return</span><span class="foreground-7"> output;</span></span>
+<span class="foreground-11"> 89 </span>  <span class="background-0"><span class="foreground-7">}</span></span>
+<span class="foreground-11"> 90 </span><span class="background-0"><span class="foreground-7">});   </span></span>
+<span class="foreground-11"> 91 </span><span class="background-0"><span class="foreground-7">    </span></span>
+<span class="foreground-11"> 92 </span><span class="background-0"><span class="foreground-7">module.exports </span><span class="foreground-14">=</span><span class="foreground-7"> tokenStream;</span></span>
+<span class="foreground-11"> 93 </span><span class="background-0"><span class="foreground-7">module.exports.Token </span><span class="foreground-14">=</span><span class="foreground-7"> Token;</span></span>
+<span class="background-0"><span class="foreground-11">~
+decent/javascript.js                                                           1,1            All
+</span><span class="foreground-7">&quot;decent/javascript.js&quot; 93L, 2022C</span></span>

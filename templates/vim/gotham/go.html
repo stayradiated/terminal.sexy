@@ -1,0 +1,125 @@
+<span class="foreground-11">  1 </span><span class="background-0"><span class="foreground-14">package</span><span class="foreground-7"> session</span></span>
+<span class="foreground-11">  2 </span>
+<span class="foreground-11">  3 </span><span class="background-0"><span class="foreground-14">import</span><span class="foreground-7"> (</span></span>
+<span class="foreground-11">  4 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-2">&quot;bytes&quot;</span></span>
+<span class="foreground-11">  5 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-2">&quot;crypto/rand&quot;</span></span>
+<span class="foreground-11">  6 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-2">&quot;crypto/sha1&quot;</span></span>
+<span class="foreground-11">  7 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-2">&quot;encoding/hex&quot;</span></span>
+<span class="foreground-11">  8 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-2">&quot;encoding/json&quot;</span></span>
+<span class="foreground-11">  9 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-2">&quot;fmt&quot;</span></span>
+<span class="foreground-11"> 10 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-2">&quot;io/ioutil&quot;</span></span>
+<span class="foreground-11"> 11 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-2">&quot;net/http&quot;</span></span>
+<span class="foreground-11"> 12 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-2">&quot;strings&quot;</span></span>
+<span class="foreground-11"> 13 </span><span class="background-0"><span class="foreground-7">)</span></span>
+<span class="foreground-11"> 14 </span>
+<span class="foreground-11"> 15 </span><span class="background-0"><span class="foreground-14">type</span><span class="foreground-7"> RequestSignature </span><span class="foreground-9">string</span></span>
+<span class="foreground-11"> 16 </span>
+<span class="foreground-11"> 17 </span><span class="background-0"><span class="foreground-14">type</span><span class="foreground-7"> Request </span><span class="foreground-14">struct</span><span class="foreground-7"> {</span></span>
+<span class="foreground-11"> 18 </span><span class="background-0"><span class="foreground-7">  Url     </span><span class="foreground-9">string</span></span>
+<span class="foreground-11"> 19 </span><span class="background-0"><span class="foreground-7">  Method  </span><span class="foreground-9">string</span></span>
+<span class="foreground-11"> 20 </span><span class="background-0"><span class="foreground-7">  Session *Session</span></span>
+<span class="foreground-11"> 21 </span><span class="background-0"><span class="foreground-7">  Body    *Body</span></span>
+<span class="foreground-11"> 22 </span><span class="background-0"><span class="foreground-7">}</span></span>
+<span class="foreground-11"> 23 </span>
+<span class="foreground-11"> 24 </span><span class="background-0"><span class="foreground-14">type</span><span class="foreground-7"> Body </span><span class="foreground-14">struct</span><span class="foreground-7"> {</span></span>
+<span class="foreground-11"> 25 </span><span class="background-0"><span class="foreground-7">  Method     *</span><span class="foreground-9">string</span><span class="foreground-7">     </span><span class="foreground-2">&#x60;json:&quot;method&quot;&#x60;</span></span>
+<span class="foreground-11"> 26 </span><span class="background-0"><span class="foreground-7">  Header     *Header     </span><span class="foreground-2">&#x60;json:&quot;header&quot;&#x60;</span></span>
+<span class="foreground-11"> 27 </span><span class="background-0"><span class="foreground-7">  Parameters </span><span class="foreground-14">interface</span><span class="foreground-7">{} </span><span class="foreground-2">&#x60;json:&quot;parameters&quot;&#x60;</span></span>
+<span class="foreground-11"> 28 </span><span class="background-0"><span class="foreground-7">}</span></span>
+<span class="foreground-11"> 29 </span>
+<span class="foreground-11"> 30 </span><span class="background-0"><span class="foreground-14">type</span><span class="foreground-7"> Header </span><span class="foreground-14">struct</span><span class="foreground-7"> {</span></span>
+<span class="foreground-11"> 31 </span><span class="background-0"><span class="foreground-7">  Privacy</span></span>        <span class="background-0"><span class="foreground-9">int</span></span>              <span class="background-0"><span class="foreground-2">&#x60;json:&quot;privacy&quot;&#x60;</span></span>
+<span class="foreground-11"> 32 </span><span class="background-0"><span class="foreground-7">  Client</span></span>         <span class="background-0"><span class="foreground-9">string</span></span>           <span class="background-0"><span class="foreground-2">&#x60;json:&quot;client&quot;&#x60;</span></span>
+<span class="foreground-11"> 33 </span><span class="background-0"><span class="foreground-7">  ClientRevision </span><span class="foreground-9">string</span></span>           <span class="background-0"><span class="foreground-2">&#x60;json:&quot;clientRevision&quot;&#x60;</span></span>
+<span class="foreground-11"> 34 </span><span class="background-0"><span class="foreground-7">  UUID</span></span>           <span class="background-0"><span class="foreground-9">string</span></span>           <span class="background-0"><span class="foreground-2">&#x60;json:&quot;uuid&quot;&#x60;</span></span>
+<span class="foreground-11"> 35 </span><span class="background-0"><span class="foreground-7">  Country</span></span>        <span class="background-0"><span class="foreground-7">*Country</span></span>         <span class="background-0"><span class="foreground-2">&#x60;json:&quot;country&quot;&#x60;</span></span>
+<span class="foreground-11"> 36 </span><span class="background-0"><span class="foreground-7">  SessionId      SessionId</span></span>        <span class="background-0"><span class="foreground-2">&#x60;json:&quot;session&quot;&#x60;</span></span>
+<span class="foreground-11"> 37 </span><span class="background-0"><span class="foreground-7">  Token</span></span>          <span class="background-0"><span class="foreground-7">RequestSignature </span><span class="foreground-2">&#x60;json:&quot;token,omitempty&quot;&#x60;</span></span>
+<span class="foreground-11"> 38 </span><span class="background-0"><span class="foreground-7">}</span></span>
+<span class="foreground-11"> 39 </span>
+<span class="foreground-11"> 40 <span class="background-0">// NewRequest creates a new request</span></span>
+<span class="foreground-11"> 41 </span><span class="background-0"><span class="foreground-14">func</span><span class="foreground-7"> NewRequest(session *Session, method </span><span class="foreground-9">string</span><span class="foreground-7">, parameters </span><span class="foreground-14">interface</span><span class="foreground-7">{}) (request *Request) {</span></span>
+<span class="foreground-11"> 42 </span><span class="background-0"><span class="foreground-7">  request = &amp;Request{</span></span>
+<span class="foreground-11"> 43 </span><span class="background-0"><span class="foreground-7">    Url:     </span><span class="foreground-2">&quot;http://grooveshark.com/more.php?&quot;</span><span class="foreground-14"> + </span><span class="foreground-7">method,</span></span>
+<span class="foreground-11"> 44 </span><span class="background-0"><span class="foreground-7">    Method:  method,</span></span>
+<span class="foreground-11"> 45 </span><span class="background-0"><span class="foreground-7">    Session: session,</span></span>
+<span class="foreground-11"> 46 </span><span class="background-0"><span class="foreground-7">  }</span></span>
+<span class="foreground-11"> 47 </span>
+<span class="foreground-11"> 48 </span><span class="background-0"><span class="foreground-7">  body </span><span class="foreground-14">:=</span><span class="foreground-7"> &amp;Body{</span></span>
+<span class="foreground-11"> 49 </span><span class="background-0"><span class="foreground-7">    Method:     &amp;(*request).Method,</span></span>
+<span class="foreground-11"> 50 </span><span class="background-0"><span class="foreground-7">    Parameters: parameters,</span></span>
+<span class="foreground-11"> 51 </span>
+<span class="foreground-11"> 52 </span><span class="background-0"><span class="foreground-7">    Header: &amp;Header{</span></span>
+<span class="foreground-11"> 53 </span><span class="background-0"><span class="foreground-7">      Client:</span></span>         <span class="background-0"><span class="foreground-7">session.Client,</span></span>
+<span class="foreground-11"> 54 </span><span class="background-0"><span class="foreground-7">      ClientRevision: session.ClientRevision,</span></span>
+<span class="foreground-11"> 55 </span>
+<span class="foreground-11"> 56 </span><span class="background-0"><span class="foreground-7">      Privacy: </span><span class="foreground-9">0</span><span class="foreground-7">,</span></span>
+<span class="foreground-11"> 57 </span><span class="background-0"><span class="foreground-7">      Country: session.Country,</span></span>
+<span class="foreground-11"> 58 </span>
+<span class="foreground-11"> 59 </span><span class="background-0"><span class="foreground-7">      UUID:      session.UUID,</span></span>
+<span class="foreground-11"> 60 </span><span class="background-0"><span class="foreground-7">      SessionId: session.SessionId,</span></span>
+<span class="foreground-11"> 61 </span><span class="background-0"><span class="foreground-7">    },</span></span>
+<span class="foreground-11"> 62 </span><span class="background-0"><span class="foreground-7">  }</span></span>
+<span class="foreground-11"> 63 </span>
+<span class="foreground-11"> 64 </span><span class="background-0"><span class="foreground-7">  request.Body = body</span></span>
+<span class="foreground-11"> 65 </span>
+<span class="foreground-11"> 66 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-14">return</span><span class="foreground-7"> request</span></span>
+<span class="foreground-11"> 67 </span><span class="background-0"><span class="foreground-7">}</span></span>
+<span class="foreground-11"> 68 </span>
+<span class="foreground-11"> 69 <span class="background-0">// Sign generates a signature for this request</span></span>
+<span class="foreground-11"> 70 </span><span class="background-0"><span class="foreground-14">func</span><span class="foreground-7"> (r *Request) Sign() {</span></span>
+<span class="foreground-11"> 71 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-11">// get the session token</span></span>
+<span class="foreground-11"> 72 </span><span class="background-0"><span class="foreground-7">  token </span><span class="foreground-14">:=</span><span class="foreground-7"> r.Session.Token()</span></span>
+<span class="foreground-11"> 73 </span>
+<span class="foreground-11"> 74 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-11">// generate random nonce</span></span>
+<span class="foreground-11"> 75 </span><span class="background-0"><span class="foreground-7">  nonceBytes </span><span class="foreground-14">:=</span><span class="foreground-7"> </span><span class="foreground-14">make</span><span class="foreground-7">([]</span><span class="foreground-9">byte</span><span class="foreground-7">, </span><span class="foreground-9">3</span><span class="foreground-7">)</span></span>
+<span class="foreground-11"> 76 </span><span class="background-0"><span class="foreground-7">  rand.Read(nonceBytes)</span></span>
+<span class="foreground-11"> 77 </span><span class="background-0"><span class="foreground-7">  nonce </span><span class="foreground-14">:=</span><span class="foreground-7"> hex.EncodeToString(nonceBytes)</span></span>
+<span class="foreground-11"> 78 </span>
+<span class="foreground-11"> 79 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-11">// concat values together</span></span>
+<span class="foreground-11"> 80 </span><span class="background-0"><span class="foreground-7">  input </span><span class="foreground-14">:=</span><span class="foreground-7"> strings.Join([]</span><span class="foreground-9">string</span><span class="foreground-7">{</span></span>
+<span class="foreground-11"> 81 </span><span class="background-0"><span class="foreground-7">    r.Method, </span><span class="foreground-9">string</span><span class="foreground-7">(token), r.Session.Salt, nonce,</span></span>
+<span class="foreground-11"> 82 </span><span class="background-0"><span class="foreground-7">  }, </span><span class="foreground-2">&quot;:&quot;</span><span class="foreground-7">)</span></span>
+<span class="foreground-11"> 83 </span>
+<span class="foreground-11"> 84 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-11">// hash with sha1</span></span>
+<span class="foreground-11"> 85 </span><span class="background-0"><span class="foreground-7">  hash </span><span class="foreground-14">:=</span><span class="foreground-7"> sha1.New()</span></span>
+<span class="foreground-11"> 86 </span><span class="background-0"><span class="foreground-7">  hash.Write([]</span><span class="foreground-9">byte</span><span class="foreground-7">(input))</span></span>
+<span class="foreground-11"> 87 </span>
+<span class="foreground-11"> 88 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-11">// convert to hex</span></span>
+<span class="foreground-11"> 89 </span><span class="background-0"><span class="foreground-7">  signature </span><span class="foreground-14">:=</span><span class="foreground-7"> hex.EncodeToString(hash.Sum(</span><span class="foreground-14">nil</span><span class="foreground-7">))</span></span>
+<span class="foreground-11"> 90 </span>
+<span class="foreground-11"> 91 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-11">// add to header</span></span>
+<span class="foreground-11"> 92 </span><span class="background-0"><span class="foreground-7">  header </span><span class="foreground-14">:=</span><span class="foreground-7"> (*r.Body).Header</span></span>
+<span class="foreground-11"> 93 </span><span class="background-0"><span class="foreground-7">  (*header).Token = RequestSignature(nonce</span><span class="foreground-14"> + </span><span class="foreground-7">signature)</span></span>
+<span class="foreground-11"> 94 </span><span class="background-0"><span class="foreground-7">}</span></span>
+<span class="foreground-11"> 95 </span>
+<span class="foreground-11"> 96 <span class="background-0">// Send makes the request</span></span>
+<span class="foreground-11"> 97 </span><span class="background-0"><span class="foreground-14">func</span><span class="foreground-7"> (r *Request) Send(resp </span><span class="foreground-14">interface</span><span class="foreground-7">{}) </span><span class="foreground-9">error</span><span class="foreground-7"> {</span></span>
+<span class="foreground-11"> 98 </span><span class="background-0"><span class="foreground-7">  data, err </span><span class="foreground-14">:=</span><span class="foreground-7"> json.Marshal(*r.Body)</span></span>
+<span class="foreground-11"> 99 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-14">if</span><span class="foreground-7"> err </span><span class="foreground-14">!=</span><span class="foreground-7"> </span><span class="foreground-14">nil</span><span class="foreground-7"> {</span></span>
+<span class="foreground-11">100 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-14">return</span><span class="foreground-7"> err</span></span>
+<span class="foreground-11">101 </span><span class="background-0"><span class="foreground-7">  }</span></span>
+<span class="foreground-11">102 </span>
+<span class="foreground-11">103 </span><span class="background-0"><span class="foreground-7">  body </span><span class="foreground-14">:=</span><span class="foreground-7"> bytes.NewReader(data)</span></span>
+<span class="foreground-11">104 </span>
+<span class="foreground-11">105 </span><span class="background-0"><span class="foreground-7">  res, err </span><span class="foreground-14">:=</span><span class="foreground-7"> http.Post(r.Url, </span><span class="foreground-2">&quot;application/json&quot;</span><span class="foreground-7">, body)</span></span>
+<span class="foreground-11">106 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-14">if</span><span class="foreground-7"> err </span><span class="foreground-14">!=</span><span class="foreground-7"> </span><span class="foreground-14">nil</span><span class="foreground-7"> {</span></span>
+<span class="foreground-11">107 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-14">return</span><span class="foreground-7"> err</span></span>
+<span class="foreground-11">108 </span><span class="background-0"><span class="foreground-7">  }</span></span>
+<span class="foreground-11">109 </span>
+<span class="foreground-11">110 </span><span class="background-0"><span class="foreground-7">  resBody, err </span><span class="foreground-14">:=</span><span class="foreground-7"> ioutil.ReadAll(res.Body)</span></span>
+<span class="foreground-11">111 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-14">if</span><span class="foreground-7"> err </span><span class="foreground-14">!=</span><span class="foreground-7"> </span><span class="foreground-14">nil</span><span class="foreground-7"> {</span></span>
+<span class="foreground-11">112 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-14">return</span><span class="foreground-7"> err</span></span>
+<span class="foreground-11">113 </span><span class="background-0"><span class="foreground-7">  }</span></span>
+<span class="foreground-11">114 </span>
+<span class="foreground-11">115 </span><span class="background-0"><span class="foreground-7">  err = json.Unmarshal(resBody, &amp;resp)</span></span>
+<span class="foreground-11">116 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-14">if</span><span class="foreground-7"> err </span><span class="foreground-14">!=</span><span class="foreground-7"> </span><span class="foreground-14">nil</span><span class="foreground-7"> {</span></span>
+<span class="foreground-11">117 </span><span class="background-0"><span class="foreground-7">    fmt.Printf(</span><span class="foreground-2">&quot;%+v</span><span class="foreground-9">\n</span><span class="foreground-2">&quot;</span><span class="foreground-7">, res)</span></span>
+<span class="foreground-11">118 </span><span class="background-0"><span class="foreground-7">    fmt.Println(</span><span class="foreground-9">string</span><span class="foreground-7">(resBody))</span></span>
+<span class="foreground-11">119 </span><span class="background-0"><span class="foreground-7">    </span><span class="foreground-14">return</span><span class="foreground-7"> err</span></span>
+<span class="foreground-11">120 </span><span class="background-0"><span class="foreground-7">  }</span></span>
+<span class="foreground-11">121 </span>
+<span class="foreground-11">122 </span><span class="background-0"><span class="foreground-7">  </span><span class="foreground-14">return</span><span class="foreground-7"> </span><span class="foreground-14">nil</span></span>
+<span class="foreground-11">123 </span><span class="background-0"><span class="foreground-7">}</span></span>
+<span class="foreground-11">decent/go.go                                                                     112,7-9        All
+</span>
