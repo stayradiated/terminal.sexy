@@ -1,0 +1,66 @@
+<span class="foreground-4">2014-09-23 15:03</span> <span class="foreground-2">Oleg Gaidarenko</span>    <span class="foreground-4">o</span><span class="foreground-5"> </span><span class="foreground-6"><span class="bold">[master]</span></span> <span class="foreground-3">[origin/HEAD]</span> <span class="foreground-3">[origin/master]</span> README: Improve build instructions
+<span class="foreground-4">2014-09-22 20:05</span> <span class="foreground-2">Jason Bedard</span>       <span class="foreground-4">o</span><span class="foreground-5"> </span>Data: avoid non-alphanumeric chars in expando properties
+<span class="foreground-4">2014-05-15 12:26</span> <span class="foreground-2">Daniel Herman</span>      <span class="foreground-4">o</span><span class="foreground-5"> </span>Event: Restore the &#x60;constructor&#x60; property on jQuery.Event prototype
+<span class="foreground-4">2014-06-17 09:48</span> <span class="foreground-2">Richard Gibson</span>     <span class="foreground-4">o</span><span class="foreground-5"> </span>Manipulation: Tolerate XMLNode host object input to getAll
+<span class="foreground-4">2014-09-03 16:30</span> <span class="foreground-2">Amit Merchant</span>      <span class="foreground-4">o</span><span class="foreground-5"> </span>CONTRIBUTING: Close parenthesis
+<span class="background-2"><span class="foreground-7">2014-09-03 00:20 Oleg Gaidarenko    o CSS: Correct typo in the comment</span></span>
+<span class="foreground-4">2014-09-03 00:11</span> <span class="foreground-2">Oleg Gaidarenko</span>    <span class="foreground-4">o</span> CSS: Use pre-defined displays for html and body
+<span class="foreground-4">2014-09-01 23:13</span> <span class="foreground-2">Nazar Mokrynskyi</span>   <span class="foreground-4">o</span><span class="foreground-5"> </span>CSS: Remove use of getDefaultComputedStyle
+<span class="foreground-4">2014-09-02 21:44</span> <span class="foreground-2">Oleg Gaidarenko</span>    <span class="foreground-4">o</span> Attr: Use typeof check for getAttribute method
+<span class="foreground-4">2014-07-25 15:23</span> <span class="foreground-2">Chris Antaki</span>       <span class="foreground-4">o</span><span class="foreground-5"> </span>Build: Moved JSHint directives to .jshintrc file
+<span class="foreground-4">2014-07-25 13:08</span> <span class="foreground-2">Chris Antaki</span>       <span class="foreground-4">o</span><span class="foreground-5"> </span>Offset: Simplified a conditional
+<span class="foreground-4">2014-07-25 12:21</span> <span class="foreground-2">Chris Antaki</span>       <span class="foreground-4">o</span><span class="foreground-5"> </span>Core: Drop strundefined variable
+<span class="foreground-4">2014-06-10 22:26</span> <span class="foreground-2">Aurelio De Rosa</span>    <span class="foreground-4">o</span><span class="foreground-5"> </span>CSS: Removed redundant &quot;to the number&quot; in comment
+<span class="foreground-4">2014-07-28 18:46</span> <span class="foreground-2">Michał Gołębiowski</span> <span class="foreground-4">o</span><span class="foreground-5"> </span>Css: Fix the &quot;sanity check&quot; test
+<span class="foreground-4">2014-07-17 16:53</span> <span class="foreground-2">Timmy Willison</span>     <span class="foreground-4">o</span><span class="foreground-5"> </span>CSS: elements are hidden when either offsetWidth or offsetHeight is zero
+<span class="foreground-4">2014-07-17 11:15</span> <span class="foreground-2">Timmy Willison</span>     <span class="foreground-4">o</span><span class="foreground-5"> </span>Build: update source map options for the new grunt jshint
+<span class="foreground-4">2014-07-17 10:25</span> <span class="foreground-2">Timmy Willison</span>     <span class="foreground-4">o</span><span class="foreground-5"> </span>Build: update grunt-jscs-checker and pass with the new rules
+<span class="foreground-4">2014-07-17 10:24</span> <span class="foreground-2">Timmy Willison</span>     <span class="foreground-4">o</span><span class="foreground-5"> </span>Build: update node dependencies barring jscs
+<span class="foreground-4">2014-07-17 09:03</span> <span class="foreground-2">Timmy Willison</span>     <span class="foreground-4">o</span><span class="foreground-5"> </span>Build: update front-end dependencies
+<span class="foreground-4">2014-07-17 09:02</span> <span class="foreground-2">Timmy Willison</span>     <span class="foreground-4">o</span><span class="foreground-5"> </span>Build: drop bower; use npm for front-end deps
+<span class="foreground-4">2014-06-13 11:42</span> <span class="foreground-2">Chris Antaki</span>       <span class="foreground-4">o</span><span class="foreground-5"> </span>Ajax: Remove workaround for IE6/7
+<span class="background-4"><span class="foreground-7">[main] 7e09619cdf2813f2cd9da600ba682be8f91b08b6 - commit 6 of 5651 (0%)</span></span>
+<span class="background-2"><span class="foreground-7">commit 7e09619cdf2813f2cd9da600ba682be8f91b08b6</span></span>
+<span class="foreground-6">Author:     Oleg Gaidarenko &lt;markelog@gmail.com&gt;</span>
+<span class="foreground-3">AuthorDate: Wed Sep 3 00:20:23 2014 +0400</span>
+<span class="foreground-5">Commit:     Oleg Gaidarenko &lt;markelog@gmail.com&gt;</span>
+<span class="foreground-3">CommitDate: Wed Sep 3 00:20:23 2014 +0400</span>
+
+    CSS: Correct typo in the comment
+
+ <span class="foreground-4">src/css/defaultDisplay.js </span>| 5 <span class="foreground-2">++</span><span class="foreground-1">---</span>Query.Event prototype was paving over the
+    Ref 25712d77c2bc0221b5b2s(+), 3 deletions(-)ery.isPlainObject to
+ <span class="foreground-4">CONTRIBUTING.md </span>| 2 <span class="foreground-2">+</span><span class="foreground-1">-</span>
+             <span class="foreground-3">src/css/defaultDisplay.js b/src/css/defaultDisplay.js</span>
+<span class="foreground-4"> src</span>F<span class="foreground-4">m2df1068..15d440d</span> 8 <span class="foreground-2">++++++</span><span class="foreground-1">--</span>
+ 1 fil<span class="foreground-1">src/css/defaultDisplay.js</span><span class="foreground-3">CONTRIBUTING.md</span>
+      <span class="foreground-2">src/css/defaultDisplay.js</span>
+<span class="foreground-3">diff </span><span class="foreground-5">,7 +7,7 @@ var iframe,</span>
+        elemdisplay = {
+
+                // Support: Firefox
+                <span class="foreground-1">// We have to pre-define this values for FF (#10227)</span>
+                <span class="foreground-2">// We have to pre-define these values for FF (#10227)</span>
+<span class="foreground-1">-* Grunt (instal</span>HTML: &quot;block&quot;,<span class="foreground-1">nstall grunt -g&#x60;</span>
+<span class="foreground-2">+* Grunt (instal</span>BODY: &quot;block&quot;<span class="foreground-2">install grunt -g&#x60;)</span>
+        };
+<span class="foreground-5">@@ -49,7 +49,7 @@ function defaultDisplay( nodeName ) {</span>
+                                .appendTo( doc.documentElement );
+
+                        // Always write a new HTML skeleton so Webkit and Firefox don&#x27;t choke on reuse
+<span class="foreground-1">-</span>                       <span class="foreground-1">doc = iframe[ 0 ].contentDocument;</span>
+<span class="foreground-2">+</span>                       <span class="foreground-2">doc = ( iframe[ 0 ].contentWindow || iframe[ 0 ].contentDocument ).document;</span>
+
+                        // Support: IE
+                        doc.write();
+<span class="foreground-5">@@ -67,5 +67,4 @@ function defaultDisplay( nodeName ) {</span>
+ }
+<span class="foreground-5">@@ -1442,7 +1442,7 @@ if ( window.onbeforeunload === null &amp;&amp;</span>
+ return defaultDisplay;
+<span class="foreground-1">-</span>
+ });
+<span class="foreground-1">-       expect(5);</span>
+<span class="foreground-2">+       expect(6);</span>
+
+<span class="background-4"><span class="foreground-7"><span class="bold">[diff] 7e09619cdf2813f2cd9da600ba682be8f91b08b6</span></span></span> <span class="background-4"><span class="foreground-7"><span class="bold">- line 1 of 39 (100%)</span></span></span>
+
