@@ -38,6 +38,7 @@ var Export = React.createClass({
       <div className='export'>
         <label>Format:</label>
         <select ref='select' defaultValue='xresources'>
+          <option value='chromeshell'>Chrome Secure Shell</option>
           <option value='gnome'>Gnome Terminal</option>
           <option value='guake'>Guake</option>
           <option value='iterm'>iTerm2</option>
