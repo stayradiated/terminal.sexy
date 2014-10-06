@@ -38,16 +38,26 @@ var Header = React.createClass({
     return (
       /* jshint ignore: start */
       <header className='header foreground-fg background-desktop'>
-        <h1>terminal.sexy</h1>
-        <ul ref='menu'>
-          <li onClick={this.open.bind(this, 'editor')}>Editor</li>
-          <li onClick={this.open.bind(this, 'templates')}>Templates</li>
-          <li onClick={this.open.bind(this, 'schemes')}>Schemes</li>
-          <li onClick={this.open.bind(this, 'random')}>Randomiser</li>
-          <li onClick={this.open.bind(this, 'settings')}>Settings</li>
-          <li onClick={this.open.bind(this, 'import')}>Import</li>
-          <li onClick={this.open.bind(this, 'export')}>Export</li>
-        </ul>
+        <h1 className='foreground-3'>terminal.sexy</h1>
+        <div className='sections'>
+          <div className='section'>
+            <span onClick={this.open.bind(this, 'about')}>About</span>
+          </div>
+          <div className='section'>
+            <span>Open Window</span>
+            <ul className='background-desktop' ref='menu'>
+              <li onClick={this.open.bind(this, 'editor')}>Editor</li>
+              <li onClick={this.open.bind(this, 'colorpicker')}>Color Picker</li>
+              <li onClick={this.open.bind(this, 'templates')}>Templates</li>
+              <li onClick={this.open.bind(this, 'schemes')}>Schemes</li>
+              <li onClick={this.open.bind(this, 'random')}>Randomiser</li>
+              <li onClick={this.open.bind(this, 'settings')}>Settings</li>
+              <li onClick={this.open.bind(this, 'import')}>Import Scheme</li>
+              <li onClick={this.open.bind(this, 'export')}>Export Scheme</li>
+              <li onClick={this.open.bind(this, 'importTemplate')}>Import Template</li>
+            </ul>
+          </div>
+        </div>
       </header>
       /* jshint ignore: end */
     );
