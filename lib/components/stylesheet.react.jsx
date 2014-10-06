@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var Colr = require('colr');
-var React = require('react');
+var React = require('react/addons');
 var Reflux = require('reflux');
 
 var AppStore = require('../stores/app');
@@ -50,6 +50,26 @@ var FontStyle = React.createClass({
 
 });
 
+var WebFontLink = React.createClass({
+
+  mixins: [React.addons.PureRenderMixin],
+
+  propTypes: {
+    id: React.PropTypes.string.isRequired,
+  },
+
+  render: function () {
+    var id = encodeURIComponent(this.props.id);
+    var href = 'http://fonts.googleapis.com/css?family=' + id + ':400';
+    return (
+      /* jshint ignore: start */
+      <link href={href} rel='stylesheet' type='text/css' />
+      /* jshint ignore: end */
+    );
+  },
+
+});
+
 var StyleSheet = React.createClass({
 
   mixins: [Reflux.ListenerMixin],
@@ -66,8 +86,14 @@ var StyleSheet = React.createClass({
   },
 
   render: function () {
+    /* jshint ignore: start */
+
+    var webFontLink = '';
+    if (this.state.font.web) {
+      webFontLink = <WebFontLink id={this.state.font.name} />;
+    }
+
     return (
-      /* jshint ignore: start */
       <div className="sexy-stylesheet">
         <ColorStyle id='background' data={this.state.colors.background} />
         <ColorStyle id='foreground' data={this.state.colors.foreground} />
@@ -88,9 +114,11 @@ var StyleSheet = React.createClass({
         <ColorStyle id='14' data={this.state.colors[14]} />
         <ColorStyle id='15' data={this.state.colors[15]} />
         <FontStyle id='font' data={_.clone(this.state.font)} />
+        {webFontLink}
       </div>
-      /* jshint ignore: end */
     );
+
+    /* jshint ignore: end */
   },
 
   _onChange: function () {

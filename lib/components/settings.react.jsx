@@ -12,6 +12,7 @@ var Settings = React.createClass({
       name: this.refs.fontName.getDOMNode().value,
       size: this.refs.fontSize.getDOMNode().value,
       line: this.refs.fontLine.getDOMNode().value,
+      web: this.refs.fontWeb.getDOMNode().checked,
     });
   },
 
@@ -24,15 +25,22 @@ var Settings = React.createClass({
         <h4>Font</h4>
         <div className='control'>
           <label className="foreground-subtle">Font Name</label>
-          <input defaultValue={state.name} ref='fontName'/>
+          <input type='text' defaultValue={state.name} ref='fontName'/>
         </div>
         <div className='control'>
           <label className="foreground-subtle">Font Size</label>
-          <input defaultValue={state.size} ref='fontSize'/>
+          <input type='text' defaultValue={state.size} ref='fontSize'/>
         </div>
         <div className='control'>
           <label className="foreground-subtle">Line Height</label>
-          <input defaultValue={state.line} ref='fontLine'/>
+          <input type='text' defaultValue={state.line} ref='fontLine'/>
+        </div>
+        <div className='control'>
+          <label className="foreground-subtle">Web Font</label>
+          <span className='checkbox'>
+            <input type='checkbox' defaultChecked={state.web} ref='fontWeb'/>
+            <span />
+          </span>
         </div>
         <button type="button" onClick={this.save} className='button'>Save</button>
       </div>

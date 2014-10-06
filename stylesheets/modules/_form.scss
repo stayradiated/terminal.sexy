@@ -60,7 +60,51 @@ input {
     padding: 5px 0;
   }
 
-  input {
+  & > input, .checkbox {
     flex: 1;
+  }
+}
+
+.checkbox {
+  position: relative;
+
+  $top: 7px;
+
+  span {
+    position: absolute;
+    top: $top;
+    z-index: 1;
+
+    height: 18px;
+    width: 18px;
+
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 2px solid red;
+    box-sizing: border-box;
+  }
+
+  input[type=checkbox] {
+    position: absolute;
+    top: $top;
+    z-index: 3;
+    width: 18px;
+    height: 18px;
+    -webkit-appearance: none;
+    border: 0;
+    opacity: 0;
+
+    &:checked + span:after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 4px;
+      left: 4px;
+      display: block;
+      height: 6px;
+      width: 6px;
+      background: blue;
+    }
   }
 }
