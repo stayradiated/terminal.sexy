@@ -75,6 +75,27 @@ h4 {
   background: {{=c.bgSubtle}};
 }
 
+::-webkit-input-placeholder {
+   color: {{=c.bgSubtle}};
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: {{=c.bgSubtle}};
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: {{=c.bgSubtle}};
+}
+
+:-ms-input-placeholder {  
+   color: {{=c.bgSubtle}};
+}
+
+.colorpicker .slider .pointer {
+  background: {{=c.foreground}};
+}
+
+
 /* ==== foreground ==== */
 
 .foreground-fg{color:{{=c.foreground}} !important;}
@@ -96,26 +117,6 @@ textarea:focus, input:focus, button:focus, .checkbox input:focus + span {
 
 .checkbox input:checked + span:after {
   background: {{=c.fgSubtle}};
-}
-
-::-webkit-input-placeholder {
-   color: {{=c.fgSubtle}};
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   color: {{=c.fgSubtle}};
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: {{=c.fgSubtle}};
-}
-
-:-ms-input-placeholder {  
-   color: {{=c.fgSubtle}};
-}
-
-.colorpicker .slider .pointer {
-  background: {{=c.foreground}};
 }
 
 /* ==== 0 ==== */
