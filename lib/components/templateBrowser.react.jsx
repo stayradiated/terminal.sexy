@@ -26,7 +26,7 @@ var TemplateBrowser = React.createClass({
     return (
       /* jshint ignore: start */
       <Ranger
-        store={TemplateStore.rangerStore()}
+        store={TemplateStore.rangerStore}
         view={TemplateView}
         showParent={false}
       />

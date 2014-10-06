@@ -13,28 +13,27 @@ var ItemView = React.createClass({
 
   componentDidMount: function () {
     this.listenTo(SchemeStore, this._onChange);
-    actions.loadScheme(this.props.item);
-  },
-
-  componentWillReceiveProps: function (nextprops) {
-    actions.loadScheme(nextprops.item);
   },
 
   render: function () {
-    var item = this.props.item.contents;
+    var path = this.props.item.path;
+    var scheme = SchemeStore.get(path);
 
-    if (item == null) {
+    if (scheme == null) {
+      // if we haven't already cached the scheme
+      // then fetch it from the server and wait
+      SchemeStore.load(path);
       return null;
     }
 
     var colorSquares = [];
-    var background = item.colors.background.toHex();
+    var background = scheme.colors.background.toHex();
 
     for (var i = 0; i < 16; i += 1) {
       var id = Math.floor(i/2);
       if (i % 2 === 1) { id += 8; }
 
-      var color = item.colors[id];
+      var color = scheme.colors[id];
       colorSquares.push(
         /* jshint ignore: start */
         <div key={i} style={{
@@ -48,8 +47,8 @@ var ItemView = React.createClass({
     return (
       /* jshint ignore: start */
       <div className='schemes'>
-        <h1>{item.name}</h1>
-        <div>By: {item.author}</div>
+        <h1>{scheme.name}</h1>
+        <div>By: {scheme.author}</div>
         <div className='colors' style={{ background: background }}>
           {colorSquares}
         </div>
@@ -70,7 +69,7 @@ var Schemes = React.createClass({
     return (
       /* jshint ignore: start */
       <Ranger
-        store={SchemeStore.rangerStore()}
+        store={SchemeStore.rangerStore}
         view={ItemView}
         showParent={false}
       />

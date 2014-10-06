@@ -20,7 +20,7 @@ var Template = React.createClass({
 
   componentDidMount: function () {
     var self = this;
-    TemplateStore.load(this.props.path, function () {
+    TemplateStore.preload(this.props.path, function () {
       self.forceUpdate();
     });
   },
@@ -28,8 +28,15 @@ var Template = React.createClass({
   render: function () {
     var content = TemplateStore.get(this.props.path);
 
+    /* jshint ignore: start */
+
+    if (! content) {
+      return (
+        <p>Loading template...</p>
+      );
+    }
+
     return (
-      /* jshint ignore: start */
       <div className='template'>
         <pre className='text'
           dangerouslySetInnerHTML={{__html: content}}
@@ -41,8 +48,9 @@ var Template = React.createClass({
           <div>Foreground: {this.state.foreground}</div>
         </div>
       </div>
-      /* jshint ignore: end */
     );
+
+    /* jshint ignore: end */
   },
 
   handleMouseOver: function (event) {

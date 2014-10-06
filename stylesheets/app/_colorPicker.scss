@@ -182,19 +182,22 @@
       li {
         list-style-type: none;
         margin-bottom: 5px;
+
+        display: flex;
       }
     }
 
     label {
       display: inline-block;
       color: #888;
-      width: 15px;
+      width: 14px;
       margin-right: 5px;
       text-align: right;
+      line-height: 30px;
     }
 
     input {
-      width: 74px;
+      flex: 1;
       text-transform: uppercase;
     }
 
