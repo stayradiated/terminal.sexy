@@ -15,6 +15,8 @@ var Random = React.createClass({
     return (
       /* jshint ignore: start */
       <div className='random'>
+        <p>Randomly generate a color scheme.</p>
+        <p>Based on the <a href='http://www.boronine.com/husl/syntax' target='_blank'>HUSL Random Syntax Highlighting Generator</a> by <a href='https://github.com/boronine' target='_blank'>Boronine</a>.</p>
         <button type='button' className='button' onClick={this.handleClick}>Generate</button>
       </div>
       /* jshint ignore: end */

@@ -38,7 +38,7 @@ var Header = React.createClass({
     return (
       /* jshint ignore: start */
       <header className='header foreground-fg background-desktop'>
-        <h1 onClick={actions.resetLayout}>terminal.sexy</h1>
+        <h1>terminal.sexy</h1>
         <ul ref='menu'>
           <li onClick={this.open.bind(this, 'editor')}>Editor</li>
           <li onClick={this.open.bind(this, 'templates')}>Templates</li>
