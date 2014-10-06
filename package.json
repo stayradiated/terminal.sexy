@@ -41,7 +41,7 @@
     "lodash": "^2.4.1",
     "react": "^0.11.2",
     "react-colorpicker": "^0.3.6",
-    "react-ranger": "^0.5.2",
+    "react-ranger": "^0.5.3",
     "reflux": "^0.1.13",
     "termcolors": "^0.2.7",
     "termio": "^1.0.0",

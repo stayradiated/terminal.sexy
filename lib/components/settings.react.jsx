@@ -21,19 +21,20 @@ var Settings = React.createClass({
     return (
       /* jshint ignore: start */
       <div className='settings'>
+        <h4>Font</h4>
         <div className='control'>
-          <label>Font Name</label>
+          <label className="foreground-subtle">Font Name</label>
           <input defaultValue={state.name} ref='fontName'/>
         </div>
         <div className='control'>
-          <label>Font Size</label>
+          <label className="foreground-subtle">Font Size</label>
           <input defaultValue={state.size} ref='fontSize'/>
         </div>
         <div className='control'>
-          <label>Line Height</label>
+          <label className="foreground-subtle">Line Height</label>
           <input defaultValue={state.line} ref='fontLine'/>
         </div>
-        <div onClick={this.save} className='button'>Save</div>
+        <button type="button" onClick={this.save} className='button'>Save</button>
       </div>
       /* jshint ignore: end */
     );

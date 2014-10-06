@@ -18,3 +18,11 @@ h1, h2, h3, h4, h5, h6 {
   font: $font;
   font-weight: $bold;
 }
+
+h4 {
+  margin-top: 0;
+  text-align: center;
+  padding-bottom: 4px;
+  text-transform: uppercase;
+  border-bottom: 2px solid red;
+}

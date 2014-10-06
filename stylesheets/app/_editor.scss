@@ -10,10 +10,15 @@
       width: 50%;
 
       .label {
-        line-height: $height/2;
+        padding-top: $height/4;
+        line-height: $height/4;
         font-size: 25px;
         font-weight: $bold;
         text-transform: uppercase;
+      }
+
+      .hex {
+        line-height: $height/2;
       }
     }
 

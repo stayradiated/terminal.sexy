@@ -20,9 +20,9 @@ var Template = React.createClass({
 
   componentDidMount: function () {
     var self = this;
-    TemplateStore.load(this.props.path).then(function () {
+    TemplateStore.load(this.props.path, function () {
       self.forceUpdate();
-    } );
+    });
   },
 
   render: function () {

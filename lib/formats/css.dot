@@ -17,7 +17,6 @@ pre {
 .foreground-desktop {color:{{=c.desktop}} !important;}
 .background-desktop {background:{{=c.desktop}} !important;}
 
-.foreground-subtle {color:{{=c.fgSubtle}} !important;}
 .background-subtle {background:{{=c.bgSubtle}} !important;}
 
 .layout-container {
@@ -64,13 +63,19 @@ select, textarea, input {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: {{=c.bgSubtle}};
+  background-color: {{=c.desktop}};
+}
+
+h4 {
+  border-color: {{=c.bgSubtle}}
 }
 
 /* ==== foreground ==== */
 
 .foreground-fg{color:{{=c.foreground}} !important;}
 .background-fg{background:{{=c.foreground}} !important;}
+
+.foreground-subtle {color:{{=c.fgSubtle}} !important;}
 
 .lm_goldenlayout {
   color: {{=c.foreground}};
@@ -80,8 +85,24 @@ select, textarea, input {
   color: {{=c.fgSubtle}};
 }
 
-textarea:focus, input:focus {
+textarea:focus, input:focus, button:focus {
   border-color: {{=c.fgSubtle}} !important;
+}
+
+::-webkit-input-placeholder {
+   color: {{=c.fgSubtle}};
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: {{=c.fgSubtle}};
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: {{=c.fgSubtle}};
+}
+
+:-ms-input-placeholder {  
+   color: {{=c.fgSubtle}};
 }
 
 /* ==== 0 ==== */
@@ -101,6 +122,10 @@ textarea:focus, input:focus {
 
 .lm_splitter:hover {
   background: {{=c}}
+}
+
+h4 {
+  color: {{=c}}
 }
 
 /* ==== 3 ==== */

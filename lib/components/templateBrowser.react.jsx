@@ -11,7 +11,10 @@ var TemplateView = React.createClass({
 
     return (
       /* jshint ignore: start */
-      <span>{'Name: ' + item.name}</span>
+      <div>
+        <p>{'Name: ' + item.name}</p>
+        <p className='foreground-subtle'>{'Path: ' + item.path}</p>
+      </div>
       /* jshint ignore: end */
     );
   }
@@ -25,6 +28,7 @@ var TemplateBrowser = React.createClass({
       <Ranger
         store={TemplateStore.rangerStore()}
         view={TemplateView}
+        showParent={false}
       />
       /* jshint ignore: end */
     );

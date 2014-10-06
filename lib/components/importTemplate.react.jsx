@@ -28,11 +28,11 @@ var ImportTemplate = React.createClass({
       /* jshint ignore: start */
       <div className='import-template'>
         <div className='control'>
-          <label>Template Name:</label>
-          <input type='text' ref='name' />
+          <label className='foreground-subtle'>Template Name:</label>
+          <input type='text' ref='name' placeholder='/user/vim/js' />
         </div>
         <div className='control'>
-          <label>Tmux Output:</label>
+          <label className='foreground-subtle'>Tmux Output:</label>
           <input type='file' ref='file' />
         </div>
         <div className='buttons'>

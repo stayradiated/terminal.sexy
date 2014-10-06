@@ -19,13 +19,14 @@ var Import = React.createClass({
     return (
       /* jshint ignore: start */
       <div className='import'>
-        <label>Format:</label>
-        <select ref='select' defaultValue='xresources'>
-          <option value='iterm'>iTerm2</option>
-          <option value='termite'>Termite</option>
-          <option value='url'>URL</option>
-          <option value='xresources'>Xresources</option>
-        </select>
+        <div className="control">
+          <label>Format:</label>
+          <select ref='select' defaultValue='xresources'>
+            <option value='iterm'>iTerm2</option>
+            <option value='termite'>Termite</option>
+            <option value='xresources'>Xresources</option>
+          </select>
+        </div>
         <textarea spellCheck='false' className='background-bg' ref='textarea' />
         <div className='buttons'>
           <div onClick={this.handleClick} className='button button-import'>Import</div>

@@ -36,24 +36,26 @@ var Export = React.createClass({
     return (
       /* jshint ignore: start */
       <div className='export'>
-        <label>Format:</label>
-        <select ref='select' defaultValue='xresources'>
-          <option value='chromeshell'>Chrome Secure Shell</option>
-          <option value='gnome'>Gnome Terminal</option>
-          <option value='guake'>Guake</option>
-          <option value='iterm'>iTerm2</option>
-          <option value='konsole'>Konsole</option>
-          <option value='mintty'>MinTTY</option>
-          <option value='putty'>Putty</option>
-          <option value='terminalapp'>Terminal.app</option>
-          <option value='terminator'>Terminator</option>
-          <option value='termite'>Termite</option>
-          <option value='xfce'>XFCE4 Terminal</option>
-          <option value='xresources'>Xresources</option>
-          <option value=''>-- OTHER --</option>
-          <option value='textmate'>Textmate / Sublime Text</option>
-          <option value='json'>JSON Scheme</option>
-        </select>
+        <div className="control">
+          <label>Format:</label>
+          <select ref='select' defaultValue='xresources'>
+            <option value='chromeshell'>Chrome Secure Shell</option>
+            <option value='gnome'>Gnome Terminal</option>
+            <option value='guake'>Guake</option>
+            <option value='iterm'>iTerm2</option>
+            <option value='konsole'>Konsole</option>
+            <option value='mintty'>MinTTY</option>
+            <option value='putty'>Putty</option>
+            <option value='terminalapp'>Terminal.app</option>
+            <option value='terminator'>Terminator</option>
+            <option value='termite'>Termite</option>
+            <option value='xfce'>XFCE4 Terminal</option>
+            <option value='xresources'>Xresources</option>
+            <option value=''>-- OTHER --</option>
+            <option value='textmate'>Textmate / Sublime Text</option>
+            <option value='json'>JSON Scheme</option>
+          </select>
+        </div>
         <textarea value={this.state.text} readOnly spellCheck='false'
           className='background-bg' ref='textarea' />
         <div className='buttons'>

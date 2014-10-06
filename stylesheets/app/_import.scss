@@ -7,9 +7,12 @@
   display: flex;
   flex-direction: column;
 
+  .control {
+    margin-bottom: $pad;
+  }
+
   select {
     width: 100%;
-    margin-bottom: $pad;
   }
 
   textarea {

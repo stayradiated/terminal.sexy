@@ -1,4 +1,6 @@
 .button {
+  display: block;
+  width: 100%;
   cursor: default;
   line-height: 30px;
   padding: 0 20px;
@@ -9,22 +11,24 @@
   border: 2px solid red;;
 
   &:active {
-    margin: 1px;
+    box-shadow: inset 0 3px 5px rgba(#000, 0.1);
   }
 
   &:hover {
     background: transparent;
   }
+
+  &:focus {
+    border-color: red;
+  }
 }
 
 select {
-  $height: 30px;
-
   -webkit-appearance: none;
   background: transparent;
   outline: 0;
-  height: $height;
-  line-height: $height;
+  height: $line-height + 10px;
+  line-height: $line-height;
   padding: 0 5px;
   border: 2px solid red;
   border-radius: 0;
@@ -34,12 +38,29 @@ select {
 input {
   background: transparent;
   border: 2px solid red;
-  padding: 0 5px;
+  padding: 3px 5px;
   line-height: $line-height;
   outline: 0;
   box-sizing: border-box;
 
   &:focus {
     // change border color
+  }
+}
+
+.control {
+  display: flex;
+  margin: 10px 0;
+
+  label {
+    display: block;
+    text-align: right;
+    margin-right: 10px;
+    line-height: $line-height;
+    padding: 5px 0;
+  }
+
+  input {
+    flex: 1;
   }
 }
