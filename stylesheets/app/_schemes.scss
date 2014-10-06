@@ -1,22 +1,24 @@
 .schemes {
   margin: 10px;
 
+  $border: 5px;
+
   .colors {
     position: absolute;
     top: 100px;
     left: 20px;
     right: 20px;
     bottom: 20px;
+    padding: $border $border 0;
 
-    padding: 4px;
     @extend #clearfix;
 
     div {
       float: left;
-      width: 25%;
-      height: 25%;
+      width: 50%;
+      height: 12.5%;
+      border-bottom: $border solid transparent;
       box-sizing: border-box;
-      border: 8px solid #fff;
     }
   }
 

@@ -36,7 +36,7 @@ pre {
 }
 
 .ranger .pane {
-  border-right: 4px solid {{=c.bgSubtle}};
+  border-right-color: {{=c.bgSubtle}};
 }
 
 .ranger .active {
@@ -45,7 +45,7 @@ pre {
 
 .ranger.focus .active {
   background: {{=c.desktop}};
-  outline-color: {{=c.bgSubtle}};
+  outline-color: {{=c.bgSubtle}} !important;
 }
 
 
@@ -70,12 +70,17 @@ h4 {
   border-color: {{=c.bgSubtle}}
 }
 
+.colorpicker .sat-slider .track,
+.colorpicker .light-slider .track {
+  background: {{=c.bgSubtle}};
+}
+
 /* ==== foreground ==== */
 
-.foreground-fg{color:{{=c.foreground}};}
-.background-fg{background:{{=c.foreground}};}
+.foreground-fg{color:{{=c.foreground}} !important;}
+.background-fg{background:{{=c.foreground}} !important;}
 
-.foreground-subtle {color:{{=c.fgSubtle}};}
+.foreground-subtle {color:{{=c.fgSubtle}} !important;}
 
 .lm_goldenlayout {
   color: {{=c.foreground}};
@@ -107,6 +112,10 @@ textarea:focus, input:focus, button:focus, .checkbox input:focus + span {
 
 :-ms-input-placeholder {  
    color: {{=c.fgSubtle}};
+}
+
+.colorpicker .slider .pointer {
+  background: {{=c.foreground}};
 }
 
 /* ==== 0 ==== */
