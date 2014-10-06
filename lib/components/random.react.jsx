@@ -15,9 +15,7 @@ var Random = React.createClass({
     return (
       /* jshint ignore: start */
       <div className='random'>
-        <div className='button' onClick={this.handleClick}>
-          Generate
-        </div>
+        <button type='button' className='button' onClick={this.handleClick}>Generate</button>
       </div>
       /* jshint ignore: end */
     );

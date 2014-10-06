@@ -36,7 +36,7 @@ var ImportTemplate = React.createClass({
           <input type='file' ref='file' />
         </div>
         <div className='buttons'>
-          <div onClick={this.handleSubmit} className='button button-import'>Import</div>
+          <button type='button' onClick={this.handleSubmit} className='button button-import'>Import</button>
         </div>
       </div>
       /* jshint ignore: end */

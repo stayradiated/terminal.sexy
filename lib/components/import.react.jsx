@@ -29,7 +29,7 @@ var Import = React.createClass({
         </div>
         <textarea spellCheck='false' className='background-bg' ref='textarea' />
         <div className='buttons'>
-          <div onClick={this.handleClick} className='button button-import'>Import</div>
+          <button type='button' onClick={this.handleClick} className='button button-import'>Import</button>
         </div>
       </div>
       /* jshint ignore: end */

@@ -6,7 +6,7 @@ body, textarea, pre, h1, h2, h3, h4, h5, h6 {
 }
 
 pre {
-  line-height: {{=c.line}} !important;
+  line-height: {{=c.line}};
 }
 
 /* ==== background ==== */
@@ -45,7 +45,7 @@ pre {
 
 .ranger.focus .active {
   background: {{=c.desktop}};
-  outline-color: {{=c.bgSubtle}} !important;
+  outline-color: {{=c.bgSubtle}};
 }
 
 
@@ -72,10 +72,10 @@ h4 {
 
 /* ==== foreground ==== */
 
-.foreground-fg{color:{{=c.foreground}} !important;}
-.background-fg{background:{{=c.foreground}} !important;}
+.foreground-fg{color:{{=c.foreground}};}
+.background-fg{background:{{=c.foreground}};}
 
-.foreground-subtle {color:{{=c.fgSubtle}} !important;}
+.foreground-subtle {color:{{=c.fgSubtle}};}
 
 .lm_goldenlayout {
   color: {{=c.foreground}};
@@ -85,12 +85,12 @@ h4 {
   color: {{=c.fgSubtle}};
 }
 
-textarea:focus, input:focus, button:focus {
+textarea:focus, input:focus, button:focus, .checkbox input:focus + span {
   border-color: {{=c.fgSubtle}} !important;
 }
 
 .checkbox input:checked + span:after {
-  background: {{=c.fgSubtle}} !important;
+  background: {{=c.fgSubtle}};
 }
 
 ::-webkit-input-placeholder {

@@ -59,8 +59,8 @@ var Export = React.createClass({
         <textarea value={this.state.text} readOnly spellCheck='false'
           className='background-bg' ref='textarea' />
         <div className='buttons'>
-          <div onClick={this.handleExport} className='button button-export'>Export</div>
-          <div onClick={this.handleDownload} className='button button-download'>Download</div>
+          <button type='button' onClick={this.handleExport} className='button button-export'>Export</button>
+          <button type='button' onClick={this.handleDownload} className='button button-download'>Download</button>
         </div>
       </div>
       /* jshint ignore: end */

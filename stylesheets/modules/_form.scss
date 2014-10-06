@@ -85,7 +85,7 @@ input {
     box-sizing: border-box;
   }
 
-  input[type=checkbox] {
+  input {
     position: absolute;
     top: $top;
     z-index: 3;
@@ -104,7 +104,6 @@ input {
       display: block;
       height: 6px;
       width: 6px;
-      background: blue;
     }
   }
 }
