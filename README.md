@@ -69,13 +69,10 @@ Create your own templates by using tmux and running the following command:
 
 ![Settings](docs/settings.jpg)
 
-You can set set the font family, size and line-height.
+You can currently set the font family, size and line-height.
 
-It also supports Google Web Fonts.
-
-So you can easily use any font from http://google.com/fonts.
-
-(Just make sure you use the exact case as used by Google: `Droid Sans Mono` but not `droid sans mono`)
+It cans also use any font on [Google Web Fonts](http://google.com/fonts).
+(Just make sure you use the exact same case: `Droid Sans Mono` but not `droid sans mono`)
 
 ## License
 
