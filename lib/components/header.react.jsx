@@ -15,8 +15,8 @@ var Header = React.createClass({
       <header className='header foreground-fg background-desktop'>
         <h1 className='foreground-3'>terminal.sexy</h1>
         <div className='sections'>
-          <div className='section'>
-            <span onClick={_.partial(actions.openWindow, 'about')}>About</span>
+          <div className='section' onClick={_.partial(actions.openWindow, 'about')}>
+            <span>About</span>
           </div>
           <div className='section'>
             <span>Open Window</span>

@@ -1,8 +1,10 @@
 'use strict';
 
+var _ = require('lodash');
 var React = require('react');
 var Ranger = require('react-ranger');
 
+var actions = require('../actions');
 var TemplateStore = require('../stores/template');
 
 var TemplateView = React.createClass({
@@ -14,6 +16,10 @@ var TemplateView = React.createClass({
       <div>
         <p>{'Name: ' + item.name}</p>
         <p className='foreground-subtle'>{'Path: ' + item.path}</p>
+        <button type='button' className='button'
+          onClick={_.partial(actions.openTemplate, item.path)}>
+          Open Template
+        </button>
       </div>
       /* jshint ignore: end */
     );

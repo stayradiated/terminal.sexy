@@ -60,7 +60,7 @@ var WebFontLink = React.createClass({
 
   render: function () {
     var id = encodeURIComponent(this.props.id);
-    var href = 'http://fonts.googleapis.com/css?family=' + id + ':400';
+    var href = '//fonts.googleapis.com/css?family=' + id + ':400';
     return (
       /* jshint ignore: start */
       <link href={href} rel='stylesheet' type='text/css' />

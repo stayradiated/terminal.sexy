@@ -1,6 +1,5 @@
 'use strict';
 
-var $ = require('jquery');
 var React = require('react');
 
 var TemplateStore = require('../stores/template');

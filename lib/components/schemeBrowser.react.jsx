@@ -1,10 +1,11 @@
 'use strict';
 
-var React = require('react');
+var _      = require('lodash');
+var React  = require('react');
 var Reflux = require('reflux');
 var Ranger = require('react-ranger');
 
-var actions = require('../actions');
+var actions     = require('../actions');
 var SchemeStore = require('../stores/scheme');
 
 var ItemView = React.createClass({
@@ -28,6 +29,15 @@ var ItemView = React.createClass({
 
     var colorSquares = [];
     var background = scheme.colors.background.toHex();
+    var foreground = scheme.colors.foreground.toHex();
+
+    var subtle = scheme.colors.background.clone();
+    if (subtle.toGrayscale() < 128) {
+      subtle.lighten(10);
+    } else {
+      subtle.darken(20);
+    }
+    subtle = subtle.toHex();
 
     for (var i = 0; i < 16; i += 1) {
       var id = Math.floor(i/2);
@@ -37,8 +47,7 @@ var ItemView = React.createClass({
       colorSquares.push(
         /* jshint ignore: start */
         <div key={i} style={{
-          background: color.toHex(),
-          borderColor: background
+          background: color.toHex()
         }} />
         /* jshint ignore: end */
       );
@@ -46,10 +55,14 @@ var ItemView = React.createClass({
 
     return (
       /* jshint ignore: start */
-      <div className='schemes'>
-        <h1>{scheme.name}</h1>
-        <div>By: {scheme.author}</div>
-        <div className='colors' style={{ background: background }}>
+      <div className='schemes' style={{ background: background }}>
+        <h1 style={{ color: foreground }}>{scheme.name}</h1>
+        <div style={{ color: foreground }}>By: {scheme.author}</div>
+        <button type='button' className='button'
+          onClick={_.partial(actions.openScheme, path)}
+          style={{ background: subtle, color: foreground, borderColor: subtle }}
+        >Apply Scheme</button>
+        <div className='colors' >
           {colorSquares}
         </div>
       </div>
