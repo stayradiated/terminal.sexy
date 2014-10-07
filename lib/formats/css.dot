@@ -35,19 +35,19 @@ pre {
   background: {{=c.background}}
 }
 
+.ranger .pane-container,
 .ranger .pane {
-  border-right-color: {{=c.bgSubtle}};
+  border-color: {{=c.bgSubtle}};
 }
 
 .ranger .active {
-  background: {{=c.bgSubtle}};
-}
-
-.ranger.focus .active {
   background: {{=c.desktop}};
   outline-color: {{=c.bgSubtle}} !important;
 }
 
+.ranger.focus .active {
+  background: {{=c.bgSubtle}};
+}
 
 select, textarea, input, .checkbox span {
   border-color: {{=c.bgSubtle}} !important;
@@ -107,7 +107,8 @@ h4 {
   color: {{=c.foreground}};
 }
 
-.ranger .directory {
+.ranger .directory,
+.ranger .status {
   color: {{=c.fgSubtle}};
 }
 

@@ -1,4 +1,6 @@
 .ranger {
+  $status-height: 30px;
+
   cursor: default;
   user-select: none;
 
@@ -19,44 +21,46 @@
    * PANES
    */
 
-  .pane {
+  .pane-container {
     position: absolute;
     top: 0;
-    bottom: 0;
+    left: 0;
+    right: 0;
+    bottom: $status-height;
+    border-bottom: 1px solid #ccc;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .pane {
+    position: relative;
+    display: inline-block;
+    width: 33.33%;
+    max-width: 400px;
+    min-width: 200px;
+    height: 100%;
     padding: 10px;
     box-sizing: border-box;
-
-    // overridden by css.js
-    border-right: 1px solid rgba(#fff, 0.2);
+    border-right: 1px solid #ccc;
+    vertical-align: top;
+    white-space: normal;
+    word-wrap: break-word;
   }
 
-  .parent-pane {
+  /*
+   * STATUS
+   */
+
+  .status {
+    position: absolute;
+    padding: 0 10px;
+    height: $status-height;
+    line-height: $status-height;
+    bottom: 0;
     left: 0;
-    width: 30%;
+    right: 0;
   }
-
-  .active-pane {
-    left: 30%;
-    width: 30%;
-  }
-
-  .contents-pane {
-    left: 60%;
-    width: 40%;
-    border-right: none !important;
-  }
-
-  &.hide-parent {
-    .active-pane {
-      left: 0;
-      width: 50%;
-    }
-    .contents-pane {
-      left: 50%;
-      width: 50%;
-    }
-  }
-
 
   /*
    * ITEM LIST

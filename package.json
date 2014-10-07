@@ -31,7 +31,7 @@
     "watchify": "^1.0.6"
   },
   "dependencies": {
-    "bluebird": "^0.11.6",
+    "bluebird": "^2.3.5",
     "colr": "~1.2.1",
     "concat-stream": "^1.4.6",
     "filereader-stream": "^0.1.1",
@@ -41,7 +41,7 @@
     "lodash": "^2.4.1",
     "react": "^0.11.2",
     "react-colorpicker": "^0.3.7",
-    "react-ranger": "^0.5.3",
+    "react-ranger": "^0.5.4",
     "reflux": "^0.1.13",
     "termcolors": "^0.2.7",
     "termio": "^1.0.0",
