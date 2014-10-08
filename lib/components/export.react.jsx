@@ -52,7 +52,7 @@ var Export = React.createClass({
             <option value='xfce'>XFCE4 Terminal</option>
             <option value='xresources'>Xresources</option>
             <option value=''>-- OTHER --</option>
-            <option value='textmate'>Textmate / Sublime Text</option>
+            <option value='textmate'>Sublime Text (experimental)</option>
             <option value='json'>JSON Scheme</option>
           </select>
         </div>
