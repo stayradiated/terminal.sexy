@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp         = require('gulp');
 var brfs         = require('brfs');
 var source       = require('vinyl-source-stream');
@@ -8,8 +10,9 @@ var reactify     = require('reactify');
 var browserify   = require('browserify');
 var watchify     = require('watchify');
 var uglify       = require('gulp-uglify');
+var replace      = require('gulp-replace');
 
-gulp.task('default', ['lib', 'style'], function () {
+gulp.task('default', ['set-version', 'lib', 'style'], function () {
   gulp.watch('./stylesheets/**/*.scss', ['style']);
 
   return connect.server({
@@ -52,6 +55,13 @@ gulp.task('style', function () {
     .pipe(sass({errLogToConsole: true, outputStyle: 'compressed'}))
     .pipe(autoprefixer())
     .pipe(gulp.dest('./dist/css'))
+    .pipe(connect.reload());
+});
+
+gulp.task('set-version', function () {
+  return gulp.src('./dist/index.html')
+    .pipe(replace(/\?v=([\w\.]+)/g, '?v=' + require('./package.json').version))
+    .pipe(gulp.dest('./dist/'))
     .pipe(connect.reload());
 });
 
