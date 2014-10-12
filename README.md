@@ -33,6 +33,7 @@ Export to:
 - Guake Terminal
 - iTerm
 - Konsole
+- Linux console
 - MinTTY
 - PuTTY
 - Terminal.app
