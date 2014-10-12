@@ -1,6 +1,6 @@
 {
   "name": "terminal.sexy",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "View and edit terminal colorschemes in the browser",
   "main": "dist/index.html",
   "scripts": {
@@ -44,7 +44,7 @@
     "react-colorpicker": "^0.3.7",
     "react-ranger": "^0.5.4",
     "reflux": "^0.1.13",
-    "termcolors": "^0.2.9",
+    "termcolors": "^0.2.10",
     "termio": "^1.0.0",
     "through": "^2.3.6",
     "urlsafe-base64": "^0.0.2"
