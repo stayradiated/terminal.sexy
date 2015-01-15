@@ -15,13 +15,11 @@ var App = React.createClass({
 
   render: function () {
     return (
-      /* jshint ignore: start */
       <div className='app'>
         <Header />
         <div ref="layout" className="layout-container"></div>
         <StyleSheet />
       </div>
-      /* jshint ignore: end */
     );
   }
 

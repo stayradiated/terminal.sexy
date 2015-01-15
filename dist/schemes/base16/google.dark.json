@@ -1,0 +1,24 @@
+{
+  "name": "Google (dark)",
+  "author": "Chris Kempson",
+  "color": [
+    "#1d1f21",
+    "#cc342b",
+    "#198844",
+    "#fba922",
+    "#3971ed",
+    "#a36ac7",
+    "#3971ed",
+    "#c5c8c6",
+    "#969896",
+    "#cc342b",
+    "#198844",
+    "#fba922",
+    "#3971ed",
+    "#a36ac7",
+    "#3971ed",
+    "#ffffff"
+  ],
+  "foreground": "#c5c8c6",
+  "background": "#1d1f21"
+}

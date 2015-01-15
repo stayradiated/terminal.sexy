@@ -17,7 +17,6 @@ var Import = React.createClass({
 
   render: function () {
     return (
-      /* jshint ignore: start */
       <div className='import'>
         <div className="control">
           <label>Format:</label>
@@ -32,7 +31,6 @@ var Import = React.createClass({
           <button type='button' onClick={this.handleClick} className='button button-import'>Import</button>
         </div>
       </div>
-      /* jshint ignore: end */
     );
   }
 

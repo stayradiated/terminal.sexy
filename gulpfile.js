@@ -1,5 +1,7 @@
 'use strict';
 
+var fs           = require('fs');
+var path         = require('path');
 var gulp         = require('gulp');
 var brfs         = require('brfs');
 var source       = require('vinyl-source-stream');
@@ -60,9 +62,29 @@ gulp.task('style', function () {
 
 gulp.task('set-version', function () {
   return gulp.src('./dist/index.html')
-    .pipe(replace(/\?v=([\w\.]+)/g, '?v=' + require('./package.json').version))
-    .pipe(gulp.dest('./dist/'))
-    .pipe(connect.reload());
+  .pipe(replace(/\?v=([\w\.]+)/g, '?v=' + require('./package.json').version))
+  .pipe(gulp.dest('./dist/'))
+  .pipe(connect.reload());
+});
+
+gulp.task('schemes', function () {
+  var source = 'dist/schemes';
+  var index = 'index.json';
+  var output = [];
+
+  fs.readdirSync(source).forEach(function (folder) {
+    if (folder !== index) {
+
+      var files = fs.readdirSync(path.join(source, folder));
+
+      output = output.concat(files.map(function (file) {
+        return path.join(folder, path.basename(file, '.json'));
+      }));
+
+    }
+  });
+
+  fs.writeFileSync(path.join(source, index), JSON.stringify(output));
 });
 
 gulp.task('minify', function () {
@@ -70,3 +92,4 @@ gulp.task('minify', function () {
     .pipe(uglify())
     .pipe(gulp.dest('./dist/js'));
 });
+

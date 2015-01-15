@@ -1,0 +1,24 @@
+{
+  "name": "Brewer (dark)",
+  "author": "Chris Kempson",
+  "color": [
+    "#0c0d0e",
+    "#e31a1c",
+    "#31a354",
+    "#dca060",
+    "#3182bd",
+    "#756bb1",
+    "#80b1d3",
+    "#b7b8b9",
+    "#737475",
+    "#e31a1c",
+    "#31a354",
+    "#dca060",
+    "#3182bd",
+    "#756bb1",
+    "#80b1d3",
+    "#fcfdfe"
+  ],
+  "foreground": "#b7b8b9",
+  "background": "#0c0d0e"
+}

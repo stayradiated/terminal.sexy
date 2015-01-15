@@ -7,7 +7,6 @@ var About = React.createClass({
 
   render: function () {
     return (
-      /* jshint ignore: start */
       <div className='about'>
         <h4>terminal.sexy {version}</h4>
         <p>Developed by <a target='_blank' href='https://github.com/stayradiated'>George Czabania</a> in New Zealand since April 2014.</p>
@@ -23,7 +22,6 @@ var About = React.createClass({
         </ul>
         <p>Also uses an unmodified copy of <a href='https://golden-layout.com' target='_blank'>Golden Layout</a> by Hoxton One Ltd under the <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Attribution-NonCommercial 4.0 International license.</a></p>
       </div>
-      /* jshint ignore: end */
     );
   },
 

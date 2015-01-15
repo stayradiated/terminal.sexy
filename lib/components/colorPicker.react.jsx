@@ -23,12 +23,10 @@ var Picker = React.createClass({
     var state = PickerStore.getState();
 
     return (
-      /* jshint ignore: start */
       <ReactColorPicker
         color={state.color.toHex()}
         onChange={this.handleChange}
       />
-      /* jshint ignore: end */
     );
   },
 

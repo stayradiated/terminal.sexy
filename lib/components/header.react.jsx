@@ -11,7 +11,6 @@ var Header = React.createClass({
 
   render: function () {
     return (
-      /* jshint ignore: start */
       <header className='header foreground-fg background-desktop'>
         <h1 className='foreground-3'>terminal.sexy</h1>
         <div className='sections'>
@@ -45,7 +44,6 @@ var Header = React.createClass({
           </div>
         </div>
       </header>
-      /* jshint ignore: end */
     );
   },
 

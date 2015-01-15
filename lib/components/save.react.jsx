@@ -15,7 +15,6 @@ var Save = React.createClass({
 
   render: function () {
     return (
-      /* jshint ignore: start */
       <div className='save'>
         <div className="control">
           <label>Path:</label>
@@ -29,7 +28,6 @@ var Save = React.createClass({
           <button type='button' onClick={this.handleSave} className='button button-export'>Save</button>
         </div>
       </div>
-      /* jshint ignore: end */
     );
   },
 

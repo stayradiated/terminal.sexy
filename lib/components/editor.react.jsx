@@ -32,21 +32,21 @@ var Editor = React.createClass({
         id = 'foreground';
       } 
 
-      return new EditorBlock({
-        key: id,
-        label: name.toString(),
-        color: colors[id],
-      });
+      return (
+        <EditorBlock
+          key={id}
+          label={name.toString()}
+          color={colors[id]}
+        />
+      );
     }, this);
 
     return (
-      /* jshint ignore: start */
       <div className='editor'>
         <div className='palette'>
           {palette}
         </div>
       </div>
-      /* jshint ignore: end */
     );
   },
 

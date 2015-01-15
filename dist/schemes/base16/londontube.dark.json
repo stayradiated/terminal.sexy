@@ -1,0 +1,24 @@
+{
+  "name": "Londontube (dark)",
+  "author": "Chris Kempson",
+  "color": [
+    "#231f20",
+    "#ee2e24",
+    "#00853e",
+    "#ffd204",
+    "#009ddc",
+    "#98005d",
+    "#85cebc",
+    "#d9d8d8",
+    "#737171",
+    "#ee2e24",
+    "#00853e",
+    "#ffd204",
+    "#009ddc",
+    "#98005d",
+    "#85cebc",
+    "#ffffff"
+  ],
+  "foreground": "#d9d8d8",
+  "background": "#231f20"
+}

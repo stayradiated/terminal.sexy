@@ -27,21 +27,17 @@ var EditorBlock = React.createClass({
     });
 
     return (
-      /* jshint ignore: start */
       <div key={this.props.label} className={classes}>
         <input
           className='hidden' ref='input'
-          onFocus={this.handleFocus} onBlur={this.handleBlur}
-        />
+          onFocus={this.handleFocus} onBlur={this.handleBlur} />
         <div
           className={'color background-'+this.props.label}
-          onClick={this.handleClick}
-        >
+          onClick={this.handleClick} >
           <div className='label'>{this.props.label}</div>
           <div className='hex'>{this.props.color.toHex()}</div>
         </div>
       </div>
-      /* jshint ignore: end */
     );
   },
 

@@ -25,7 +25,6 @@ var ImportTemplate = React.createClass({
 
   render: function () {
     return (
-      /* jshint ignore: start */
       <div className='import-template'>
         <div className='control'>
           <label className='foreground-subtle'>Template Name:</label>
@@ -39,7 +38,6 @@ var ImportTemplate = React.createClass({
           <button type='button' onClick={this.handleSubmit} className='button button-import'>Import</button>
         </div>
       </div>
-      /* jshint ignore: end */
     );
   }
 

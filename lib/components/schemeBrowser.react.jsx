@@ -45,16 +45,13 @@ var ItemView = React.createClass({
 
       var color = scheme.colors[id];
       colorSquares.push(
-        /* jshint ignore: start */
         <div key={i} style={{
           background: color.toHex()
         }} />
-        /* jshint ignore: end */
       );
     }
 
     return (
-      /* jshint ignore: start */
       <div className='schemes' style={{ background: background }}>
         <h1 style={{ color: foreground }}>{scheme.name}</h1>
         <div style={{ color: foreground }}>By: {scheme.author}</div>
@@ -66,7 +63,6 @@ var ItemView = React.createClass({
           {colorSquares}
         </div>
       </div>
-      /* jshint ignore: end */
     );
   },
 
@@ -80,13 +76,11 @@ var Schemes = React.createClass({
 
   render: function () {
     return (
-      /* jshint ignore: start */
       <Ranger
         store={SchemeStore.rangerStore}
         view={ItemView}
         showParent={false}
       />
-      /* jshint ignore: end */
     );
   }
 

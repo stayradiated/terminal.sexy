@@ -34,7 +34,6 @@ var Export = React.createClass({
 
   render: function () {
     return (
-      /* jshint ignore: start */
       <div className='export'>
         <div className="control">
           <label>Format:</label>
@@ -47,6 +46,7 @@ var Export = React.createClass({
             <option value='linux'>Linux console</option>
             <option value='mintty'>MinTTY</option>
             <option value='putty'>Putty</option>
+            <option value='st'>Simple Terminal</option>
             <option value='terminalapp'>Terminal.app</option>
             <option value='terminator'>Terminator</option>
             <option value='termite'>Termite</option>
@@ -64,7 +64,6 @@ var Export = React.createClass({
           <button type='button' onClick={this.handleDownload} className='button button-download'>Download</button>
         </div>
       </div>
-      /* jshint ignore: end */
     );
   }
 
