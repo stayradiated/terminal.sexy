@@ -35,8 +35,9 @@ var Editor = React.createClass({
       return (
         <EditorBlock
           key={id}
-          label={name.toString()}
+          colorId={id}
           color={colors[id]}
+          label={name.toString()}
         />
       );
     }, this);

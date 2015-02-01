@@ -9,7 +9,11 @@ var EditorBlock = React.createClass({
 
   propTypes: {
     label: React.PropTypes.string.isRequired,
-    color: React.PropTypes.instanceOf(Colr).isRequired
+    color: React.PropTypes.instanceOf(Colr).isRequired,
+    colorId: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number,
+    ]),
   },
 
   getInitialState: function () {
@@ -42,7 +46,7 @@ var EditorBlock = React.createClass({
   },
 
   handleClick: function () {
-    actions.pickColor(this.props.key);
+    actions.pickColor(this.props.colorId);
     this.refs.input.getDOMNode().focus();
   },
 
