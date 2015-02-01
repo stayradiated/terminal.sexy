@@ -1,0 +1,24 @@
+{
+  "name": "Atelierseaside (dark)",
+  "author": "Chris Kempson",
+  "color": [
+    "#131513",
+    "#e6193c",
+    "#29a329",
+    "#c3c322",
+    "#3d62f5",
+    "#ad2bee",
+    "#1999b3",
+    "#8ca68c",
+    "#687d68",
+    "#e6193c",
+    "#29a329",
+    "#c3c322",
+    "#3d62f5",
+    "#ad2bee",
+    "#1999b3",
+    "#f0fff0"
+  ],
+  "foreground": "#8ca68c",
+  "background": "#131513"
+}

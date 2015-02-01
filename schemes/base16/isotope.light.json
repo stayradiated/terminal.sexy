@@ -1,0 +1,24 @@
+{
+  "name": "Isotope (light)",
+  "author": "Chris Kempson",
+  "color": [
+    "#000000",
+    "#ff0000",
+    "#33ff00",
+    "#ff0099",
+    "#0066ff",
+    "#cc00ff",
+    "#00ffff",
+    "#d0d0d0",
+    "#808080",
+    "#ff0000",
+    "#33ff00",
+    "#ff0099",
+    "#0066ff",
+    "#cc00ff",
+    "#00ffff",
+    "#ffffff"
+  ],
+  "foreground": "#606060",
+  "background": "#ffffff"
+}

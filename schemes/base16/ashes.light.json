@@ -1,0 +1,24 @@
+{
+  "name": "Ashes (light)",
+  "author": "Chris Kempson",
+  "color": [
+    "#1c2023",
+    "#c7ae95",
+    "#95c7ae",
+    "#aec795",
+    "#ae95c7",
+    "#c795ae",
+    "#95aec7",
+    "#c7ccd1",
+    "#747c84",
+    "#c7ae95",
+    "#95c7ae",
+    "#aec795",
+    "#ae95c7",
+    "#c795ae",
+    "#95aec7",
+    "#f3f4f5"
+  ],
+  "foreground": "#565e65",
+  "background": "#f3f4f5"
+}
