@@ -49,6 +49,7 @@ var Export = React.createClass({
         <div className="control">
           <label>Format:</label>
           <select ref='select' defaultValue='xresources'>
+            <option value='alacritty'>Alacritty</option>
             <option value='chromeshell'>Chrome Secure Shell</option>
             <option value='gnome'>Gnome Terminal</option>
             <option value='guake'>Guake</option>
