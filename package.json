@@ -1,6 +1,6 @@
 {
   "name": "terminal.sexy",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "View and edit terminal colorschemes in the browser",
   "main": "dist/index.html",
   "scripts": {
