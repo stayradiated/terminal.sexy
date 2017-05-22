@@ -5,7 +5,8 @@
   "main": "dist/index.html",
   "scripts": {
     "test": "mocha -R spec test/*",
-    "gulp": "gulp"
+    "start": "gulp",
+    "minify": "gulp minify"
   },
   "repository": {
     "type": "git",

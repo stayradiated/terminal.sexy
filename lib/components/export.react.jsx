@@ -26,17 +26,25 @@ var Export = React.createClass({
   },
 
   handleDownload: function () {
-    var filename = 'terminal-sexy.txt';
     var type = this.refs.select.getDOMNode().value;
     var scheme = AppStore.getState().scheme;
-    var colors = AppStore.getState().colors;
-    if (type) {
-      switch(termcolors[type]) {
-        case termcolors.xshell: filename = scheme + '.xcs'; break;
-        case termcolors.putty: filename = scheme + '.reg'; break;
-        default: filename = scheme + '.txt'; break;
-      }
+
+    var filename
+    switch(type) {
+      case 'xshell':
+        filename = scheme + '.xcs';
+        break;
+      case 'putty':
+        filename = scheme + '.reg';
+        break;
+      case 'iterm':
+        filename = scheme + '.itermcolors';
+        break;
+      default:
+        filename = scheme + '.txt';
+        break;
     }
+
     saveAs(
       new Blob([this.state.text], {type: 'text/plain;charset=utf-8'}),
       filename

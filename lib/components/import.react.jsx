@@ -12,7 +12,7 @@ var Import = React.createClass({
     var text = this.refs.textarea.getDOMNode().value;
     var colors = termcolors[type].import(text);
     colors = termcolors.defaults.fill(colors);
-    actions.setAllColors(colors);
+    actions.setAllColors('terminal.sexy', colors);
   },
 
   render: function () {
