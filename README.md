@@ -39,6 +39,7 @@ Export to:
 - Terminal.app
 - Terminator
 - Termite
+- Tilix
 - XFCE4 Terminal
 - Xresources
 
