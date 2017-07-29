@@ -40,6 +40,9 @@ var Export = React.createClass({
       case 'iterm':
         filename = scheme + '.itermcolors';
         break;
+      case 'tilix':
+        filename = scheme + '.json';
+        break;
       default:
         filename = scheme + '.txt';
         break;
@@ -70,6 +73,7 @@ var Export = React.createClass({
             <option value='terminalapp'>Terminal.app</option>
             <option value='terminator'>Terminator</option>
             <option value='termite'>Termite</option>
+            <option value='tilix'>Tilix</option>
             <option value='xfce'>XFCE4 Terminal</option>
             <option value='xshell'>Xshell</option>
             <option value='xresources'>Xresources</option>
