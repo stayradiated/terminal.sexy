@@ -40,6 +40,9 @@ var Export = React.createClass({
       case 'iterm':
         filename = scheme + '.itermcolors';
         break;
+      case 'textmate':
+        filename = scheme + '.tmTheme';
+        break;
       default:
         filename = scheme + '.txt';
         break;
