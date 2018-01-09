@@ -1,0 +1,21 @@
+foregroundColor: '{{=c.foreground}}',
+backgroundColor: '{{=c.background}}',
+
+colors: {
+  black:        '{{=c[0]}}',
+  red:          '{{=c[1]}}',
+  green:        '{{=c[2]}}',
+  yellow:       '{{=c[3]}}',
+  blue:         '{{=c[4]}}',
+  magenta:      '{{=c[5]}}',
+  cyan:         '{{=c[6]}}',
+  white:        '{{=c[7]}}',
+  lightBlack:   '{{=c[8]}}',
+  lightRed:     '{{=c[9]}}',
+  lightGreen:   '{{=c[10]}}',
+  lightYellow:  '{{=c[11]}}',
+  lightBlue:    '{{=c[12]}}',
+  lightMagenta: '{{=c[13]}}',
+  lightCyan:    '{{=c[14]}}',
+  lightWhite:   '{{=c[15]}}'
+}
