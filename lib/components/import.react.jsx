@@ -24,6 +24,7 @@ var Import = React.createClass({
             <option value='iterm'>iTerm2</option>
             <option value='termite'>Termite</option>
             <option value='terminalapp'>Terminal.app</option>
+            <option value='alacritty'>Alacritty</option>
             <option value='xresources'>Xresources</option>
           </select>
         </div>
