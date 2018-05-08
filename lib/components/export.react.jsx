@@ -70,6 +70,7 @@ var Export = React.createClass({
             <option value='terminalapp'>Terminal.app</option>
             <option value='terminator'>Terminator</option>
             <option value='termite'>Termite</option>
+            <option value='vscode'>Visual Studio Code</option>
             <option value='xfce'>XFCE4 Terminal</option>
             <option value='xshell'>Xshell</option>
             <option value='xresources'>Xresources</option>
