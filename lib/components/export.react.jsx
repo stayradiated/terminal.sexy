@@ -64,6 +64,7 @@ var Export = React.createClass({
             <option value='iterm'>iTerm2</option>
             <option value='konsole'>Konsole</option>
             <option value='linux'>Linux console</option>
+            <option value='lxterminal'>lxterminal</option>
             <option value='mintty'>MinTTY</option>
             <option value='putty'>Putty</option>
             <option value='st'>Simple Terminal</option>
