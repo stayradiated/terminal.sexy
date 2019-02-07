@@ -34,6 +34,7 @@ Export to:
 - iTerm
 - Konsole
 - Linux console
+- lxterminal
 - MinTTY
 - PuTTY
 - Terminal.app
