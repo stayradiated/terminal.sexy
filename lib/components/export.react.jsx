@@ -7,6 +7,7 @@ var saveAs = require('filesaver.js');
 var AppStore = require('../stores/app');
 
 termcolors.json = require('../formats/json');
+termcolors.windowsterminalpreview = require('../formats/windowsterminalpreview')
 
 var Export = React.createClass({
 
@@ -39,6 +40,9 @@ var Export = React.createClass({
         break;
       case 'iterm':
         filename = scheme + '.itermcolors';
+        break;
+      case 'windowsterminalpreview':
+        filename = scheme + '.json';
         break;
       default:
         filename = scheme + '.txt';
@@ -73,6 +77,7 @@ var Export = React.createClass({
             <option value='xfce'>XFCE4 Terminal</option>
             <option value='xshell'>Xshell</option>
             <option value='xresources'>Xresources</option>
+            <option value='windowsterminalpreview'>Windows Terminal (Preview)</option>
             <option value=''>-- OTHER --</option>
             <option value='textmate'>Sublime Text (experimental)</option>
             <option value='json'>JSON Scheme</option>
