@@ -7,6 +7,7 @@ var saveAs = require('filesaver.js');
 var AppStore = require('../stores/app');
 
 termcolors.json = require('../formats/json');
+termcolors.msterminal = require('../formats/ms.terminal');
 
 var Export = React.createClass({
 
@@ -18,10 +19,14 @@ var Export = React.createClass({
 
   handleExport: function () {
     var type = this.refs.select.getDOMNode().value;
-    if (! type) { return; }
+    var scheme = AppStore.getState().scheme;
+
+    if (!type) { return; }
     var colors = AppStore.getState().colors;
+    let exportedText = termcolors[type].export(colors);
+    exportedText = exportedText.replace("%%scheme%%", scheme)
     this.setState({
-      text: termcolors[type].export(colors)
+      text: exportedText
     });
   },
 
@@ -30,7 +35,7 @@ var Export = React.createClass({
     var scheme = AppStore.getState().scheme;
 
     var filename
-    switch(type) {
+    switch (type) {
       case 'xshell':
         filename = scheme + '.xcs';
         break;
@@ -46,7 +51,7 @@ var Export = React.createClass({
     }
 
     saveAs(
-      new Blob([this.state.text], {type: 'text/plain;charset=utf-8'}),
+      new Blob([this.state.text], { type: 'text/plain;charset=utf-8' }),
       filename
     );
   },
@@ -76,6 +81,7 @@ var Export = React.createClass({
             <option value=''>-- OTHER --</option>
             <option value='textmate'>Sublime Text (experimental)</option>
             <option value='json'>JSON Scheme</option>
+            <option value='msterminal'>Windows Terminal</option>
           </select>
         </div>
         <textarea value={this.state.text} readOnly spellCheck='false'
