@@ -81,7 +81,7 @@ var Export = React.createClass({
             <option value=''>-- OTHER --</option>
             <option value='textmate'>Sublime Text (experimental)</option>
             <option value='json'>JSON Scheme</option>
-            <option value='msterminal'>Microsoft Terminal</option>
+            <option value='msterminal'>Windows Terminal</option>
           </select>
         </div>
         <textarea value={this.state.text} readOnly spellCheck='false'
