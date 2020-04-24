@@ -1,0 +1,22 @@
+{
+"name" : "%%scheme%%",
+"background": "{{=c.background}}",
+"foreground": "{{=c.foreground}}",
+"black": "{{=c[0]}}",
+"brightBlack": "{{=c[1]}}",
+"red": "{{=c[2]}}",
+"brightRed": "{{=c[3]}}",
+"green": "{{=c[4]}}",
+"brightGreen": "{{=c[5]}}",
+"yellow": "{{=c[6]}}",
+"brightYellow": "{{=c[7]}}",
+"blue": "{{=c[8]}}",
+"brightBlue": "{{=c[9]}}",
+"purple": "{{=c[10]}}",
+"brightPurple": "{{=c[11]}}",
+"cyan": "{{=c[12]}}",
+"brightCyan": "{{=c[13]}}",
+"white": "{{=c[14]}}",
+"brightWhite": "{{=c[14]}}"
+}
+
