@@ -1,0 +1,26 @@
+{
+  "name": "Neon Blood",
+  "author": "Henry W",
+  "color": [
+    "#322b3c",
+    "#cb0000",
+    "#63ba11",
+    "#b39616",
+    "#89bbfd",
+    "#9f00b8",
+    "#4fc1c2",
+    "#c4c4c4",
+    "#a3a3a3",
+    "#ff0000",
+    "#7eff00",
+    "#ffe300",
+    "#007bff",
+    "#ff00e3",
+    "#00ffff",
+    "#ffffff"
+  ],
+  "foreground": "#ffffff",
+  "background": "#322b3c"
+}
+
+
