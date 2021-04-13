@@ -1,0 +1,24 @@
+{
+  "name": "Terminal.app",
+  "author": "N/A",
+  "color": [
+    "#000000",
+    "#c23621",
+    "#25bc24",
+    "#adad27",
+    "#492ee1",
+    "#d338d3",
+    "#33bbc8",
+    "#cbcccd",
+    "#818383",
+    "#fc391f",
+    "#31e722",
+    "#eaec23",
+    "#5833ff",
+    "#f935f8",
+    "#14f0f0",
+    "#e9ebeb"
+  ],
+  "foreground": "#cbcccd",
+  "background": "#000000"
+}
