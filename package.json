@@ -48,7 +48,7 @@
     "react-colorpicker": "^0.3.9",
     "react-ranger": "^0.5.5",
     "reflux": "^0.2.5",
-    "termcolors": "^0.5.0",
+    "termcolors": "^0.7.2",
     "termio": "^1.0.0",
     "through": "^2.3.6",
     "urlsafe-base64": "^1.0.0"
