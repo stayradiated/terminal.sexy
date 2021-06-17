@@ -63,6 +63,7 @@ var Export = React.createClass({
             <option value='guake'>Guake</option>
             <option value='iterm'>iTerm2</option>
             <option value='konsole'>Konsole</option>
+            <option value='kitty'>Kitty</option>
             <option value='linux'>Linux console</option>
             <option value='mintty'>MinTTY</option>
             <option value='putty'>Putty</option>
