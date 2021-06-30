@@ -6,23 +6,13 @@ var gulp         = require('gulp');
 var brfs         = require('brfs');
 var source       = require('vinyl-source-stream');
 var connect      = require('gulp-connect');
-var sass         = require('gulp-sass');
+var sass         = require('gulp-sass')(require('node-sass'));
 var autoprefixer = require('gulp-autoprefixer');
 var reactify     = require('reactify');
 var browserify   = require('browserify');
 var watchify     = require('watchify');
 var uglify       = require('gulp-uglify');
 var replace      = require('gulp-replace');
-
-gulp.task('default', ['set-version', 'lib', 'style'], function () {
-  gulp.watch('./stylesheets/**/*.scss', ['style']);
-
-  return connect.server({
-    root: ['dist'],
-    port: 8000,
-    livereload: true
-  });
-}); 
 
 gulp.task('lib', function () {
   var bundler = watchify(browserify({
@@ -93,3 +83,12 @@ gulp.task('minify', function () {
     .pipe(gulp.dest('./dist/js'));
 });
 
+gulp.task('default', gulp.series('set-version', 'lib', 'style', function () {
+  gulp.watch('./stylesheets/**/*.scss', gulp.series('style'));
+
+  return connect.server({
+    root: ['dist'],
+    port: 8000,
+    livereload: true
+  });
+}));
