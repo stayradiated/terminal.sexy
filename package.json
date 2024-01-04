@@ -26,7 +26,7 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-connect": "^5.7.0",
     "gulp-replace": "^1.1.3",
-    "gulp-sass": "^5.0.0",
+    "gulp-dart-sass": "^1.1.0",
     "gulp-uglify": "^3.0.2",
     "mocha": "^2.1.0",
     "reactify": "^1.0.0",
