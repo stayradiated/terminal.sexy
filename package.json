@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha -R spec test/*",
     "start": "gulp",
-    "minify": "gulp minify"
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
